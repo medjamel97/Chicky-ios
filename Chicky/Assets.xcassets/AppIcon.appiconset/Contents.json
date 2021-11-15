@@ -36,6 +36,7 @@
       "size" : "60x60"
     },
     {
+      "filename" : "Logo-180px.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
@@ -81,13 +82,13 @@
       "size" : "76x76"
     },
     {
-      "filename" : "Logo.png",
+      "filename" : "Logo-167px.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "Logo-1.png",
+      "filename" : "Logo-1024px.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
