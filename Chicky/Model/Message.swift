@@ -5,7 +5,8 @@
 //  Created by Mac2021 on 15/11/2021.
 //
 
-struct Message {
+struct Message : Decodable{
+    
     let contenu: String?
     
     init(contenu: String?){

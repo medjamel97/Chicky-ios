@@ -7,11 +7,12 @@
 
 import Foundation
 
-struct Utilisateur {
-    let nom : String
-    let prenom : String
+struct Utilisateur: Decodable {
+    
+    let nom : String?
+    let prenom : String?
     let dateNaissance : Date?
-    let sexe : Sexe
+    let sexe : Sexe?
     
     init(nom : String?,
          prenom : String?,
@@ -24,6 +25,6 @@ struct Utilisateur {
     }
 }
 
-enum Sexe {
+enum Sexe: Decodable {
     case masculin, feminin, non_specifié
 }

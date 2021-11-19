@@ -7,13 +7,17 @@
 
 import UIKit
 
-class Accueil: UIViewController {
+class AccueilView: UIViewController {
 
     // VAR
     var liked = false
     
     // WIDGET
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var commentButton: UIButton!
+    
+    // PROTOCOLS
+    
     
     // LIFECYCLE
     override func viewDidLoad() {
@@ -21,6 +25,7 @@ class Accueil: UIViewController {
     }
     
     // METHODS
+    
     
     // ACTIONS
     @IBAction func likeAction(_ sender: Any) {

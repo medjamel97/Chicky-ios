@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u2u-r3-7x9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NPo-i3-DwE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,7 +13,7 @@
         <!--Messages-->
         <scene sceneID="wsD-JY-jXM">
             <objects>
-                <viewController id="bKc-Y3-xUr" customClass="Messagerie" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bKc-Y3-xUr" customClass="MessagerieView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aN0-De-5tF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,7 +78,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="icon-trash" title=""/>
                                                     <connections>
-                                                        <segue destination="0hG-Jg-fFC" kind="presentation" id="shW-8h-EZV"/>
+                                                        <segue destination="0hG-Jg-fFC" kind="presentation" animates="NO" modalPresentationStyle="fullScreen" id="shW-8h-EZV"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -105,10 +105,10 @@
             </objects>
             <point key="canvasLocation" x="7573.9130434782619" y="97.767857142857139"/>
         </scene>
-        <!--Connexion-->
+        <!--Connexion View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="Connexion" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ConnexionView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -150,7 +150,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Connexion"/>
                                 <connections>
-                                    <action selector="connexion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="adf-LD-xGc"/>
+                                    <action selector="connexion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qi4-t1-o6O"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGK-yi-eHx">
@@ -171,7 +171,7 @@
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="connexiongoogle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EVr-8F-JCH"/>
+                                    <action selector="connexionGoogle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jil-c9-1Ep"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pas encore inscrit?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHo-4W-i4U">
@@ -182,10 +182,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZAw-T8-dtz">
-                                <rect key="frame" x="220" y="819" width="76" height="31"/>
+                                <rect key="frame" x="234" y="811" width="128" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sign up"/>
+                                <buttonConfiguration key="configuration" style="plain" title="S'inscrire"/>
+                                <connections>
+                                    <segue destination="NPo-i3-DwE" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="M91-9Q-W0j"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -193,18 +196,19 @@
                     </view>
                     <navigationItem key="navigationItem" id="vjC-Jb-bwO"/>
                     <connections>
-                        <outlet property="motdepasse" destination="ywo-md-byO" id="O6y-x9-c07"/>
-                        <outlet property="pseudo" destination="L07-Bi-Dno" id="Zhx-BC-9OF"/>
+                        <outlet property="motDePasseTextField" destination="ywo-md-byO" id="LXj-E5-3uf"/>
+                        <outlet property="pseudoTextField" destination="L07-Bi-Dno" id="Mo3-JU-nSC"/>
+                        <segue destination="u2u-r3-7x9" kind="presentation" identifier="connexionSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="QPe-Uf-TyV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4506" y="500"/>
+            <point key="canvasLocation" x="7709" y="-1520"/>
         </scene>
         <!--Chercher-->
         <scene sceneID="WiY-w2-pec">
             <objects>
-                <viewController id="ZFA-c7-EAU" customClass="Recherche" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZFA-c7-EAU" customClass="RechercheView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zZg-QM-EM0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -231,7 +235,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="clear.fill" catalog="system" imagePlacement="trailing" title="Effacer tout" imagePadding="10"/>
                                 <connections>
-                                    <action selector="effacertout:" destination="ZFA-c7-EAU" eventType="touchUpInside" id="8Bg-Il-4eI"/>
+                                    <action selector="effacerTout:" destination="ZFA-c7-EAU" eventType="touchUpInside" id="o10-gA-W8p"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpy-gX-t1z">
@@ -336,17 +340,17 @@
                     <navigationItem key="navigationItem" id="2Fr-5G-eDt"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="recherche" destination="LKe-Ic-Env" id="gQF-yP-UOt"/>
+                        <outlet property="rechercheTextField" destination="LKe-Ic-Env" id="aSZ-5W-PVG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ekd-Zy-gsq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6185.507246376812" y="97.767857142857139"/>
         </scene>
-        <!--Localisation-->
+        <!--Localisation View-->
         <scene sceneID="Rlx-F3-1cP">
             <objects>
-                <viewController id="Sm5-sT-xGE" customClass="Localisation" sceneMemberID="viewController">
+                <viewController id="Sm5-sT-xGE" customClass="LocalisationView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LxQ-6x-tmx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -438,10 +442,10 @@
             </objects>
             <point key="canvasLocation" x="8265" y="840"/>
         </scene>
-        <!--Musique-->
+        <!--Musique View-->
         <scene sceneID="qYv-mI-INP">
             <objects>
-                <viewController id="dLJ-fL-ahp" customClass="Musique" sceneMemberID="viewController">
+                <viewController id="dLJ-fL-ahp" customClass="MusiqueView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rlv-gB-hS5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -449,11 +453,6 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Example-2" translatesAutoresizingMaskIntoConstraints="NO" id="LmJ-jL-m93">
                                 <rect key="frame" x="70" y="173" width="275" height="357"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="play.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="842-zq-dO0">
-                                <rect key="frame" x="109" y="617.5" width="197" height="87"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="secondaryLabelColor"/>
                             </imageView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ww5-qd-5Hb">
                                 <rect key="frame" x="70" y="724" width="275" height="4"/>
@@ -480,22 +479,27 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="play.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="842-zq-dO0">
+                                <rect key="frame" x="109" y="583.5" width="197" height="87"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sXa-dQ-Vzv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="playmusic" destination="842-zq-dO0" id="JnG-AW-57i"/>
+                        <outlet property="playMusic" destination="842-zq-dO0" id="nPe-7e-UZf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URs-Ex-BzU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6186" y="840"/>
         </scene>
-        <!--Inscription-->
+        <!--Inscription View-->
         <scene sceneID="nKJ-ip-Slk">
             <objects>
-                <viewController storyboardIdentifier="inscription" id="NPo-i3-DwE" customClass="Inscription" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="inscription" id="NPo-i3-DwE" customClass="InscriptionView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yT4-gG-gbx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -549,7 +553,8 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Inscription"/>
                                 <connections>
-                                    <action selector="inscription:" destination="NPo-i3-DwE" eventType="touchUpInside" id="OHq-l6-QNO"/>
+                                    <action selector="inscription:" destination="NPo-i3-DwE" eventType="touchUpInside" id="4IL-th-eSt"/>
+                                    <segue destination="u2u-r3-7x9" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="iOF-UF-sba"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJ0-W8-Hpb">
@@ -564,7 +569,7 @@
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="inscriptiongoogle:" destination="NPo-i3-DwE" eventType="touchUpInside" id="bli-SP-SzB"/>
+                                    <action selector="inscriptiongoogle:" destination="NPo-i3-DwE" eventType="touchUpInside" id="tdu-Qe-cVa"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="vous avez un compte" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68L-hF-zYV">
@@ -575,13 +580,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mel-Je-YLo">
-                                <rect key="frame" x="226" y="819" width="75" height="31"/>
+                                <rect key="frame" x="242" y="810" width="140" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Log in"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Se connecter"/>
                                 <connections>
-                                    <action selector="login:" destination="NPo-i3-DwE" eventType="touchUpInside" id="d4D-eW-hGv"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="eyC-iz-mRV"/>
+                                    <action selector="redirectionConnexion:" destination="NPo-i3-DwE" eventType="touchUpInside" id="xtR-WD-LaR"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="OWb-w8-Gaj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -590,20 +595,20 @@
                     </view>
                     <navigationItem key="navigationItem" id="rTv-Cf-aWb"/>
                     <connections>
-                        <outlet property="cmotdepasse" destination="yo8-5t-hBH" id="CL7-VD-HY2"/>
-                        <outlet property="email" destination="Of0-WP-bNa" id="akk-oH-O4m"/>
-                        <outlet property="motdepasse" destination="GCF-bh-6NR" id="QbV-qp-3aZ"/>
-                        <outlet property="pseudo" destination="9rU-59-ogK" id="dwb-cr-MYX"/>
+                        <outlet property="confirmationMotDePasseTextField" destination="yo8-5t-hBH" id="aXE-R1-we7"/>
+                        <outlet property="emailTextField" destination="Of0-WP-bNa" id="KQB-K4-kPj"/>
+                        <outlet property="motDePasseTextField" destination="GCF-bh-6NR" id="bIo-Fy-cQ1"/>
+                        <outlet property="pseudoTextField" destination="9rU-59-ogK" id="9XI-XU-ZgR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CAw-CF-XlV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4506" y="-218"/>
+            <point key="canvasLocation" x="6872" y="-1520"/>
         </scene>
         <!--Accueil-->
         <scene sceneID="peK-tJ-DDF">
             <objects>
-                <viewController id="Y13-c9-1UD" customClass="Accueil" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y13-c9-1UD" customClass="AccueilView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VZZ-tC-eqJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -743,6 +748,7 @@
                     <navigationItem key="navigationItem" id="EzH-0R-xxs"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="commentButton" destination="gvY-sH-Tv4" id="w94-My-4u4"/>
                         <outlet property="likeButton" destination="SWm-qN-A0Z" id="dVC-ov-c6V"/>
                     </connections>
                 </viewController>
@@ -750,10 +756,10 @@
             </objects>
             <point key="canvasLocation" x="5486.9565217391309" y="97.767857142857139"/>
         </scene>
-        <!--Modifierprofil-->
+        <!--Modifier Profil View-->
         <scene sceneID="eMc-FN-Jyk">
             <objects>
-                <viewController id="CF2-ZL-dqb" customClass="Modifierprofil" sceneMemberID="viewController">
+                <viewController id="CF2-ZL-dqb" customClass="ModifierProfilView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NaB-vl-joi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -945,10 +951,10 @@
             </objects>
             <point key="canvasLocation" x="6870" y="840"/>
         </scene>
-        <!--Camera-->
+        <!--Add-->
         <scene sceneID="dHW-5S-jWa">
             <objects>
-                <viewController id="0hS-sX-Dr4" customClass="Camera" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0hS-sX-Dr4" customClass="CameraView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T5u-tZ-lzB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -964,8 +970,8 @@
                         <viewLayoutGuide key="safeArea" id="qjh-90-N72"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Camera" id="Od0-Xc-qfq">
-                        <imageReference key="image" image="camera.aperture" catalog="system" symbolScale="large" renderingMode="original"/>
+                    <tabBarItem key="tabBarItem" title="Add" id="Od0-Xc-qfq">
+                        <imageReference key="image" image="Example-1" symbolScale="large" renderingMode="template"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -974,12 +980,12 @@
             </objects>
             <point key="canvasLocation" x="6872.4637681159429" y="97.767857142857139"/>
         </scene>
-        <!--Chat-->
+        <!--Chat View-->
         <scene sceneID="14g-hA-6f3">
             <objects>
-                <viewController id="0hG-Jg-fFC" customClass="Chat" sceneMemberID="viewController">
+                <viewController id="0hG-Jg-fFC" customClass="ChatView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tjv-Pw-WMQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" backIndicatorImage="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="kMn-ah-wL4">
@@ -1053,7 +1059,7 @@
         <!--Social-->
         <scene sceneID="IhP-gD-1cy">
             <objects>
-                <viewController id="CEe-dm-j67" customClass="Social" sceneMemberID="viewController">
+                <viewController id="CEe-dm-j67" customClass="SocialView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bHw-pC-okl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1137,11 +1143,12 @@
             </objects>
             <point key="canvasLocation" x="8265.217391304348" y="97.767857142857139"/>
         </scene>
-        <!--Navigation-->
+        <!--Tab Bar Controller-->
         <scene sceneID="LDZ-Wl-182">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="u2u-r3-7x9" customClass="Navigation" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="u2u-r3-7x9" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="iLq-kx-yGO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qbr-hW-Ap1">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1157,30 +1164,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VJR-uF-bLP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6871" y="-720"/>
+            <point key="canvasLocation" x="6870" y="-721"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="lyx-vH-OoC">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bzb-en-j3Z" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KSk-0w-i2y">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="NPo-i3-DwE" kind="relationship" relationship="rootViewController" id="1vj-0W-Gvx"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3cm-Yq-CED" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3690" y="-218"/>
-        </scene>
-        <!--Profil-->
+        <!--Profil View-->
         <scene sceneID="NRu-nr-8gA">
             <objects>
-                <viewController id="gbI-ff-a5Y" customClass="Profil" sceneMemberID="viewController">
+                <viewController id="gbI-ff-a5Y" customClass="ProfilView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y4U-Xa-RVd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1264,12 +1253,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="QPe-Uf-TyV"/>
         <segue reference="FXB-7l-xrE"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="Example-1" width="156.66667175292969" height="282"/>
         <image name="Example-2" width="100" height="100"/>
         <image name="Logo" width="1600" height="1600"/>
-        <image name="camera.aperture" catalog="system" width="128" height="121"/>
         <image name="clear.fill" catalog="system" width="128" height="114"/>
         <image name="icon-chat" width="24" height="24"/>
         <image name="icon-cofee" width="24" height="24"/>
