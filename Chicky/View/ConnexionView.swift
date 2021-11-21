@@ -7,10 +7,12 @@
 
 import UIKit
 import Alamofire
+import GoogleSignIn
 
 class ConnexionView: UIViewController {
     
     // VAR
+    let signInConfig = GIDConfiguration	.init(clientID: "1068988633012-o3ncrfkpu7veivr731s4lco8ok11fl47.apps.googleusercontent.com")
     let utilisateurViewModel = UtilisateurViewModel()
     var pseudo: String?
     var motDePasse: String?
@@ -52,6 +54,13 @@ class ConnexionView: UIViewController {
     }
     
     @IBAction func connexionGoogle(_ sender: Any) {
-        
+        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
+            guard error == nil else { return }
+            guard let user = user else { return }
+            
+            let emailAddress = user.profile?.email
+            
+            // If sign in succeeded, display the app's main content View.
+        }
     }
 }

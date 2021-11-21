@@ -13,30 +13,10 @@ public class UtilisateurViewModel: ObservableObject{
     
     init(){}
     
-    func connexion(pseudo: String, motDePasse: String) async -> Bool  {
-        print("Trying to connect...")
-        if let url = URL(string: Constantes.host + "/utilisateur") {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data {
-                    do {
-                        let res = try JSONDecoder().decode([Utilisateur].self, from: data)
-                        for singleData in res {
-                            print(singleData)
-                        }
-                    } catch let error {
-                        print(error)
-                    }
-                }
-                print("Ended connection")
-            }.resume()
-        }
-        return true
-    }
-    
     func recupererUtilisateurParID(id: Int?) -> Utilisateur {
         var data: Utilisateur?
         
-        AF.request(Constantes.host + "/utilisateur" + String(id!)).responseJSON(completionHandler: { jsonResponse in
+        AF.request(Constantes.host + "/utilisateur&id=" + String(id!)).responseJSON(completionHandler: { jsonResponse in
             let response = JSON(jsonResponse)[0]
             
             data = Utilisateur(

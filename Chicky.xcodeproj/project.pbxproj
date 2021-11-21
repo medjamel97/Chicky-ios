@@ -24,11 +24,8 @@
 		940D717D27430E0200722B97 /* RechercheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D717C27430E0200722B97 /* RechercheView.swift */; };
 		940D717F27430E3D00722B97 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D717E27430E3D00722B97 /* CameraView.swift */; };
 		940D718127430EA600722B97 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D718027430EA600722B97 /* SocialView.swift */; };
-		940D718327430EEB00722B97 /* LocalisationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D718227430EEB00722B97 /* LocalisationView.swift */; };
-		940D718527430F2500722B97 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D718427430F2500722B97 /* ChatView.swift */; };
 		940D718727430F6400722B97 /* ProfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D718627430F6400722B97 /* ProfilView.swift */; };
 		940D718927430F8900722B97 /* MusiqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D718827430F8900722B97 /* MusiqueView.swift */; };
-		940D718B27430FCC00722B97 /* ModifierProfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D718A27430FCC00722B97 /* ModifierProfilView.swift */; };
 		94C4DFB42742BC1500993FE5 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C4DFB32742BC1400993FE5 /* MessageViewModel.swift */; };
 		94C4DFB62742BC1C00993FE5 /* Utilisateur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C4DFB52742BC1C00993FE5 /* Utilisateur.swift */; };
 		94C4DFC02742C79300993FE5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C4DFBF2742C79300993FE5 /* Message.swift */; };
@@ -87,11 +84,8 @@
 		940D717C27430E0200722B97 /* RechercheView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RechercheView.swift; sourceTree = "<group>"; };
 		940D717E27430E3D00722B97 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		940D718027430EA600722B97 /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
-		940D718227430EEB00722B97 /* LocalisationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalisationView.swift; sourceTree = "<group>"; };
-		940D718427430F2500722B97 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		940D718627430F6400722B97 /* ProfilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilView.swift; sourceTree = "<group>"; };
 		940D718827430F8900722B97 /* MusiqueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusiqueView.swift; sourceTree = "<group>"; };
-		940D718A27430FCC00722B97 /* ModifierProfilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierProfilView.swift; sourceTree = "<group>"; };
 		94C4DFB32742BC1400993FE5 /* MessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		94C4DFB52742BC1C00993FE5 /* Utilisateur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilisateur.swift; sourceTree = "<group>"; };
 		94C4DFBF2742C79300993FE5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -218,15 +212,12 @@
 				94C4DFCA2742D30A00993FE5 /* InscriptionView.swift */,
 				940D717A27430DB200722B97 /* ConnexionView.swift */,
 				940D718627430F6400722B97 /* ProfilView.swift */,
-				940D718A27430FCC00722B97 /* ModifierProfilView.swift */,
 				94C4DFD12742F64600993FE5 /* AccueilView.swift */,
 				940D717C27430E0200722B97 /* RechercheView.swift */,
 				940D718827430F8900722B97 /* MusiqueView.swift */,
 				940D717E27430E3D00722B97 /* CameraView.swift */,
 				431677C8273920FD0062EA9D /* MessagerieView.swift */,
-				940D718427430F2500722B97 /* ChatView.swift */,
 				940D718027430EA600722B97 /* SocialView.swift */,
-				940D718227430EEB00722B97 /* LocalisationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -511,10 +502,8 @@
 				940D717D27430E0200722B97 /* RechercheView.swift in Sources */,
 				8D9254F3274854AF009ACD1A /* LoadingScreen.swift in Sources */,
 				94C4DFCE2742DA3000993FE5 /* GradientView.swift in Sources */,
-				940D718327430EEB00722B97 /* LocalisationView.swift in Sources */,
 				94C4DFC22742C80900993FE5 /* Publication.swift in Sources */,
 				431677CF273920FD0062EA9D /* Chicky.xcdatamodeld in Sources */,
-				940D718B27430FCC00722B97 /* ModifierProfilView.swift in Sources */,
 				940D718927430F8900722B97 /* MusiqueView.swift in Sources */,
 				8D9254EF27482A9E009ACD1A /* UtilisateurViewModel.swift in Sources */,
 				940D717F27430E3D00722B97 /* CameraView.swift in Sources */,
@@ -524,7 +513,6 @@
 				94C4DFD02742DF1C00993FE5 /* RoundedCornersView.swift in Sources */,
 				94C4DFC02742C79300993FE5 /* Message.swift in Sources */,
 				940D717B27430DB200722B97 /* ConnexionView.swift in Sources */,
-				940D718527430F2500722B97 /* ChatView.swift in Sources */,
 				431677C7273920FD0062EA9D /* SceneDelegate.swift in Sources */,
 				94C4DFC52742C81F00993FE5 /* Conversation.swift in Sources */,
 				94C4DFB62742BC1C00993FE5 /* Utilisateur.swift in Sources */,
