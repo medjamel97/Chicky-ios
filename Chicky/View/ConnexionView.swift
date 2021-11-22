@@ -34,6 +34,7 @@ class ConnexionView: UIViewController {
     
     // ACTIONS
     @IBAction func connexion(_ sender: Any) {
+        
         // START Spinnder
         let child = SpinnerViewController()
         addChild(child)
@@ -41,15 +42,24 @@ class ConnexionView: UIViewController {
         view.addSubview(child.view)
         child.didMove(toParent: self)
         
-        AF.request(Constantes.host + "/utilisateur").responseJSON(completionHandler: { response in
-            print(response)
-            self.performSegue(withIdentifier: "connexionSegue", sender: nil)
-            
-            
-            // STOP Spinner
-            child.willMove(toParent: nil)
-            child.view.removeFromSuperview()
-            child.removeFromParent()
+          
+        if Thread.isMainThread {
+           print("Main Threadz")
+        }
+        utilisateurViewModel.connexion(completed: { (success) in
+            if success
+            {
+                // STOP Spinner
+                child.willMove(toParent: nil)
+                child.view.removeFromSuperview()
+                child.removeFromParent()
+                
+                self.performSegue(withIdentifier: "connexionSegue", sender: nil)
+            }
+            else
+            {
+                print("FAILED: TO PARSE JSON DATA")
+            }
         })
     }
     

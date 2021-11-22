@@ -7,24 +7,32 @@
 
 import Foundation
 
-struct Utilisateur: Decodable {
-    
-    let nom : String?
-    let prenom : String?
-    let dateNaissance : Date?
-    let sexe : Sexe?
-    
-    init(nom : String?,
-         prenom : String?,
-         dateNaissance : Date?,
-         sexe : Sexe){
-        self.nom = "nom"
-        self.prenom = "prenom"
-        self.dateNaissance = dateNaissance
-        self.sexe = sexe
-    }
-}
+struct Utilisateur: Encodable {
 
-enum Sexe: Decodable {
-    case masculin, feminin, non_specifié
+    var _id : String?
+    var pseudo : String?
+    var email : String?
+    var mdp  : String?
+    var nom : String?
+    var prenom : String?
+    var dateNaissance : Date?
+    var idPhoto : String?
+    var sexe : Bool?
+    var score : Int?
+    var bio : String?
+    
+    internal init(_id: String? = nil, pseudo: String? = nil, email: String? = nil, mdp: String? = nil, nom: String? = nil, prenom: String? = nil, dateNaissance: Date? = nil, idPhoto: String? = nil, sexe: Bool? = nil, score: Int? = nil, bio: String? = nil) {
+        self._id = _id
+        self.pseudo = pseudo
+        self.email = email
+        self.mdp = mdp
+        self.nom = nom
+        self.prenom = prenom
+        self.dateNaissance = dateNaissance
+        self.idPhoto = idPhoto
+        self.sexe = sexe
+        self.score = score
+        self.bio = bio
+    }
+    
 }

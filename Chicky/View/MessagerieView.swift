@@ -10,7 +10,7 @@ import UIKit
 class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // VARS
-    private var messageViewModel = MessageViewModel()
+    //private var messageViewModel = MessageViewModel()
     private var models = [Conversation]()
     
     // WIDGETS
@@ -35,7 +35,7 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
         
         imageProfile.image = UIImage(named: "image-person")
         labelUsername.text = "username"
-        labelMessage.text = model.dernierMessage
+        //labelMessage.text = model.dernierMessage
         
         return cell
     }
@@ -53,7 +53,7 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
         ]
         
         for example in examples{
-            models.append(Conversation(dernierMessage: example))
+         //   models.append(Conversation(dernierMessage: example))
         }
     }
     

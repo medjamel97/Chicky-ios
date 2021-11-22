@@ -211,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7709" y="-1520"/>
+            <point key="canvasLocation" x="6872" y="-1479"/>
         </scene>
         <!--Chercher-->
         <scene sceneID="WiY-w2-pec">
@@ -574,7 +574,6 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Inscription"/>
                                 <connections>
                                     <action selector="inscription:" destination="NPo-i3-DwE" eventType="touchUpInside" id="4IL-th-eSt"/>
-                                    <segue destination="u2u-r3-7x9" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="iOF-UF-sba"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJ0-W8-Hpb">
@@ -619,11 +618,12 @@
                         <outlet property="emailTextField" destination="Of0-WP-bNa" id="KQB-K4-kPj"/>
                         <outlet property="motDePasseTextField" destination="GCF-bh-6NR" id="bIo-Fy-cQ1"/>
                         <outlet property="pseudoTextField" destination="9rU-59-ogK" id="9XI-XU-ZgR"/>
+                        <segue destination="twf-Iw-i0L" kind="show" identifier="inscriptionSuivantSegue" id="yCk-4B-4jJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CAw-CF-XlV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6872" y="-1520"/>
+            <point key="canvasLocation" x="7604" y="-2202"/>
         </scene>
         <!--Accueil-->
         <scene sceneID="peK-tJ-DDF">
@@ -1260,14 +1260,105 @@
                     </view>
                     <navigationItem key="navigationItem" id="Jsg-sz-7e9"/>
                     <connections>
-                        <outlet property="datenaissance" destination="gOV-VM-zbM" id="lse-Kx-v3D"/>
-                        <outlet property="nom" destination="oX6-Os-cPU" id="Qe3-9N-qts"/>
-                        <outlet property="prenom" destination="Qd1-WD-fno" id="Kpd-WL-zIr"/>
+                        <outlet property="dateNaissanceTextField" destination="gOV-VM-zbM" id="zIY-Cy-i42"/>
+                        <outlet property="nomTextField" destination="oX6-Os-cPU" id="mgN-TA-kzg"/>
+                        <outlet property="prenomTextField" destination="Qd1-WD-fno" id="aYV-Ms-17S"/>
+                        <outlet property="sexeTextField" destination="YYV-E2-Tc3" id="8lT-oa-ZD8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G68-p1-n5J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6869.5652173913049" y="1522.7678571428571"/>
+        </scene>
+        <!--Inscription Suivant View-->
+        <scene sceneID="yE3-rs-5H5">
+            <objects>
+                <viewController id="twf-Iw-i0L" customClass="InscriptionSuivantView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A4r-Nf-Q4D">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfg-6U-Ute">
+                                <rect key="frame" x="37" y="693" width="341" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Inscription">
+                                    <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="26"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="inscription:" destination="NPo-i3-DwE" eventType="touchUpInside" id="hMA-qO-j2f"/>
+                                    <action selector="inscriptionButton:" destination="twf-Iw-i0L" eventType="touchUpInside" id="bt3-JB-gDh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uhb-Dp-Mse">
+                                <rect key="frame" x="37" y="54" width="341" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xaH-Gx-pvU">
+                                <rect key="frame" x="37" y="92" width="341" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Prenom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ab0-0q-lil">
+                                <rect key="frame" x="37" y="151" width="341" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L6e-aQ-PQV">
+                                <rect key="frame" x="37" y="189" width="341" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date de naissance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ige-Kv-9bo">
+                                <rect key="frame" x="37" y="256" width="341" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UoP-Zf-eLf">
+                                <rect key="frame" x="37" y="294" width="341" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sexe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTr-95-Blt">
+                                <rect key="frame" x="37" y="360" width="341" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dMd-AD-Cf3">
+                                <rect key="frame" x="37" y="398" width="341" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yrc-PL-fwc"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yVG-wi-Elx"/>
+                    <connections>
+                        <outlet property="dateNaissanceTextField" destination="UoP-Zf-eLf" id="ZiB-ok-uGL"/>
+                        <outlet property="nomTextField" destination="xaH-Gx-pvU" id="g9w-pZ-LhK"/>
+                        <outlet property="prenomTextField" destination="L6e-aQ-PQV" id="c6h-yS-FZk"/>
+                        <outlet property="sexeTextField" destination="dMd-AD-Cf3" id="4yf-uL-ViB"/>
+                        <segue destination="u2u-r3-7x9" kind="presentation" identifier="inscriptionSegue" modalPresentationStyle="fullScreen" id="RAJ-3h-bjc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vmh-db-S3v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8377" y="-1647"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

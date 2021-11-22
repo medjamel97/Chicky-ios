@@ -5,11 +5,16 @@
 //  Created by Mac2021 on 15/11/2021.
 //
 
+import Foundation
+
 struct Message : Decodable{
     
-    let contenu: String?
+    let _id: String?
+    let description: String?
     
-    init(contenu: String?){
-        self.contenu = contenu
+    internal init(_id: String?, description: String?) {
+        self._id = _id
+        self.description = description
     }
+    
 }
