@@ -13,10 +13,6 @@ class ProfilView: UIViewController {
     
     
     // WIDGET
-    @IBOutlet weak var nomTextField: UITextField!
-    @IBOutlet weak var prenomTextField: UITextField!
-    @IBOutlet weak var dateNaissanceTextField: UITextField!
-    @IBOutlet weak var sexeTextField: UITextField!
     
     // PROTOCOLS
     

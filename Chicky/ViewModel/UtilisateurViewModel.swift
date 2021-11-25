@@ -15,15 +15,87 @@ public class UtilisateurViewModel: ObservableObject{
     
     typealias DownloadComplete = (Bool) -> ()
     
-    func connexion(completed: @escaping DownloadComplete) {
-        AF.request(Constantes.host + "/utilisateur").responseJSON(completionHandler: { response in
-            print(response)
-            
-            var success = true
-                       
-                       completed(success)
-            
-        })
+    func connexion(email: String, mdp: String, completed: @escaping DownloadComplete) {
+        AF.request(Constantes.host + "/utilisateur/connexion",
+                   method: .post,
+                   parameters: ["email": email, "mdp": mdp])
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("Validation Successful")
+                    completed(true)
+                case let .failure(error):
+                    print(error)
+                    completed(false)
+                }
+            }
+    }
+    
+    func verifierConfirmationEmail(email: String, completed: @escaping DownloadComplete) {
+        AF.request(Constantes.host + "/utilisateur/verifierConfirmationEmail",
+                   method: .post,
+                   parameters: ["email": email])
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print(JSON(response)["message"])
+                    completed(true)
+                case let .failure(error):
+                    print(error)
+                    completed(false)
+                }
+            }
+    }
+    
+    func reEnvoyerConfirmationEmail(email: String, completed: @escaping DownloadComplete) {
+        AF.request(Constantes.host + "/utilisateur/reEnvoyerConfirmationEmail",
+                   method: .post,
+                   parameters: ["email": email])
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("Validation Successful")
+                    completed(true)
+                case let .failure(error):
+                    print(error)
+                    completed(false)
+                }
+            }
+    }
+    
+    func inscription(utilisateur: Utilisateur, completed: @escaping DownloadComplete) {
+        AF.request(Constantes.host + "/utilisateur/inscription",
+                   method: .post,
+                   parameters: [
+                    "pseudo": utilisateur.pseudo!,
+                    "email": utilisateur.email!,
+                    "mdp": utilisateur.mdp!,
+                    "nom": utilisateur.nom!,
+                    "prenom": utilisateur.prenom!,
+                    "dateNaissance": utilisateur.dateNaissance!,
+                    "idPhoto": utilisateur.idPhoto!,
+                    "sexe": utilisateur.sexe!,
+                    "score": utilisateur.score!,
+                    "bio": utilisateur.bio!
+                   ])
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("Validation Successful")
+                    completed(true)
+                case let .failure(error):
+                    print(error)
+                    completed(false)
+                }
+            }
     }
     
     func recupererUtilisateurParID(_id: Int?) -> Utilisateur {
@@ -31,9 +103,7 @@ public class UtilisateurViewModel: ObservableObject{
         
         AF.request(Constantes.host + "/utilisateur",
                    method: .get,
-                   parameters: ["_id": String(_id!)],
-                   encoding: JSONEncoding.default,
-                   headers: nil)
+                   parameters: ["_id": String(_id!)])
             .responseJSON(completionHandler: { jsonResponse in
                 let jsonResponse = JSON(jsonResponse)[0]
                 
@@ -57,7 +127,7 @@ public class UtilisateurViewModel: ObservableObject{
         return data!
     }
     
-    func manipulerUtilisateur(utilisateur: Utilisateur, methode: HTTPMethod ) {
+    func manipulerUtilisateur(utilisateur: Utilisateur, methode: HTTPMethod, completed: @escaping DownloadComplete) {
         
         AF.request(Constantes.host + "/utilisateur",
                    method: methode,
@@ -73,9 +143,7 @@ public class UtilisateurViewModel: ObservableObject{
                     "sexe": utilisateur.sexe!,
                     "score": utilisateur.score!,
                     "bio": utilisateur.bio!
-                   ],
-                   encoding: JSONEncoding.default,
-                   headers: nil)
+                   ])
             .response { response in
                 print(response)
             }

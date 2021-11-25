@@ -8,5 +8,5 @@
 import Foundation
 
 struct Constantes {
-    static let host = "http://localhost:3000"
+    static let host = "http://localhost:3000/api.chicky.com"
 }

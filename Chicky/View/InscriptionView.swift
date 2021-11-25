@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class InscriptionView: UIViewController {
     
     // VAR
+    let signInConfig = GIDConfiguration.init(clientID: "1068988633012-o3ncrfkpu7veivr731s4lco8ok11fl47.apps.googleusercontent.com")
+    var pseudo: String?
+    var motDePasse: String?
+    var currentUser: Bool?
+    var utilisateurViewModel = UtilisateurViewModel()
     var utilisateur = Utilisateur()
     
     // WIDGET
@@ -76,7 +82,14 @@ class InscriptionView: UIViewController {
     }
     
     @IBAction func inscriptiongoogle(_ sender: UIButton) {
+        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
+            guard error == nil else { return }
+            guard let user = user else { return }
+            
+            let emailAddress = user.profile?.email
+        }
     }
+    
     
     @IBAction func redirectionConnexion(_ sender: UIButton) {
     }
