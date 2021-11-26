@@ -7,32 +7,16 @@
 
 import UIKit
 
-class Messagerie: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // VARS
+    //private var messageViewModel = MessageViewModel()
     private var models = [Conversation]()
     
     // WIDGETS
     @IBOutlet weak var messagesTableView: UITableView!
     
-    // LIFECYCLE
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        configureModels()
-    }
-    
-    // METHODS
-    private func configureModels() {
-        let examples = [
-            "Jamel", "Maher", "Anis", "Akram"
-        ]
-        
-        for example in examples{
-            models.append(Conversation(dernierMessage: example))
-        }
-    }
-    
+    // PROTOCOLS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }
@@ -51,9 +35,29 @@ class Messagerie: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         imageProfile.image = UIImage(named: "image-person")
         labelUsername.text = "username"
-        labelMessage.text = model.dernierMessage
-    	
+        //labelMessage.text = model.dernierMessage
+        
         return cell
     }
+    
+    // LIFECYCLE
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureModels()
+    }
+    
+    // METHODS
+    private func configureModels() {
+        let examples = [
+            "Jamel", "Maher", "Anis", "Akram"
+        ]
+        
+        for example in examples{
+         //   models.append(Conversation(dernierMessage: example))
+        }
+    }
+    
+    // ACTIONS
+    
 }
 

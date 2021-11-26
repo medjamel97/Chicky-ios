@@ -7,10 +7,12 @@
 
 import Foundation
 
-struct Conversation {
-    let dernierMessage: String?
+struct Conversation : Decodable {
     
-    init(dernierMessage: String?){
-        self.dernierMessage = dernierMessage
+    let _id : String?
+    
+    internal init(_id: String?) {
+        self._id = _id
     }
+    
 }
