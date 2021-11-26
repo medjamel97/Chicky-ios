@@ -19,6 +19,8 @@
 		8D9254EF27482A9E009ACD1A /* UtilisateurViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9254EE27482A9E009ACD1A /* UtilisateurViewModel.swift */; };
 		8D9254F127482EF1009ACD1A /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9254F027482EF1009ACD1A /* Constantes.swift */; };
 		8D9254F3274854AF009ACD1A /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9254F2274854AF009ACD1A /* LoadingScreen.swift */; };
+		8D9EDC2E27515B950003F1A1 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9EDC2D27515B950003F1A1 /* CheckBox.swift */; };
+		8D9EDC30275169940003F1A1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D9EDC2F275169940003F1A1 /* Launch Screen.storyboard */; };
 		8DD36B9B274C779700EEFE79 /* ModifierProfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD36B9A274C779700EEFE79 /* ModifierProfilView.swift */; };
 		8DD51270274C12CB006A4434 /* InscriptionSuivantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD5126F274C12CB006A4434 /* InscriptionSuivantView.swift */; };
 		8DF2C891274FC20F00900B6F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2C890274FC20F00900B6F /* Alert.swift */; };
@@ -82,6 +84,8 @@
 		8D9254EE27482A9E009ACD1A /* UtilisateurViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilisateurViewModel.swift; sourceTree = "<group>"; };
 		8D9254F027482EF1009ACD1A /* Constantes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
 		8D9254F2274854AF009ACD1A /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		8D9EDC2D27515B950003F1A1 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		8D9EDC2F275169940003F1A1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8DD36B9A274C779700EEFE79 /* ModifierProfilView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifierProfilView.swift; sourceTree = "<group>"; };
 		8DD5126F274C12CB006A4434 /* InscriptionSuivantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InscriptionSuivantView.swift; sourceTree = "<group>"; };
 		8DF2C890274FC20F00900B6F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 		94C4DFBE2742C69A00993FE5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8D9EDC2F275169940003F1A1 /* Launch Screen.storyboard */,
 				431677CA273920FD0062EA9D /* Main.storyboard */,
 				94C4DFCA2742D30A00993FE5 /* InscriptionView.swift */,
 				8DD5126F274C12CB006A4434 /* InscriptionSuivantView.swift */,
@@ -238,6 +243,7 @@
 				8D9254F027482EF1009ACD1A /* Constantes.swift */,
 				8D9254F2274854AF009ACD1A /* LoadingScreen.swift */,
 				8DF2C890274FC20F00900B6F /* Alert.swift */,
+				8D9EDC2D27515B950003F1A1 /* CheckBox.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -374,6 +380,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D9EDC30275169940003F1A1 /* Launch Screen.storyboard in Resources */,
 				431677D1273920FE0062EA9D /* Assets.xcassets in Resources */,
 				431677CC273920FD0062EA9D /* Main.storyboard in Resources */,
 			);
@@ -514,6 +521,7 @@
 				940D717D27430E0200722B97 /* RechercheView.swift in Sources */,
 				8D9254F3274854AF009ACD1A /* LoadingScreen.swift in Sources */,
 				94C4DFCE2742DA3000993FE5 /* GradientView.swift in Sources */,
+				8D9EDC2E27515B950003F1A1 /* CheckBox.swift in Sources */,
 				94C4DFC22742C80900993FE5 /* Publication.swift in Sources */,
 				431677CF273920FD0062EA9D /* Chicky.xcdatamodeld in Sources */,
 				940D718927430F8900722B97 /* MusiqueView.swift in Sources */,

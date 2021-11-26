@@ -12,13 +12,13 @@ class InscriptionSuivantView: UIViewController {
     // VAR
     let utilisateurViewModel = UtilisateurViewModel()
     var utilisateur: Utilisateur?
+    var sexe: String?
     
     // WIDGET
     @IBOutlet weak var nomTextField: UITextField!
     @IBOutlet weak var prenomTextField: UITextField!
-    @IBOutlet weak var dateNaissanceTextField: UITextField!
-    @IBOutlet weak var sexeTextField: UITextField!
-    
+    @IBOutlet weak var dateDeNaissancePicker: UIDatePicker!
+   
     // PROTOCOLS
     
     // LIFECYCLE
@@ -37,24 +37,32 @@ class InscriptionSuivantView: UIViewController {
     }
     
     // ACTIONS
+    @IBAction func radioMale(sender: AnyObject) {
+        sexe = "Masculin"
+    }
+    
+    @IBAction func radioFemale(sender: AnyObject) {
+        sexe = "Feminin"
+    }
+    
     @IBAction func inscriptionButton(_ sender: Any) {
         
-        if (nomTextField.text == "") {
+        if (nomTextField.text!.isEmpty) {
             self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre nom"), animated: true)
             return
         }
         
-        if (prenomTextField.text == "") {
+        if (prenomTextField.text!.isEmpty) {
             self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre prenom"), animated: true)
             return
         }
         
-        if (dateNaissanceTextField.text == "") {
+        /*if (dateDeNaissancePicker.) {
             self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre date de naissance"), animated: true)
             return
-        }
+        }*/
         
-        if (sexeTextField.text == "") {
+        if (sexe == nil) {
             self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre sexe"), animated: true)
             return
         }
@@ -64,7 +72,7 @@ class InscriptionSuivantView: UIViewController {
         utilisateur?.bio = ""
         utilisateur?.nom = nomTextField.text
         utilisateur?.prenom = prenomTextField.text
-        utilisateur?.dateNaissance = Date()
+        utilisateur?.dateNaissance = dateDeNaissancePicker.date
         utilisateur?.sexe = true
         
         // START Spinnder

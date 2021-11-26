@@ -18,7 +18,7 @@ public class Alert {
     
     static func makeActionAlert(titre: String?, message: String?, action: UIAlertAction) -> UIAlertController {
         let alert = UIAlertController(title: titre, message: message, preferredStyle: .alert)
-        let actionOk = UIAlertAction(title: "Annuler", style: .default, handler: nil)
+        let actionOk = UIAlertAction(title: "Annuler", style: .cancel, handler: nil)
         alert.addAction(actionOk)
         alert.addAction(action)
         return(alert)

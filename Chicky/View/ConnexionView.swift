@@ -15,7 +15,7 @@ class ConnexionView: UIViewController {
     let signInConfig = GIDConfiguration	.init(clientID: "1068988633012-o3ncrfkpu7veivr731s4lco8ok11fl47.apps.googleusercontent.com")
     let utilisateurViewModel = UtilisateurViewModel()
     let spinner = SpinnerViewController()
-    
+
     var email: String?
     
     
@@ -47,20 +47,6 @@ class ConnexionView: UIViewController {
         spinner.removeFromParent()
     }
     
-    func verifierEmail(email: String?) {
-        utilisateurViewModel.verifierConfirmationEmail(email: email!, completed: { (success) in
-            if success {
-                self.performSegue(withIdentifier: "connexionSegue", sender: nil)
-            } else {
-                let action = UIAlertAction(title: "Réenvoyer", style: .cancel) { UIAlertAction in
-                    self.reEnvoyerEmail(email: email)
-                }
-                self.present(Alert.makeActionAlert(titre: "Notice", message: "Voulez vous re envoyer l'email de confirmation a " + email!, action: action),animated: true)
-                self.reEnvoyerEmail(email: email)
-            }
-        })
-    }
-    
     func reEnvoyerEmail(email: String?) {
         utilisateurViewModel.reEnvoyerConfirmationEmail(email: email!, completed: { (success) in
             if success {
@@ -74,16 +60,31 @@ class ConnexionView: UIViewController {
     // ACTIONS
     @IBAction func connexion(_ sender: Any) {
         
+        if(emailTextField.text!.isEmpty || motDePasseTextField.text!.isEmpty){
+            self.present(Alert.makeAlert(titre: "Avertissement", message: "Vous devez taper vos identifiants"), animated: true)
+            return
+        }
+        
         startSpinner()
         
-        utilisateurViewModel.connexion(email: emailTextField.text!, mdp: motDePasseTextField.text!,completed: { [self] (success) in
+        utilisateurViewModel.connexion(email: emailTextField.text!, mdp: motDePasseTextField.text!,completed: { (success, reponse) in
             
             self.stopSpinner()
             
             if success {
-                verifierEmail(email: emailTextField.text)
+                let utilisateur = reponse as! Utilisateur
+                
+                if utilisateur.isVerified! {
+                    self.performSegue(withIdentifier: "connexionSegue", sender: nil)
+                } else {
+                    let action = UIAlertAction(title: "Réenvoyer", style: .default) { UIAlertAction in
+                        self.reEnvoyerEmail(email: utilisateur.email)
+                    }
+                    self.present(Alert.makeActionAlert(titre: "Notice", message: "Cet email n'a pas été confirmé, Voulez vous re envoyer l'email de confirmation a " + utilisateur.email! + " ?", action: action),animated: true)
+                    self.reEnvoyerEmail(email: utilisateur.email)
+                }
             } else {
-                self.present(Alert.makeAlert(titre: "Alerte", message: "Email ou mot de passe incorrect."), animated: true)
+                self.present(Alert.makeAlert(titre: "Avertissement", message: "Email ou mot de passe incorrect."), animated: true)
             }
         })
     }

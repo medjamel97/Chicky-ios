@@ -13,63 +13,7 @@ public class UtilisateurViewModel: ObservableObject{
     
     init(){}
     
-    typealias DownloadComplete = (Bool) -> ()
-    
-    func connexion(email: String, mdp: String, completed: @escaping DownloadComplete) {
-        AF.request(Constantes.host + "/utilisateur/connexion",
-                   method: .post,
-                   parameters: ["email": email, "mdp": mdp])
-            .validate(statusCode: 200..<300)
-            .validate(contentType: ["application/json"])
-            .responseData { response in
-                switch response.result {
-                case .success:
-                    print("Validation Successful")
-                    completed(true)
-                case let .failure(error):
-                    print(error)
-                    completed(false)
-                }
-            }
-    }
-    
-    func verifierConfirmationEmail(email: String, completed: @escaping DownloadComplete) {
-        AF.request(Constantes.host + "/utilisateur/verifierConfirmationEmail",
-                   method: .post,
-                   parameters: ["email": email])
-            .validate(statusCode: 200..<300)
-            .validate(contentType: ["application/json"])
-            .responseData { response in
-                switch response.result {
-                case .success:
-                    print(JSON(response)["message"])
-                    completed(true)
-                case let .failure(error):
-                    print(error)
-                    completed(false)
-                }
-            }
-    }
-    
-    func reEnvoyerConfirmationEmail(email: String, completed: @escaping DownloadComplete) {
-        AF.request(Constantes.host + "/utilisateur/reEnvoyerConfirmationEmail",
-                   method: .post,
-                   parameters: ["email": email])
-            .validate(statusCode: 200..<300)
-            .validate(contentType: ["application/json"])
-            .responseData { response in
-                switch response.result {
-                case .success:
-                    print("Validation Successful")
-                    completed(true)
-                case let .failure(error):
-                    print(error)
-                    completed(false)
-                }
-            }
-    }
-    
-    func inscription(utilisateur: Utilisateur, completed: @escaping DownloadComplete) {
+    func inscription(utilisateur: Utilisateur, completed: @escaping (Bool) -> Void) {
         AF.request(Constantes.host + "/utilisateur/inscription",
                    method: .post,
                    parameters: [
@@ -84,6 +28,46 @@ public class UtilisateurViewModel: ObservableObject{
                     "score": utilisateur.score!,
                     "bio": utilisateur.bio!
                    ])
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("Validation Successful")
+                    completed(true)
+                case let .failure(error):
+                    print(error)
+                    completed(false)
+                }
+            }
+    }
+    
+    func connexion(email: String, mdp: String, completed: @escaping (Bool, Any?) -> Void) {
+        AF.request(Constantes.host + "/utilisateur/connexion",
+                   method: .post,
+                   parameters: ["email": email, "mdp": mdp])
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    let jsonData = JSON(response.data!)
+                    let utilisateur = self.makeItem(jsonItem: jsonData["utilisateur"])
+                    UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "utilisateurToken")
+                    print(utilisateur)
+                    
+                    completed(true, utilisateur)
+                case let .failure(error):
+                    debugPrint(error)
+                    completed(false, nil)
+                }
+            }
+    }
+    
+    func reEnvoyerConfirmationEmail(email: String, completed: @escaping (Bool) -> Void) {
+        AF.request(Constantes.host + "/utilisateur/reEnvoyerConfirmationEmail",
+                   method: .post,
+                   parameters: ["email": email])
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
@@ -127,7 +111,7 @@ public class UtilisateurViewModel: ObservableObject{
         return data!
     }
     
-    func manipulerUtilisateur(utilisateur: Utilisateur, methode: HTTPMethod, completed: @escaping DownloadComplete) {
+    func manipulerUtilisateur(utilisateur: Utilisateur, methode: HTTPMethod, completed: @escaping (Bool) -> Void) {
         
         AF.request(Constantes.host + "/utilisateur",
                    method: methode,
@@ -162,18 +146,26 @@ public class UtilisateurViewModel: ObservableObject{
     }
     
     func makeItem(jsonItem: JSON) -> Utilisateur {
-        Utilisateur(
+        //let isoDate = jsonItem["dateNaissance"]
+        let isoDate = "2016-04-14T10:44:00+0000"
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let date = dateFormatter.date(from:isoDate)!
+        
+        return Utilisateur(
             _id: jsonItem["_id"].stringValue,
             pseudo: jsonItem["pseudo"].stringValue,
             email: jsonItem["email"].stringValue,
             mdp: jsonItem["mdp"].stringValue,
             nom: jsonItem["nom"].stringValue,
             prenom: jsonItem["prenom"].stringValue,
-            dateNaissance: Date(),
+            dateNaissance: date,
             idPhoto: jsonItem["idPhoto"].stringValue,
             sexe: jsonItem["sexe"].boolValue,
             score: jsonItem["score"].intValue,
-            bio: jsonItem["bio"].stringValue
+            bio: jsonItem["bio"].stringValue,
+            isVerified: jsonItem["isVerified"].boolValue
         )
     }
     
