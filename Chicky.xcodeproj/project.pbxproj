@@ -42,6 +42,8 @@
 		94C4DFD02742DF1C00993FE5 /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C4DFCF2742DF1C00993FE5 /* RoundedCornersView.swift */; };
 		94C4DFD22742F64600993FE5 /* AccueilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C4DFD12742F64600993FE5 /* AccueilView.swift */; };
 		AA66A5341C1B942C75DB0025 /* Pods_Chicky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934D3B0EF32BEB14149B163E /* Pods_Chicky.framework */; };
+		CE00D098275194E400B0E432 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00D097275194E400B0E432 /* MessageViewModel.swift */; };
+		CE00D09A2751981000B0E432 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00D0992751981000B0E432 /* ConversationViewModel.swift */; };
 		FD9F25F7A486B2A400A61EFB /* Pods_Chicky_ChickyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69844C1A4BA56201C1B700AA /* Pods_Chicky_ChickyUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +109,8 @@
 		94C4DFCF2742DF1C00993FE5 /* RoundedCornersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
 		94C4DFD12742F64600993FE5 /* AccueilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccueilView.swift; sourceTree = "<group>"; };
 		CDD42EF90213BFF3B3E39E54 /* Pods-Chicky-ChickyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky-ChickyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Chicky-ChickyUITests/Pods-Chicky-ChickyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CE00D097275194E400B0E432 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		CE00D0992751981000B0E432 /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
 		F933F60E87D3F22297796E52 /* Pods-ChickyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChickyTests.debug.xcconfig"; path = "Target Support Files/Pods-ChickyTests/Pods-ChickyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FE48B188ABF177D1F30620C8 /* Pods-ChickyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChickyTests.release.xcconfig"; path = "Target Support Files/Pods-ChickyTests/Pods-ChickyTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,6 +215,8 @@
 			children = (
 				8D9254EE27482A9E009ACD1A /* UtilisateurViewModel.swift */,
 				8DF2C892274FED0000900B6F /* PublicationViewModel.swift */,
+				CE00D097275194E400B0E432 /* MessageViewModel.swift */,
+				CE00D0992751981000B0E432 /* ConversationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -510,6 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE00D09A2751981000B0E432 /* ConversationViewModel.swift in Sources */,
 				94C4DFD22742F64600993FE5 /* AccueilView.swift in Sources */,
 				8DD51270274C12CB006A4434 /* InscriptionSuivantView.swift in Sources */,
 				431677C9273920FD0062EA9D /* MessagerieView.swift in Sources */,
@@ -528,6 +535,7 @@
 				8D9254EF27482A9E009ACD1A /* UtilisateurViewModel.swift in Sources */,
 				940D717F27430E3D00722B97 /* CameraView.swift in Sources */,
 				940D718727430F6400722B97 /* ProfilView.swift in Sources */,
+				CE00D098275194E400B0E432 /* MessageViewModel.swift in Sources */,
 				94C4DFC72742C82D00993FE5 /* Commentaire.swift in Sources */,
 				94C4DFCB2742D30A00993FE5 /* InscriptionView.swift in Sources */,
 				94C4DFD02742DF1C00993FE5 /* RoundedCornersView.swift in Sources */,
