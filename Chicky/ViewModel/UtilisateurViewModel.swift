@@ -82,6 +82,42 @@ public class UtilisateurViewModel: ObservableObject{
             }
     }
     
+    func motDePasseOublie(email: String, codeDeReinit: String, completed: @escaping (Bool) -> Void) {
+        AF.request(Constantes.host + "/utilisateur/motDePasseOublie",
+                   method: .post,
+                   parameters: ["email": email, "codeDeReinit": codeDeReinit])
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("Validation Successful")
+                    completed(true)
+                case let .failure(error):
+                    print(error)
+                    completed(false)
+                }
+            }
+    }
+    
+    func changerMotDePasse(email: String, nouveauMotDePasse: String, completed: @escaping (Bool) -> Void) {
+        AF.request(Constantes.host + "/utilisateur/changerMotDePasse",
+                   method: .put,
+                   parameters: ["email": email,"nouveauMotDePasse": nouveauMotDePasse])
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("Validation Successful")
+                    completed(true)
+                case let .failure(error):
+                    print(error)
+                    completed(false)
+                }
+            }
+    }
+    
     func recupererUtilisateurParID(_id: Int?) -> Utilisateur {
         var data: Utilisateur?
         

@@ -27,6 +27,10 @@ class InscriptionView: UIViewController {
     // PROTOCOLS
     
     // LIFECYCLE
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "inscriptionSuivantSegue" {
             let destination = segue.destination as! InscriptionSuivantView

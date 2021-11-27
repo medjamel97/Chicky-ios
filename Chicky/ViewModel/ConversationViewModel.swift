@@ -10,10 +10,6 @@ import SwiftyJSON
 import Alamofire
 
 public class ConversationViewModel: ObservableObject{
-        
-    init(){}
-    
-    typealias DownloadComplete =
     
     func recupererConversation(completed: @escaping (Bool, Any?) -> Void) {
         AF.request(Constantes.host + "/conversation",
@@ -34,7 +30,7 @@ public class ConversationViewModel: ObservableObject{
             }
     }
     
-    func manipulerConversation(conversation: Conversation?, methode:HTTPMethod, completed: @escaping DownloadComplete) {
+    func manipulerConversation(conversation: Conversation?, methode:HTTPMethod, completed: @escaping (Bool) -> Void ) {
         AF.request(Constantes.host + "/conversation",
                    method: methode,
                    parameters: ["idPhoto": conversation!._id, "nom": conversation!.nom])
@@ -52,7 +48,7 @@ public class ConversationViewModel: ObservableObject{
             }
     }
     
-    func supprimerConversation(email: String, mdp: String, completed: @escaping DownloadComplete) {
+    func supprimerConversation(email: String, mdp: String, completed: @escaping (Bool) -> Void) {
         AF.request(Constantes.host + "/conversation", method: .delete)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -68,7 +64,7 @@ public class ConversationViewModel: ObservableObject{
             }
     }
     
-    func makeItem(jsonItem: JSON) -> Utilisateur {
+    func makeItem(jsonItem: JSON) -> Conversation {
         //let isoDate = jsonItem["dateNaissance"]
         /*let isoDate = "2016-04-14T10:44:00+0000"
         let dateFormatter = DateFormatter()

@@ -16,6 +16,9 @@
 		431677DF273920FE0062EA9D /* ChickyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677DE273920FE0062EA9D /* ChickyTests.swift */; };
 		431677E9273920FE0062EA9D /* ChickyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677E8273920FE0062EA9D /* ChickyUITests.swift */; };
 		431677EB273920FE0062EA9D /* ChickyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677EA273920FE0062EA9D /* ChickyUITestsLaunchTests.swift */; };
+		8D8774F3275282DD0039CB29 /* MdpOublieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F2275282DD0039CB29 /* MdpOublieView.swift */; };
+		8D8774F5275283400039CB29 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F4275283400039CB29 /* ConfirmationView.swift */; };
+		8D8774F7275283860039CB29 /* ChangerMdpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F6275283860039CB29 /* ChangerMdpView.swift */; };
 		8D9254EF27482A9E009ACD1A /* UtilisateurViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9254EE27482A9E009ACD1A /* UtilisateurViewModel.swift */; };
 		8D9254F127482EF1009ACD1A /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9254F027482EF1009ACD1A /* Constantes.swift */; };
 		8D9254F3274854AF009ACD1A /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9254F2274854AF009ACD1A /* LoadingScreen.swift */; };
@@ -83,6 +86,9 @@
 		431677EA273920FE0062EA9D /* ChickyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChickyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		69844C1A4BA56201C1B700AA /* Pods_Chicky_ChickyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chicky_ChickyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844441E750DD109EC9701A82 /* Pods_ChickyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChickyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D8774F2275282DD0039CB29 /* MdpOublieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MdpOublieView.swift; sourceTree = "<group>"; };
+		8D8774F4275283400039CB29 /* ConfirmationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
+		8D8774F6275283860039CB29 /* ChangerMdpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangerMdpView.swift; sourceTree = "<group>"; };
 		8D9254EE27482A9E009ACD1A /* UtilisateurViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilisateurViewModel.swift; sourceTree = "<group>"; };
 		8D9254F027482EF1009ACD1A /* Constantes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
 		8D9254F2274854AF009ACD1A /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
@@ -229,6 +235,9 @@
 				94C4DFCA2742D30A00993FE5 /* InscriptionView.swift */,
 				8DD5126F274C12CB006A4434 /* InscriptionSuivantView.swift */,
 				940D717A27430DB200722B97 /* ConnexionView.swift */,
+				8D8774F2275282DD0039CB29 /* MdpOublieView.swift */,
+				8D8774F4275283400039CB29 /* ConfirmationView.swift */,
+				8D8774F6275283860039CB29 /* ChangerMdpView.swift */,
 				940D718627430F6400722B97 /* ProfilView.swift */,
 				8DD36B9A274C779700EEFE79 /* ModifierProfilView.swift */,
 				94C4DFD12742F64600993FE5 /* AccueilView.swift */,
@@ -519,6 +528,7 @@
 				CE00D09A2751981000B0E432 /* ConversationViewModel.swift in Sources */,
 				94C4DFD22742F64600993FE5 /* AccueilView.swift in Sources */,
 				8DD51270274C12CB006A4434 /* InscriptionSuivantView.swift in Sources */,
+				8D8774F7275283860039CB29 /* ChangerMdpView.swift in Sources */,
 				431677C9273920FD0062EA9D /* MessagerieView.swift in Sources */,
 				8DF2C893274FED0000900B6F /* PublicationViewModel.swift in Sources */,
 				8DF2C891274FC20F00900B6F /* Alert.swift in Sources */,
@@ -534,10 +544,12 @@
 				940D718927430F8900722B97 /* MusiqueView.swift in Sources */,
 				8D9254EF27482A9E009ACD1A /* UtilisateurViewModel.swift in Sources */,
 				940D717F27430E3D00722B97 /* CameraView.swift in Sources */,
+				8D8774F5275283400039CB29 /* ConfirmationView.swift in Sources */,
 				940D718727430F6400722B97 /* ProfilView.swift in Sources */,
 				CE00D098275194E400B0E432 /* MessageViewModel.swift in Sources */,
 				94C4DFC72742C82D00993FE5 /* Commentaire.swift in Sources */,
 				94C4DFCB2742D30A00993FE5 /* InscriptionView.swift in Sources */,
+				8D8774F3275282DD0039CB29 /* MdpOublieView.swift in Sources */,
 				94C4DFD02742DF1C00993FE5 /* RoundedCornersView.swift in Sources */,
 				94C4DFC02742C79300993FE5 /* Message.swift in Sources */,
 				940D717B27430DB200722B97 /* ConnexionView.swift in Sources */,
