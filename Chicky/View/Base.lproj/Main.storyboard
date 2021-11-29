@@ -1631,14 +1631,26 @@
                                     <action selector="modifierProfil:" destination="gbI-ff-a5Y" eventType="touchUpInside" id="FJ9-Oc-y36"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6lL-le-0hz">
+                                <rect key="frame" x="272" y="192" width="71" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Upload"/>
+                                <connections>
+                                    <action selector="uploadpdp:" destination="gbI-ff-a5Y" eventType="touchUpInside" id="8dq-iu-vpc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2e3-On-rXh"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Jsg-sz-7e9"/>
                     <connections>
+                        <outlet property="addPictureBtn" destination="6lL-le-0hz" id="DLb-uu-N56"/>
+                        <outlet property="image" destination="1vP-nl-ldH" id="95K-g9-V1t"/>
                         <outlet property="nomTextField" destination="oX6-Os-cPU" id="mgN-TA-kzg"/>
                         <outlet property="prenomTextField" destination="Qd1-WD-fno" id="aYV-Ms-17S"/>
+                        <outlet property="uploadImage" destination="1vP-nl-ldH" id="hTf-v3-Mt6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G68-p1-n5J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1762,6 +1774,9 @@
                                         </fragment>
                                     </attributedString>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="inscriptionButton:" destination="twf-Iw-i0L" eventType="touchUpInside" id="g9n-dP-Auy"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image-person" translatesAutoresizingMaskIntoConstraints="NO" id="KqA-SH-Vo9">
                                 <rect key="frame" x="132" y="85" width="150" height="150"/>
@@ -1793,7 +1808,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="kkL-bs-k6y"/>
-        <segue reference="OWb-w8-Gaj"/>
+        <segue reference="V6C-v6-b86"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Example-2" width="100" height="100"/>
@@ -1824,7 +1839,7 @@
             <color red="0.21899999678134918" green="0.48100000619888306" blue="0.76999998092651367" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="background-clear-blue">
-            <color red="0.21899999680000001" green="0.4810000062" blue="0.76999998089999999" alpha="0.068918539471523738" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.21899999678134918" green="0.48100000619888306" blue="0.76999998092651367" alpha="0.068999998271465302" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

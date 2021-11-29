@@ -28,6 +28,7 @@ class InscriptionSuivantView: UIViewController {
     }
     
     override func viewDidLoad() {
+       
         super.viewDidLoad()
     }
     
@@ -57,6 +58,8 @@ class InscriptionSuivantView: UIViewController {
             return
         }
         
+        
+       
         /*if (dateDeNaissancePicker.) {
             self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre date de naissance"), animated: true)
             return
@@ -109,4 +112,6 @@ class InscriptionSuivantView: UIViewController {
         })
     }
     
+    
+
 }

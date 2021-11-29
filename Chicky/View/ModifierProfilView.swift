@@ -7,16 +7,19 @@
 
 import UIKit
 
-class ModifierProfilView: UIViewController {
+class ModifierProfilView: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // VAR
     var nom: String?
     var prenom : String?
+    var currentImage: UIImage!
     
     // WIDGET
     @IBOutlet weak var nomTextField: UITextField!
     @IBOutlet weak var prenomTextField: UITextField!
+    @IBOutlet weak var uploadImage: UIImageView!
     
+    @IBOutlet weak var addPictureBtn: UIButton!
     // PROTOCOLS
     
     
@@ -32,6 +35,7 @@ class ModifierProfilView: UIViewController {
         nomTextField.text = nom
     }
     
+    
     // ACTIONS
     @IBAction func modifierProfil(_ sender: Any) {
     }
@@ -43,4 +47,26 @@ class ModifierProfilView: UIViewController {
     @IBAction func radioFemale(sender: AnyObject) {
        print("Gender is Female")
     }
+    
+    
+
+    @IBAction func uploadpdp(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+        
+    }
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
+        guard let image = info [.editedImage] as? UIImage else {
+            return
+        }
+        dismiss(animated: true)
+        
+        currentImage = image
+    }
+    
+    
 }
