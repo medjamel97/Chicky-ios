@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NPo-i3-DwE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -116,7 +116,7 @@
         <!--Connexion View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ConnexionView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="ConnexionView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1069,9 +1069,9 @@
         <!--Profil View-->
         <scene sceneID="eMc-FN-Jyk">
             <objects>
-                <viewController id="CF2-ZL-dqb" customClass="ProfilView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="CF2-ZL-dqb" customClass="ProfilView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NaB-vl-joi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c2y-mT-EZj">
@@ -1256,6 +1256,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vg0-Zv-m6G">
+                                <rect key="frame" x="324" y="248" width="73" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Log out"/>
+                                <connections>
+                                    <action selector="logOut:" destination="CF2-ZL-dqb" eventType="touchUpInside" id="bmt-yI-XqT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X8u-hs-d4j"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1266,6 +1275,7 @@
                         <outlet property="profileImage" destination="G1m-0d-Zrw" id="QQj-DV-Jay"/>
                         <outlet property="usernameLabel" destination="kPV-Tq-fJo" id="WOw-c9-8ZO"/>
                         <segue destination="gbI-ff-a5Y" kind="show" identifier="modifierProfilSegue" id="qVP-eC-fgX"/>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="logout" id="LUS-77-8fo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtr-FX-ego" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1295,8 +1305,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="idPhoto" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="acT-8y-5zR">
-                                <rect key="frame" x="65" y="364" width="285" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Num article" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8yk-7D-BdR">
+                                <rect key="frame" x="65" y="358" width="285" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1312,7 +1322,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="descriptionTextField" destination="xwX-Ad-eDQ" id="xkz-0r-fm7"/>
-                        <outlet property="idPhotoTextField" destination="acT-8y-5zR" id="AKj-pe-Hz6"/>
+                        <outlet property="idPostTextField" destination="8yk-7D-BdR" id="sxV-u7-geq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JI6-6G-wMo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1637,7 +1647,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Upload"/>
                                 <connections>
-                                    <action selector="uploadpdp:" destination="gbI-ff-a5Y" eventType="touchUpInside" id="8dq-iu-vpc"/>
+                                    <action selector="uploadimage:" destination="gbI-ff-a5Y" eventType="touchUpInside" id="xIG-JG-zF8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1646,11 +1656,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Jsg-sz-7e9"/>
                     <connections>
-                        <outlet property="addPictureBtn" destination="6lL-le-0hz" id="DLb-uu-N56"/>
-                        <outlet property="image" destination="1vP-nl-ldH" id="95K-g9-V1t"/>
+                        <outlet property="imageView" destination="1vP-nl-ldH" id="fAX-Co-caD"/>
                         <outlet property="nomTextField" destination="oX6-Os-cPU" id="mgN-TA-kzg"/>
                         <outlet property="prenomTextField" destination="Qd1-WD-fno" id="aYV-Ms-17S"/>
-                        <outlet property="uploadImage" destination="1vP-nl-ldH" id="hTf-v3-Mt6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G68-p1-n5J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1808,7 +1816,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="kkL-bs-k6y"/>
-        <segue reference="V6C-v6-b86"/>
+        <segue reference="LUS-77-8fo"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Example-2" width="100" height="100"/>
