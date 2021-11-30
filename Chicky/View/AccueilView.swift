@@ -29,16 +29,34 @@ class AccueilView: UIViewController {
         
         /*publicationImage.image = UIImage(named: "619fbdd3ac8260d0fecf8881")*/
         
-        /*publicationViewModel.recupererPublication(completed: { (success) in
+        publicationViewModel.getPublications(completed: { (success,publications) in
             
             if success {
-                print("created")
+                
+                for publication in publications! {
+                    self.descriptionLabel.text = publication.description
+                }
             } else {
                 print("error")
             }
         
-        })*/
+        })
         //descriptionLabel.text = "619fbdd3ac8260d0fecf8881"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        publicationViewModel.getPublications(completed: { (success,publications) in
+            
+            if success {
+                
+                for publication in publications! {
+                    self.descriptionLabel.text = publication.description
+                }
+            } else {
+                print("error")
+            }
+        
+        })
     }
     
     // METHODS
@@ -57,4 +75,5 @@ class AccueilView: UIViewController {
         
         liked = !liked
     }
+
 }

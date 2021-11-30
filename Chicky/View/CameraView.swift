@@ -36,9 +36,9 @@ class CameraView: UIViewController {
         publicationModel.manipulerPublication(publication: publication, methode: .post, completed: { (success) in
             
             if success {
-                print("created")
+                self.present(Alert.makeAlert(titre: "Succés", message: "Publication crée avec succés"), animated: true)
             } else {
-                print("error")
+                self.present(Alert.makeAlert(titre: "Succés", message: "Erreur d'ajout de publication"), animated: true)
             }
         
         })

@@ -16,6 +16,7 @@
 		431677DF273920FE0062EA9D /* ChickyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677DE273920FE0062EA9D /* ChickyTests.swift */; };
 		431677E9273920FE0062EA9D /* ChickyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677E8273920FE0062EA9D /* ChickyUITests.swift */; };
 		431677EB273920FE0062EA9D /* ChickyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677EA273920FE0062EA9D /* ChickyUITestsLaunchTests.swift */; };
+		8D52EE4A2756178500DC7028 /* VerifAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D52EE492756178500DC7028 /* VerifAccountView.swift */; };
 		8D8774F3275282DD0039CB29 /* MdpOublieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F2275282DD0039CB29 /* MdpOublieView.swift */; };
 		8D8774F5275283400039CB29 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F4275283400039CB29 /* ConfirmationView.swift */; };
 		8D8774F7275283860039CB29 /* ChangerMdpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F6275283860039CB29 /* ChangerMdpView.swift */; };
@@ -86,6 +87,7 @@
 		431677EA273920FE0062EA9D /* ChickyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChickyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		69844C1A4BA56201C1B700AA /* Pods_Chicky_ChickyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chicky_ChickyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844441E750DD109EC9701A82 /* Pods_ChickyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChickyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D52EE492756178500DC7028 /* VerifAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifAccountView.swift; sourceTree = "<group>"; };
 		8D8774F2275282DD0039CB29 /* MdpOublieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MdpOublieView.swift; sourceTree = "<group>"; };
 		8D8774F4275283400039CB29 /* ConfirmationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
 		8D8774F6275283860039CB29 /* ChangerMdpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangerMdpView.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			children = (
 				8D9EDC2F275169940003F1A1 /* Launch Screen.storyboard */,
 				431677CA273920FD0062EA9D /* Main.storyboard */,
+				8D52EE492756178500DC7028 /* VerifAccountView.swift */,
 				94C4DFCA2742D30A00993FE5 /* InscriptionView.swift */,
 				8DD5126F274C12CB006A4434 /* InscriptionSuivantView.swift */,
 				940D717A27430DB200722B97 /* ConnexionView.swift */,
@@ -547,6 +550,7 @@
 				8D8774F5275283400039CB29 /* ConfirmationView.swift in Sources */,
 				940D718727430F6400722B97 /* ProfilView.swift in Sources */,
 				CE00D098275194E400B0E432 /* MessageViewModel.swift in Sources */,
+				8D52EE4A2756178500DC7028 /* VerifAccountView.swift in Sources */,
 				94C4DFC72742C82D00993FE5 /* Commentaire.swift in Sources */,
 				94C4DFCB2742D30A00993FE5 /* InscriptionView.swift in Sources */,
 				8D8774F3275282DD0039CB29 /* MdpOublieView.swift in Sources */,

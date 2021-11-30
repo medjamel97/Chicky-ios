@@ -15,7 +15,8 @@ public class PublicationViewModel: ObservableObject{
     
     typealias DownloadComplete = (Bool) -> ()
     
-    func recupererPublication(completed: @escaping DownloadComplete) {
+    
+    func getPublications(completed: @escaping (Bool, [Publication]?) -> Void) {
         AF.request(Constantes.host + "/publication",
                    method: .get)
             .validate(statusCode: 200..<300)
@@ -23,11 +24,18 @@ public class PublicationViewModel: ObservableObject{
             .responseData { response in
                 switch response.result {
                 case .success:
-                    print("recupererPublication : Validation Successful")
-                    completed(true)
+                    let jsonData = JSON(response.data!)
+                    debugPrint(jsonData)
+                    
+                    var publications : [Publication]? = []
+                    debugPrint(jsonData["publication"])
+                    for singleJsonItem in jsonData["publication"] {
+                        publications!.append(self.makeItem(jsonItem: singleJsonItem.1))
+                    }
+                    completed(true, publications)
                 case let .failure(error):
                     print(error)
-                    completed(false)
+                    completed(false, nil)
                 }
             }
     }
@@ -64,5 +72,14 @@ public class PublicationViewModel: ObservableObject{
                     completed(false)
                 }
             }
+    }
+    
+    func makeItem(jsonItem: JSON) -> Publication {
+        Publication(
+            _id: jsonItem["_id"].stringValue,
+            idPhoto: jsonItem["idPhoto"].stringValue,
+            description: jsonItem["description"].stringValue,
+            date: Date()
+        )
     }
 }

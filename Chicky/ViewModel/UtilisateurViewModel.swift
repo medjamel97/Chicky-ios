@@ -53,10 +53,57 @@ public class UtilisateurViewModel: ObservableObject{
                 case .success:
                     let jsonData = JSON(response.data!)
                     let utilisateur = self.makeItem(jsonItem: jsonData["utilisateur"])
-                    UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "utilisateurToken")
+                    UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "userToken")
                     print(utilisateur)
                     
                     completed(true, utilisateur)
+                case let .failure(error):
+                    debugPrint(error)
+                    completed(false, nil)
+                }
+            }
+    }
+    
+    func getUserFromToken(userToken: String, completed: @escaping (Bool, Utilisateur?) -> Void ) {
+        print("Looking for user --------------------")
+        AF.request(Constants.serverUrl + "/user/getUserFromToken",
+                   method: .post,
+                   parameters: ["token": userToken],
+                   encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .response { response in
+                switch response.result {
+                case .success:
+                    let jsonData = JSON(response.data!)
+                    let user = self.makeUser(jsonItem: jsonData["user"])
+                        print("Found user --------------------")
+                        print(user)
+                        print("-------------------------------")
+                    completed(true, user)
+                case let .failure(error):
+                    debugPrint(error)
+                    completed(false, nil)
+                }
+            }
+    }
+    
+    func loginWithSocialApp(email: String, name: String, completed: @escaping (Bool, Utilisateur?) -> Void ) {
+        AF.request(Constants.serverUrl + "/user/loginWithSocialApp",
+                   method: .post,
+                   parameters: ["email": email, "nom": name],
+                   encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .response { response in
+                switch response.result {
+                case .success:
+                    let jsonData = JSON(response.data!)
+                    let user = self.makeUser(jsonItem: jsonData["user"])
+                    
+                    print("this is the new token value : " + jsonData["token"].stringValue)
+                    UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "userToken")
+                    completed(true, user)
                 case let .failure(error):
                     debugPrint(error)
                     completed(false, nil)
