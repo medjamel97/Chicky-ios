@@ -57,7 +57,7 @@ class InscriptionView: UIViewController {
             makeAlert(titre: "Erreur", message: "Veuillez saisir votre pseudo")
             return
         }
-        emailTextField.text = emailTextField.text?.lowercased()
+        
         if (emailTextField.text == "") {
             makeAlert(titre: "Erreur", message: "Veuillez saisir votre email")
             return

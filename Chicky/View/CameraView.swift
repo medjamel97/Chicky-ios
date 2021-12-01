@@ -14,7 +14,7 @@ class CameraView: UIViewController {
     let publicationModel = PublicationViewModel()
     
     // WIDGET
-    @IBOutlet weak var idPostTextField: UITextField!
+    @IBOutlet weak var idPhotoTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     
     
@@ -31,7 +31,7 @@ class CameraView: UIViewController {
     
     // ACTIONS
     @IBAction func ajouterPublication(_ sender: Any) {
-        let publication = Publication(_id: nil, idPhoto: idPostTextField.text, description: descriptionTextField.text, date: Date())
+        let publication = Publication(_id: nil, idPhoto: idPhotoTextField.text, description: descriptionTextField.text, date: Date())
         
         publicationModel.manipulerPublication(publication: publication, methode: .post, completed: { (success) in
             

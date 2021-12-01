@@ -23,10 +23,9 @@ class ProfilView: UIViewController {
     
     // LIFECYCLE
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "modifierProfilSegue" {
         let destination = segue.destination as! ModifierProfilView
         destination.nom = "test"
-        }}
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +45,5 @@ class ProfilView: UIViewController {
         performSegue(withIdentifier: "modifierProfilSegue", sender: utilisateur)
     }
     
-    @IBAction func logOut(_ sender: Any) {
-        performSegue(withIdentifier: "logout", sender:  nil)
-    }
     
 }

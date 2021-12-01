@@ -59,7 +59,7 @@ class ConnexionView: UIViewController {
     
     // ACTIONS
     @IBAction func connexion(_ sender: Any) {
-        emailTextField.text = emailTextField.text?.lowercased()
+        
         if(emailTextField.text!.isEmpty || motDePasseTextField.text!.isEmpty){
             self.present(Alert.makeAlert(titre: "Avertissement", message: "Vous devez taper vos identifiants"), animated: true)
             return

@@ -7,21 +7,19 @@
 
 import UIKit
 
-class ModifierProfilView: UIViewController {
+class ModifierProfilView: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // VAR
     var nom: String?
     var prenom : String?
- 
+    var currentImage: UIImage!
     
     // WIDGET
     @IBOutlet weak var nomTextField: UITextField!
     @IBOutlet weak var prenomTextField: UITextField!
-  
-
-    @IBOutlet  var imageView: UIImageView!
+    @IBOutlet weak var uploadImage: UIImageView!
     
-    
+    @IBOutlet weak var addPictureBtn: UIButton!
     // PROTOCOLS
     
     
@@ -51,38 +49,24 @@ class ModifierProfilView: UIViewController {
     }
     
     
-    @IBAction func uploadimage(_ sender: UIButton) {
-        let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true)
+
+    @IBAction func uploadpdp(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
         
     }
     
     
-    
-    
- 
-    
-    
-}
-
-
-extension ModifierProfilView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        
-      if  let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
-            imageView.image = image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
+        guard let image = info [.editedImage] as? UIImage else {
+            return
         }
-       
-        picker.dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
         
+        currentImage = image
     }
     
-    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
+    
 }
