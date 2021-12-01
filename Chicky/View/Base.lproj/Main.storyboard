@@ -1842,7 +1842,11 @@
         <segue reference="drg-C8-dCr"/>
         <segue reference="kkL-bs-k6y"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <segue reference="JOc-zL-uru"/>
+=======
+        <segue reference="V6C-v6-b86"/>
+>>>>>>> parent of b45a8f3 (tasli7at fil code + image picker + start of crud publication)
 =======
         <segue reference="V6C-v6-b86"/>
 >>>>>>> parent of b45a8f3 (tasli7at fil code + image picker + start of crud publication)
