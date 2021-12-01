@@ -11,10 +11,6 @@ struct Commentaire: Decodable {
     
     let _id : String?
     let description : String?
-    
-    internal init(_id: String?, description: String?) {
-        self._id = _id
-        self.description = description
-    }
+    let date : Date?
     
 }

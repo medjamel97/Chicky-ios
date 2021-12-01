@@ -27,9 +27,9 @@ class AccueilView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*publicationImage.image = UIImage(named: "619fbdd3ac8260d0fecf8881")*/
+        publicationImage.image = UIImage(named: "619fbdd3ac8260d0fecf8881")
         
-        /*publicationViewModel.recupererPublication(completed: { (success) in
+        publicationViewModel.recupererPublication(completed: { (success) in
             
             if success {
                 print("created")
@@ -37,8 +37,8 @@ class AccueilView: UIViewController {
                 print("error")
             }
         
-        })*/
-        //descriptionLabel.text = "619fbdd3ac8260d0fecf8881"
+        })
+        descriptionLabel.text = "619fbdd3ac8260d0fecf8881"
     }
     
     // METHODS
