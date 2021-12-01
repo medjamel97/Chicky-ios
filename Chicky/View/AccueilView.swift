@@ -27,9 +27,13 @@ class AccueilView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*publicationImage.image = UIImage(named: "619fbdd3ac8260d0fecf8881")*/
+        publicationImage.image = UIImage(named: "619fbdd3ac8260d0fecf8881")
         
+<<<<<<< HEAD
         publicationViewModel.getPublications(completed: { (success,publications) in
+=======
+        publicationViewModel.recupererPublication(completed: { (success) in
+>>>>>>> Maher
             
             if success {
                 
@@ -41,7 +45,11 @@ class AccueilView: UIViewController {
             }
         
         })
+<<<<<<< HEAD
         //descriptionLabel.text = "619fbdd3ac8260d0fecf8881"
+=======
+        descriptionLabel.text = "619fbdd3ac8260d0fecf8881"
+>>>>>>> Maher
     }
     
     override func viewDidAppear(_ animated: Bool) {
