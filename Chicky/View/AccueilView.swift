@@ -9,8 +9,6 @@ import UIKit
 
 class AccueilView: UIViewController {
 
-    let publicationViewModel = PublicationViewModel()
-    
     // VAR
     var liked = false
     
@@ -27,44 +25,6 @@ class AccueilView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        publicationImage.image = UIImage(named: "619fbdd3ac8260d0fecf8881")
-        
-<<<<<<< HEAD
-        publicationViewModel.getPublications(completed: { (success,publications) in
-=======
-        publicationViewModel.recupererPublication(completed: { (success) in
->>>>>>> Maher
-            
-            if success {
-                
-                for publication in publications! {
-                    self.descriptionLabel.text = publication.description
-                }
-            } else {
-                print("error")
-            }
-        
-        })
-<<<<<<< HEAD
-        //descriptionLabel.text = "619fbdd3ac8260d0fecf8881"
-=======
-        descriptionLabel.text = "619fbdd3ac8260d0fecf8881"
->>>>>>> Maher
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        publicationViewModel.getPublications(completed: { (success,publications) in
-            
-            if success {
-                
-                for publication in publications! {
-                    self.descriptionLabel.text = publication.description
-                }
-            } else {
-                print("error")
-            }
-        
-        })
     }
     
     // METHODS
