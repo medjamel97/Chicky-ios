@@ -24,12 +24,25 @@ class AccueilView: UIViewController {
     // LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLayout()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setupLayout()
     }
     
     // METHODS
     func setupLayout() {
-        
+        PublicationViewModel().getAllPublications { success, publications in
+            if success {
+                for publication in publications! {
+                    self.descriptionLabel.text = publication.description
+                }
+            } else {
+                
+            }
+        }
     }
     
     // ACTIONS

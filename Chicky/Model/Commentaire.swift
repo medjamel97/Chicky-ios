@@ -12,5 +12,7 @@ struct Commentaire: Decodable {
     let _id : String?
     let description : String?
     let date : Date?
+    let idPublication : String?
+    let idUser : String?
     
 }

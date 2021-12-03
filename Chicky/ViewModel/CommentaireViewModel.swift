@@ -62,7 +62,9 @@ class CommentaireViewModel {
                    method: .post,
                    parameters: [
                     "description": commentaire.description!,
-                    "date": commentaire.date!
+                    "date": commentaire.date!,
+                    "idPublication": commentaire.idPublication!,
+                    "idUser": commentaire.idUser!,
                    ])
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -103,6 +105,7 @@ class CommentaireViewModel {
                    method: .delete,
                    parameters: [
                     "_id": _id!
+                    
                    ])
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -121,7 +124,9 @@ class CommentaireViewModel {
         Commentaire(
             _id: jsonItem["_id"].stringValue,
             description: jsonItem["description"].stringValue,
-            date: Date()
+            date: Date(),
+                    idPublication: jsonItem["idPublication"].stringValue,
+                    idUser: jsonItem["idUser"].stringValue
         )
     }
 }
