@@ -53,7 +53,7 @@ public class UtilisateurViewModel: ObservableObject{
                 case .success:
                     let jsonData = JSON(response.data!)
                     let utilisateur = self.makeItem(jsonItem: jsonData["utilisateur"])
-                    UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "userToken")
+                    UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "tokenConnexion")
                     print(utilisateur)
                     
                     completed(true, utilisateur)
@@ -64,6 +64,52 @@ public class UtilisateurViewModel: ObservableObject{
             }
     }
     
+    func loginWithSocialApp(email: String, name: String, completed: @escaping (Bool, Utilisateur?) -> Void ) {
+        AF.request(Constantes.host + "/utilisateur/loginWithSocialApp",
+                   method: .post,
+                   parameters: ["email": email, "name": name],
+                   encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .response { response in
+                switch response.result {
+                case .success:
+                    let jsonData = JSON(response.data!)
+                    let user = self.makeItem(jsonItem: jsonData["utilisateur"])
+                    
+                    print("this is the new token value : " + jsonData["token"].stringValue)
+                    UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "tokenConnexion")
+                    completed(true, user)
+                case let .failure(error):
+                    debugPrint(error)
+                    completed(false, nil)
+                }
+            }
+    }
+    
+    func recupererUtilisateurParToken(userToken: String, completed: @escaping (Bool, Utilisateur?) -> Void ) {
+        print("Looking for user --------------------")
+        AF.request(Constantes.host + "/utilisateur/recupererUtilisateurParToken",
+                   method: .post,
+                   parameters: ["token": userToken],
+                   encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .response { response in
+                switch response.result {
+                case .success:
+                    let jsonData = JSON(response.data!)
+                    let utilisateur = self.makeItem(jsonItem: jsonData["utilisateur"])
+                        print("Found utilisateur --------------------")
+                        print(utilisateur)
+                        print("-------------------------------")
+                    completed(true, utilisateur)
+                case let .failure(error):
+                    debugPrint(error)
+                    completed(false, nil)
+                }
+            }
+    }
     
     
     func reEnvoyerConfirmationEmail(email: String, completed: @escaping (Bool) -> Void) {

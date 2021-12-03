@@ -30,7 +30,8 @@ class ConfirmationView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        compteur = 30
+        compteurExpirationLabel.text = "60"
+        compteur = 60
         startTimer()
     }
     

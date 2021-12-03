@@ -18,7 +18,8 @@ class InscriptionSuivantView: UIViewController {
     @IBOutlet weak var nomTextField: UITextField!
     @IBOutlet weak var prenomTextField: UITextField!
     @IBOutlet weak var dateDeNaissancePicker: UIDatePicker!
-   
+    @IBOutlet weak var imageTelecharge: UIImageView!
+    
     // PROTOCOLS
     
     // LIFECYCLE
@@ -113,5 +114,7 @@ class InscriptionSuivantView: UIViewController {
     }
     
     
-
+    @IBAction func telechargerImage(_ sender: Any) {
+    }
+    
 }

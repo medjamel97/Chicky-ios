@@ -10,7 +10,6 @@ import UIKit
 class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // VARS
-    //private var messageViewModel = MessageViewModel()
     private var models = [Conversation]()
     
     // WIDGETS

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NPo-i3-DwE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EEi-Lg-f9k">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -538,37 +538,35 @@
             </objects>
             <point key="canvasLocation" x="6185.507246376812" y="839.73214285714278"/>
         </scene>
-        <!--Verif Account View-->
+        <!--Verif Compte View-->
         <scene sceneID="xTm-Kh-OUN">
             <objects>
-                <viewController id="EEi-Lg-f9k" customClass="VerifAccountView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="EEi-Lg-f9k" customClass="VerifCompteView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T6I-VO-QtS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chicky" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Mn9-ox-72T">
-                                <rect key="frame" x="0.0" y="568" width="414" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="WbV-A3-vYc">
                                 <rect key="frame" x="82" y="286" width="250" height="250"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="xP3-Z2-aD3">
+                                <rect key="frame" x="171" y="574" width="72" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" name="AccentColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4Mb-7k-nNt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="redirectConnexion" id="JOc-zL-uru"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="redirectConnexion" modalPresentationStyle="fullScreen" id="JOc-zL-uru"/>
                         <segue destination="u2u-r3-7x9" kind="show" identifier="redirectAccueil" id="drg-C8-dCr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ii3-Jf-58v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5362" y="-1107"/>
+            <point key="canvasLocation" x="5360.8695652173919" y="-1107.5892857142856"/>
         </scene>
         <!--Inscription View-->
         <scene sceneID="nKJ-ip-Slk">
@@ -789,7 +787,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJr-Ty-jBO">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJr-Ty-jBO">
                                         <rect key="frame" x="136" y="240" width="155" height="129"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="100"/>
@@ -1810,10 +1808,6 @@
                                     <action selector="inscriptionButton:" destination="twf-Iw-i0L" eventType="touchUpInside" id="g9n-dP-Auy"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image-person" translatesAutoresizingMaskIntoConstraints="NO" id="KqA-SH-Vo9">
-                                <rect key="frame" x="132" y="85" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Inscription" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oA3-9K-vL8">
                                 <rect key="frame" x="20" y="20" width="374" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1821,6 +1815,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oln-q5-BT5">
+                                <rect key="frame" x="204" y="142" width="180" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Télécharger une image"/>
+                                <connections>
+                                    <action selector="telechargerImage:" destination="twf-Iw-i0L" eventType="touchUpInside" id="Kfk-ki-Efy"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image-person" translatesAutoresizingMaskIntoConstraints="NO" id="KqA-SH-Vo9">
+                                <rect key="frame" x="20" y="82" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yrc-PL-fwc"/>
                         <color key="backgroundColor" white="0.96209225949999999" alpha="1" colorSpace="calibratedWhite"/>
@@ -1828,6 +1836,7 @@
                     <navigationItem key="navigationItem" id="yVG-wi-Elx"/>
                     <connections>
                         <outlet property="dateDeNaissancePicker" destination="6bS-e5-tcH" id="rz4-Bk-SDo"/>
+                        <outlet property="imageTelecharge" destination="KqA-SH-Vo9" id="0El-Yc-3qx"/>
                         <outlet property="nomTextField" destination="xaH-Gx-pvU" id="g9w-pZ-LhK"/>
                         <outlet property="prenomTextField" destination="L6e-aQ-PQV" id="c6h-yS-FZk"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="connexionSegue" modalPresentationStyle="fullScreen" id="V6C-v6-b86"/>
@@ -1835,13 +1844,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vmh-db-S3v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8893" y="-2257"/>
+            <point key="canvasLocation" x="8892.753623188406" y="-2257.3660714285711"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="drg-C8-dCr"/>
         <segue reference="kkL-bs-k6y"/>
-        <segue reference="V6C-v6-b86"/>
+        <segue reference="JOc-zL-uru"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Example-2" width="100" height="100"/>
@@ -1862,7 +1871,7 @@
         <image name="icon-star-empty" width="24" height="24"/>
         <image name="icon-star-filled" width="24" height="24"/>
         <image name="icon-trash" width="24" height="24"/>
-        <image name="image-person" width="93.666664123535156" height="93.333335876464844"/>
+        <image name="image-person" width="150" height="150"/>
         <image name="key" catalog="system" width="86" height="128"/>
         <image name="location" catalog="system" width="128" height="118"/>
         <image name="mail" catalog="system" width="128" height="93"/>
