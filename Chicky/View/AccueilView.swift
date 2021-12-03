@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccueilView: UIViewController {
+class AccueilView: UIViewController  {
 
     // VAR
     var liked = false
@@ -17,7 +17,9 @@ class AccueilView: UIViewController {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var publicationImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
-    
+    var pubii = Publication()
+    var toutPublications : [Publication] = []
+    var i  = 0
     // PROTOCOLS
     
     
@@ -38,12 +40,37 @@ class AccueilView: UIViewController {
             if success {
                 for publication in publications! {
                     self.descriptionLabel.text = publication.description
+                    self.toutPublications.append(publication)
+                  //  i = toutPublications.count
+                    
                 }
             } else {
                 
             }
         }
     }
+    
+    
+    
+    @IBAction func swipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer) {
+        if gestureRecognizer.state == .ended {
+            print("swipe")
+            // i>= toutPublications.count
+            if i<toutPublications.count {
+                print("d5alna fil boucle")
+                i+=1
+                // i-=1
+            descriptionLabel.text = toutPublications[i].description
+            }
+            
+            
+            // Perform action.
+        }
+    }
+    
+    
+    
+    
     
     // ACTIONS
     @IBAction func likeAction(_ sender: Any) {
@@ -56,5 +83,11 @@ class AccueilView: UIViewController {
         
         liked = !liked
     }
-
+    
+    
+   
+   
+    
+    
+    
 }
