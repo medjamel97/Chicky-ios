@@ -7,11 +7,10 @@
 
 import SwiftyJSON
 import Alamofire
+import AlamofireImage
 import UIKit.UIImage
 
 public class UtilisateurViewModel: ObservableObject{
-    
-    init(){}
     
     func inscription(utilisateur: Utilisateur, completed: @escaping (Bool) -> Void) {
         AF.request(Constantes.host + "/utilisateur/inscription",
@@ -41,6 +40,38 @@ public class UtilisateurViewModel: ObservableObject{
                 }
             }
     }
+    
+    func uploadImage(imgData: Data, params: [String: Any]) {
+        let image = UIImage.init(named: "myImage")
+        let imgData = image!.pngData()
+        
+        let parameters = ["name": rname] //Optional for extra parameter
+        
+        AF.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(image, withName: "fileset",fileName: "file.png", mimeType: "image/png")
+            for (key, value) in parameters {
+                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+            } //Optional for extra parameters
+        },
+                  to:"mysite/upload.php")
+        { (result) in
+            switch result {
+            case .success(let upload, _, _):
+                
+                upload.uploadProgress(closure: { (progress) in
+                    print("Upload Progress: \(progress.fractionCompleted)")
+                })
+                
+                upload.responseJSON { response in
+                    print(response.result.value)
+                }
+                
+            case .failure(let encodingError):
+                print(encodingError)
+            }
+        }
+    }
+    
     
     func connexion(email: String, mdp: String, completed: @escaping (Bool, Any?) -> Void) {
         AF.request(Constantes.host + "/utilisateur/connexion",
@@ -100,9 +131,9 @@ public class UtilisateurViewModel: ObservableObject{
                 case .success:
                     let jsonData = JSON(response.data!)
                     let utilisateur = self.makeItem(jsonItem: jsonData["utilisateur"])
-                        print("Found utilisateur --------------------")
-                        print(utilisateur)
-                        print("-------------------------------")
+                    print("Found utilisateur --------------------")
+                    print(utilisateur)
+                    print("-------------------------------")
                     completed(true, utilisateur)
                 case let .failure(error):
                     debugPrint(error)

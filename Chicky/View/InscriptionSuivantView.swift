@@ -10,7 +10,6 @@ import UIKit
 class InscriptionSuivantView: UIViewController {
     
     // VAR
-    let utilisateurViewModel = UtilisateurViewModel()
     var utilisateur: Utilisateur?
     var sexe: String?
     
@@ -86,7 +85,7 @@ class InscriptionSuivantView: UIViewController {
         view.addSubview(child.view)
         child.didMove(toParent: self)
         
-        utilisateurViewModel.inscription(utilisateur: utilisateur!, completed: { (success) in
+        UtilisateurViewModel().inscription(utilisateur: utilisateur!, completed: { (success) in
             // STOP Spinner
             child.willMove(toParent: nil)
             child.view.removeFromSuperview()
@@ -115,6 +114,7 @@ class InscriptionSuivantView: UIViewController {
     
     
     @IBAction func telechargerImage(_ sender: Any) {
+        UtilisateurViewModel().uploadImage(imgData: UIImage(named: "image-person")!.pngData()!, params: ["String" : "Any"])
     }
     
 }
