@@ -7,12 +7,14 @@
 
 import Foundation
 
-struct Commentaire: Decodable {
+struct Commentaire {
     
     let _id : String?
     let description : String?
     let date : Date?
-    let idPublication : String?
-    let idUser : String?
+    
+    // relations
+    let publication : Publication?
+    let utilisateur : Utilisateur?
     
 }

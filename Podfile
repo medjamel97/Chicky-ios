@@ -16,7 +16,6 @@ target 'Chicky' do
     # Pods for testing
   end
 
-pod 'DLRadioButton', '~> 1.4'
 pod 'Alamofire', '~> 5.4'
 pod 'SwiftyJSON', '~> 4.0'
 pod 'GoogleSignIn'

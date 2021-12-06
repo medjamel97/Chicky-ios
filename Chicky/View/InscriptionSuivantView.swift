@@ -19,6 +19,7 @@ class InscriptionSuivantView: UIViewController {
     @IBOutlet weak var prenomTextField: UITextField!
     @IBOutlet weak var dateDeNaissancePicker: UIDatePicker!
     @IBOutlet weak var imageTelecharge: UIImageView!
+    @IBOutlet weak var sexeChooser: UISegmentedControl!
     
     // PROTOCOLS
     
@@ -59,6 +60,11 @@ class InscriptionSuivantView: UIViewController {
             return
         }
         
+        if (sexeChooser.selectedSegmentIndex == 0 ){
+            self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre sexe"), animated: true)
+            return
+        }
+        
         
        
         /*if (dateDeNaissancePicker.) {
@@ -66,18 +72,18 @@ class InscriptionSuivantView: UIViewController {
             return
         }*/
         
-        if (sexe == nil) {
-            self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre sexe"), animated: true)
-            return
-        }
-        
         utilisateur?.idPhoto = ""
         utilisateur?.score = 0
         utilisateur?.bio = ""
         utilisateur?.nom = nomTextField.text
         utilisateur?.prenom = prenomTextField.text
         utilisateur?.dateNaissance = dateDeNaissancePicker.date
-        utilisateur?.sexe = true
+        
+        if (sexeChooser.selectedSegmentIndex == 1 ){
+            utilisateur?.sexe = true
+        } else {
+            utilisateur?.sexe = false
+        }
         
         // START Spinnder
         let child = SpinnerViewController()
@@ -93,8 +99,6 @@ class InscriptionSuivantView: UIViewController {
             child.removeFromParent()
             
             if success {
-                
-                //self.present(Alert.makeAlert(titre: "Succés", message: "Votre compte a été bien creé veuillez confirmer votre email."), animated: true)
                 
                 let alert = UIAlertController(title: "Succés", message: "Votre compte a été bien creé veuillez confirmer votre email.", preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default) { UIAlertAction in

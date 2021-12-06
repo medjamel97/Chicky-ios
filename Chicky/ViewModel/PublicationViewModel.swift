@@ -62,10 +62,10 @@ class PublicationViewModel {
         AF.request(Constantes.host + "/publication/",
                    method: .post,
                    parameters: [
+                    "idPhoto": publication.idPhoto!,
                     "description": publication.description!,
                     "date": publication.date!,
-                    "idUser": publication.idUser!,
-                    "idPhoto": publication.idPhoto!
+                    "utilisateur": publication.utilisateur!._id!
                     
                    ])
             .validate(statusCode: 200..<300)
@@ -86,10 +86,10 @@ class PublicationViewModel {
                    method: .put,
                    parameters: [
                     "_id": publication._id!,
+                    "idPhoto": publication.idPhoto!,
                     "description": publication.description!,
                     "date": publication.date!,
-                    "idUser": publication.idUser!,
-                    "idPhoto": publication.idPhoto!
+                    "utilisateur": publication.utilisateur!._id!
                    ])
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -125,15 +125,29 @@ class PublicationViewModel {
     
     func makePublication(jsonItem: JSON) -> Publication {
         Publication (
-            
             _id: jsonItem["_id"].stringValue,
             idPhoto: jsonItem["idPhoto"].stringValue,
             description: jsonItem["description"].stringValue,
             date: Date(),
             commentaires: [],
-            idUser: jsonItem["idUser"].stringValue
-            
-            
+            utilisateur: makeUtilisateur(jsonItem: jsonItem["utilisateur"])
+        )
+    }
+    
+    func makeUtilisateur(jsonItem: JSON) -> Utilisateur {
+        return Utilisateur(
+            _id: jsonItem["_id"].stringValue,
+            pseudo: jsonItem["pseudo"].stringValue,
+            email: jsonItem["email"].stringValue,
+            mdp: jsonItem["mdp"].stringValue,
+            nom: jsonItem["nom"].stringValue,
+            prenom: jsonItem["prenom"].stringValue,
+            dateNaissance: Date(),
+            idPhoto: jsonItem["idPhoto"].stringValue,
+            sexe: jsonItem["sexe"].boolValue,
+            score: jsonItem["score"].intValue,
+            bio: jsonItem["bio"].stringValue,
+            isVerified: jsonItem["isVerified"].boolValue
         )
     }
 }

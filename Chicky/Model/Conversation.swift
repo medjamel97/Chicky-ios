@@ -7,11 +7,12 @@
 
 import Foundation
 
-struct Conversation : Decodable {
+struct Conversation {
     
     let _id : String?
     let nom : String?
     
-    
-
+    // relations
+    let envoyeur : Utilisateur?
+    let recepteur : Utilisateur?
 }
