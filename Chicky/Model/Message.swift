@@ -7,14 +7,13 @@
 
 import Foundation
 
-struct Message : Decodable{
+struct Message {
     
     let _id: String?
     let description: String?
+    let date: Date?
     
-    internal init(_id: String?, description: String?) {
-        self._id = _id
-        self.description = description
-    }
+    // relations
+    let conversation : Conversation?
     
 }

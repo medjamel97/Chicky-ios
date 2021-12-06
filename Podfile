@@ -16,7 +16,6 @@ target 'Chicky' do
     # Pods for testing
   end
 
-pod 'DLRadioButton', '~> 1.4'
 pod 'Alamofire', '~> 5.4'
 pod 'AlamofireImage', '~> 4.1'
 pod 'SwiftyJSON', '~> 4.0'
