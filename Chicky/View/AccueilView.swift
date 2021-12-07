@@ -23,27 +23,45 @@ class AccueilView: UIViewController  {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var publicationImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
-    var pubii = Publication()
-    var toutPublications : [Publication] = []
-    var i  = 0
     // PROTOCOLS
     
     // LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLayout()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        setupLayout()
     }
     
     // METHODS
     func setupLayout() {
-        PublicationViewModel().getAllPublications { success, results in
+        publicationCounter = 0
+        currentPublication = nil
+        
+        PublicationViewModel().getAllPublications { [self] success, results in
             if success {
                 self.publications.append(contentsOf: results!)
-            } else {
+
+                if results!.count > 0 {
+                    if results![publicationCounter].idPhoto != nil {
+                        
+                        currentPublication = results![publicationCounter]
+                        
+                        let url = "http://localhost:3000/img/"+(currentPublication?.idPhoto)!
+                        print(url)
+                        ImageLoader.shared.loadImage(identifier:(currentPublication?.idPhoto)!, url: url, completion: { [self]image in
+
+                            
+                            newUiView = makePublicationCard(description: publications[publicationCounter].description!, uiImage: image!)
+                            
+                            swipeAreaView.addSubview(newUiView!)
+                            
+                            publicationCounter += 1
+                        })
+                    }
+                }
                 
             }
         }
@@ -51,76 +69,83 @@ class AccueilView: UIViewController  {
     
     @IBAction func topSwipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer ) {
         if gestureRecognizer.state == .ended {
-            nextPublication(swipeIsRight: false)
+            nextPublication(swipeIsTop: true)
         }
     }
     
     @IBAction func downSwipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer ) {
         if gestureRecognizer.state == .ended {
-            nextPublication(swipeIsRight: true)
+            nextPublication(swipeIsTop: false)
         }
     }
     
-    func nextPublication(swipeIsRight: Bool) {
+    func nextPublication(swipeIsTop: Bool) {
         print("Switch user")
-        if publicationCounter != publications.count {
+        if publicationCounter < publications.count {
             currentPublication = publications[publicationCounter]
             
             oldUiView = newUiView
             
-            if swipeIsRight {
-                UIView.animate(withDuration: 1, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: {
+            if swipeIsTop {
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: {
                     // put here the code you would like to animate
-                    self.oldUiView?.frame.origin.x = 1000
-                    self.oldUiView?.frame.origin.y = 300
-                    self.oldUiView?.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+                    self.oldUiView?.frame.origin.y = -1000
                 }, completion: {(finished:Bool) in
                     // the code you put here will be compiled once the animation finishes
                     self.oldUiView!.removeFromSuperview()
                 })
             } else {
-                UIView.animate(withDuration: 1, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: {
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: {
                     // put here the code you would like to animate
-                    self.oldUiView?.frame.origin.x = -1000
-                    self.oldUiView?.frame.origin.y = 300
-                    self.oldUiView?.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+                    self.oldUiView?.frame.origin.x = 1000
                 }, completion: {(finished:Bool) in
                     // the code you put here will be compiled once the animation finishes
                     self.oldUiView!.removeFromSuperview()
                 })
             }
             
+            let url = "http://localhost:3000/img/"+(publications[publicationCounter].idPhoto)!
+            print(url)
+            if publications[publicationCounter].idPhoto != nil {
+                ImageLoader.shared.loadImage(identifier:(publications[publicationCounter].idPhoto)!, url: url, completion: { [self]image in
+                    
+                    newUiView = makePublicationCard(description: publications[publicationCounter].description!, uiImage: image!)
+                    swipeAreaView.addSubview(newUiView!)
+                    swipeAreaView.sendSubviewToBack(newUiView!)
+                    
+                    publicationCounter += 1
+                })
+            }
             
-            newUiView = makePublication(description: publications[publicationCounter].description!, idPhoto: "example-1")
-            swipeAreaView.addSubview(newUiView!)
-            swipeAreaView.sendSubviewToBack(newUiView!)
             
-            publicationCounter += 1
             
         } else {
-            self.present(Alert.makeAlert(titre: "Notice", message: "Out of users !"),animated: true)
+            self.present(Alert.makeAlert(titre: "Notice", message: "Fin de publications !"),animated: true)
         }
     }
     
-    func makePublication(description: String , idPhoto: String) -> UIView {
+    func makePublicationCard(description: String , uiImage: UIImage) -> UIView {
+        print("creating pub")
+        
         let card = UIView()
         card.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         card.backgroundColor = UIColor(white: 0.9, alpha: 1)
         card.layer.cornerRadius = 20
         
-        let image = UIImageView(image: UIImage(named: idPhoto))
-        image.frame = CGRect(x: 20, y: 20, width: card.frame.width - 40, height: card.frame.height - 150)
-        image.contentMode = .scaleAspectFit
+        let image = UIImageView(image: uiImage)
+        image.frame = CGRect(x: 0, y: 0, width: card.frame.width, height: card.frame.height)
+        image.contentMode = .scaleToFill
         image.tag = 1
         image.layer.cornerRadius = 20
+        image.clipsToBounds = true
         
         let descriptionLabel = UILabel()
         descriptionLabel.tag = 2
         descriptionLabel.text = description
-        descriptionLabel.frame = CGRect(x: 0, y: image.frame.height + 50, width: card.frame.width, height: 50)
-        descriptionLabel.textAlignment = .center
+        descriptionLabel.textColor = UIColor.white
+        descriptionLabel.frame = CGRect(x: 30, y: image.frame.height - 100, width: image.frame.width, height: 50)
         
-        let likeButton = UIButton()
+        /*let likeButton = UIButton()
         likeButton.setTitle("Send a message", for: .normal)
         likeButton.setTitleColor(UIColor.tintColor, for: .normal)
         likeButton.frame = CGRect(x: 30, y: image.frame.height + 100, width: card.frame.width / 2, height: 40)
@@ -130,12 +155,12 @@ class AccueilView: UIViewController  {
         commentButton.setImage(UIImage(systemName: "heart"), for: .normal)
         commentButton.setTitleColor(UIColor.blue, for: .normal)
         commentButton.frame = CGRect(x: likeButton.frame.width + 50, y: image.frame.height + 100, width: card.frame.width / 3, height: 40)
-        commentButton.addTarget(self, action: #selector(AccueilView.showCommentsAction), for: .touchUpInside)
+        commentButton.addTarget(self, action: #selector(AccueilView.showCommentsAction), for: .touchUpInside)*/
         
         card.addSubview(image)
         card.addSubview(descriptionLabel)
-        card.addSubview(likeButton)
-        card.addSubview(commentButton)
+        //card.addSubview(likeButton)
+        //card.addSubview(commentButton)
         
         return card
     }

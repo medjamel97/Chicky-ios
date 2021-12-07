@@ -12,7 +12,8 @@ import GoogleSignIn
 class ConnexionView: UIViewController {
     
     // VAR
-    let signInConfig = GIDConfiguration	.init(clientID: "1068988633012-o3ncrfkpu7veivr731s4lco8ok11fl47.apps.googleusercontent.com")
+    let signInConfig = GIDConfiguration.init(clientID: "129859709709-ji8he9ntqhetpgtmuj4a6hmdgd40s4eu.apps.googleusercontent.com")
+    let googleLoginButton = GIDSignInButton()
     let utilisateurViewModel = UtilisateurViewModel()
     let spinner = SpinnerViewController()
 
@@ -22,6 +23,7 @@ class ConnexionView: UIViewController {
     // WIDGET
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var motDePasseTextField: UITextField!
+    @IBOutlet weak var googleStackView: UIStackView!
     
     // PROTOCOLS
     
@@ -31,6 +33,16 @@ class ConnexionView: UIViewController {
         super.viewDidLoad()
         
         emailTextField.text = email
+        googleStackView.addSubview(googleLoginButton)
+        googleLoginButton.addTarget(self, action: #selector(googleSignIn), for: .touchUpInside)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        googleLoginButton.frame = CGRect(x: 0, y: 0, width: googleStackView.frame.width, height: googleStackView.frame.height)
+        
+        
     }
     
     // METHODS
@@ -89,14 +101,34 @@ class ConnexionView: UIViewController {
         })
     }
     
-    @IBAction func connexionGoogle(_ sender: Any) {
-        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
+    @objc func googleSignIn() {
+        
+        
+        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { [self] user, error in
             guard error == nil else { return }
             guard let user = user else { return }
             
-            //let emailAddress = user.profile?.email
+            let email = user.profile?.email
+            let name = (user.profile?.givenName)! + " " + (user.profile?.familyName)!
             
-            // If sign in succeeded, display the app's main content View.
+            loginWithSocialMedia(email: email, name: name, socialMediaName: "Google")
+            
+            stopSpinner()
         }
+    }
+    
+    func loginWithSocialMedia(email: String?, name: String?,
+                              socialMediaName: String) {
+        
+        self.startSpinner()
+        UtilisateurViewModel().loginWithSocialApp(email:email! ,nom:name!, completed: { success, user in
+            if success {
+                self.performSegue(withIdentifier: "connexionSegue", sender: nil)
+            } else {
+                self.present(Alert.makeAlert(titre: "Error", message: "Could not login with " + socialMediaName), animated: true)
+            }
+            
+            self.stopSpinner()
+        })
     }
 }

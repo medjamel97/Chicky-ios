@@ -7,7 +7,6 @@
 
 import SwiftyJSON
 import Alamofire
-import AlamofireImage
 import UIKit.UIImage
 
 public class UtilisateurViewModel: ObservableObject{
@@ -95,10 +94,10 @@ public class UtilisateurViewModel: ObservableObject{
             }
     }
     
-    func loginWithSocialApp(email: String, name: String, completed: @escaping (Bool, Utilisateur?) -> Void ) {
-        AF.request(Constantes.host + "/utilisateur/loginWithSocialApp",
+    func loginWithSocialApp(email: String, nom: String, completed: @escaping (Bool, Utilisateur?) -> Void ) {
+        AF.request(Constantes.host + "/utilisateur/connexionAvecReseauSocial",
                    method: .post,
-                   parameters: ["email": email, "name": name],
+                   parameters: ["email": email, "nom": nom],
                    encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -231,17 +230,17 @@ public class UtilisateurViewModel: ObservableObject{
         AF.request(Constantes.host + "/utilisateur",
                    method: methode,
                    parameters: [
-                    "_id" : utilisateur._id!,
-                    "pseudo": utilisateur.pseudo!,
+                    //"_id" : utilisateur._id!,
+                    //"pseudo": utilisateur.pseudo!,
                     "email": utilisateur.email!,
-                    "mdp": utilisateur.mdp!,
+                    //"mdp": utilisateur.mdp!,
                     "nom": utilisateur.nom!,
                     "prenom": utilisateur.prenom!,
-                    "dateNaissance": utilisateur.dateNaissance!,
-                    "idPhoto": utilisateur.idPhoto!,
+                    //"dateNaissance": utilisateur.dateNaissance!,
+                    //"idPhoto": utilisateur.idPhoto!,
                     "sexe": utilisateur.sexe!,
-                    "score": utilisateur.score!,
-                    "bio": utilisateur.bio!
+                    //"score": utilisateur.score!,
+                    //"bio": utilisateur.bio!
                    ])
             .response { response in
                 print(response)

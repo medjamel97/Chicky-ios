@@ -23,8 +23,8 @@ class ProfilView: UIViewController {
     
     // LIFECYCLE
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! ModifierProfilView
-        destination.nom = "test"
+       // let destination = segue.destination as! ModifierProfilView
+  
     }
     
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class ProfilView: UIViewController {
     func initializeProfile(){
         //UserDefaults.
         //utilisateurViewModel.recupererUtilisateurParID(_id: "")
-       
+        usernameLabel
     }
     
     

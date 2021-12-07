@@ -29,7 +29,7 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
         let labelUsername = contentView?.viewWithTag(2) as! UILabel
         let labellastMessage = contentView?.viewWithTag(3) as! UILabel
       
-        labelUsername.text = "conversations[indexPath.row].recepteur?.nom"
+        labelUsername.text = "recepteur?.nom"
         labellastMessage.text = conversations[indexPath.row].dernierMessage
         
         
@@ -42,7 +42,7 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            ConversationViewModel().suppConversation(_id: conversations[indexPath.row]._id) { success in
+            ConversationViewModel().supprimerConversation(_id: conversations[indexPath.row]._id) { success in
                 if success {
                     print("deleted chat")
                     self.conversations.remove(at: indexPath.row)

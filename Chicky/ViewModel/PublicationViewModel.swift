@@ -58,25 +58,33 @@ class PublicationViewModel {
             }
     }
     
-    func addPublication(publication: Publication, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "/publication/",
-                   method: .post,
-                   parameters: [
-                    "idPhoto": publication.idPhoto!,
-                    "description": publication.description!,
-                    "date": publication.date!,
-                    "utilisateur": publication.utilisateur!._id!
-                    
-                   ])
+    func addPublication(publication: Publication, uiImage: UIImage, completed: @escaping (Bool) -> Void ) {
+        
+        AF.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(uiImage.jpegData(compressionQuality: 0.5)!, withName: "image" , fileName: "image.jpeg", mimeType: "image/jpeg")
+            
+            for (key, value) in
+                    [
+                        "description": publication.description!,
+                        //"date": publication.date!,
+                        //"utilisateur": UserDefaults.standard.string(forKey: "userId")!
+                    ]
+            {
+                multipartFormData.append((value.data(using: .utf8))!, withName: key)
+            }
+            
+        },to: Constantes.host + "/publication/",
+                  method: .post)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
                 switch response.result {
                 case .success:
+                    print("Success")
                     completed(true)
                 case let .failure(error):
-                    debugPrint(error)
                     completed(false)
+                    print(error)
                 }
             }
     }

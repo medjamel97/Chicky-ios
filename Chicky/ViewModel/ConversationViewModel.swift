@@ -69,24 +69,10 @@ public class ConversationViewModel: ObservableObject{
             }
     }
     
-    func supprimerConversation(email: String, mdp: String, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "/conversation", method: .delete)
-            .validate(statusCode: 200..<300)
-            .validate(contentType: ["application/json"])
-            .responseData { response in
-                switch response.result {
-                case .success:
-                    print("supprimerConversation : Validation Successful")
-                    completed(true)
-                case let .failure(error):
-                    print(error)
-                    completed(false)
-                }
-            }
-    }
-    
-    func suppConversation(_id: String?, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "/conversation", method: .delete)
+    func supprimerConversation(_id: String?, completed: @escaping (Bool) -> Void) {
+        AF.request(Constantes.host + "/conversation/supp",
+                   method: .post,
+                   parameters: ["_id": _id])
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
