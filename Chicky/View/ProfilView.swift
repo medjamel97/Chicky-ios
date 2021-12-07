@@ -46,5 +46,9 @@ class ProfilView: UIViewController {
         performSegue(withIdentifier: "modifierProfilSegue", sender: utilisateur)
     }
     
+    @IBAction func deconnexion(_ sender: Any) {
+        UserDefaults.standard.set("", forKey: "tokenConnexion")
+        performSegue(withIdentifier: "logoutSegue", sender: nil)
+    }
     
 }

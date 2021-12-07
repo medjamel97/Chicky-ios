@@ -90,6 +90,7 @@ class ModifierProfilView: UIViewController,UIImagePickerControllerDelegate, UINa
             // STOP Spinner
             
             if success {
+                self.present(Alert.makeAlert(titre: "Succes", message: "Profil modifié"),animated: true)
                 self.initializePage()
             } else {
                 

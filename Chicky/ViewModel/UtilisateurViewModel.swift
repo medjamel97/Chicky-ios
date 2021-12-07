@@ -226,8 +226,8 @@ public class UtilisateurViewModel: ObservableObject{
     }
     
     func manipulerUtilisateur(utilisateur: Utilisateur, methode: HTTPMethod, completed: @escaping (Bool) -> Void) {
-        
-        AF.request(Constantes.host + "/utilisateur",
+        print(utilisateur)
+        AF.request(Constantes.host + "/utilisateur/modifierProfil",
                    method: methode,
                    parameters: [
                     //"_id" : utilisateur._id!,

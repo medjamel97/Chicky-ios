@@ -13,6 +13,7 @@ import UIKit.UIImage
 class PublicationViewModel {
     
     func getAllPublications(  completed: @escaping (Bool, [Publication]?) -> Void ) {
+        print("hi")
         AF.request(Constantes.host + "/publication/all",
                    method: .get/*,
                                 parameters: [
