@@ -124,13 +124,22 @@ class PublicationViewModel {
     }
     
     func makePublication(jsonItem: JSON) -> Publication {
-        Publication (
+        var commentaires: [Commentaire] = []
+        for i in jsonItem["commentaires"] {
+            commentaires.append(makeCommentaire(jsonItem: i.1))
+        }
+        var jaimes: [Jaime] = []
+        for j in jsonItem["jaimes"]{
+            jaimes.append(makeJaime(jsonItem: j.1))
+        }
+        return Publication(
             _id: jsonItem["_id"].stringValue,
             idPhoto: jsonItem["idPhoto"].stringValue,
             description: jsonItem["description"].stringValue,
             date: Date(),
-            commentaires: [],
-            utilisateur: makeUtilisateur(jsonItem: jsonItem["utilisateur"])
+            commentaires: commentaires,
+            utilisateur: makeUtilisateur(jsonItem: jsonItem["utilisateur"]),
+            jaimes: jaimes
         )
     }
     
@@ -149,5 +158,14 @@ class PublicationViewModel {
             bio: jsonItem["bio"].stringValue,
             isVerified: jsonItem["isVerified"].boolValue
         )
+    }
+    
+    func makeCommentaire(jsonItem: JSON) -> Commentaire {
+        Commentaire(
+            _id: jsonItem["_id"].stringValue, description: jsonItem["description"].stringValue, date: Date()
+        )
+    }
+    func makeJaime(jsonItem: JSON) -> Jaime {
+        Jaime(_id: jsonItem["_id"].stringValue, date: Date())
     }
 }

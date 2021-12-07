@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		106A40C6275E25FB00DB4D8F /* LikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106A40C5275E25FB00DB4D8F /* LikeViewModel.swift */; };
+		106A40C6275E25FB00DB4D8F /* JaimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106A40C5275E25FB00DB4D8F /* JaimeViewModel.swift */; };
 		106A40C8275E266C00DB4D8F /* Jaime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106A40C7275E266C00DB4D8F /* Jaime.swift */; };
 		431677C5273920FD0062EA9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677C4273920FD0062EA9D /* AppDelegate.swift */; };
 		431677C7273920FD0062EA9D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677C6273920FD0062EA9D /* SceneDelegate.swift */; };
@@ -73,7 +73,7 @@
 
 /* Begin PBXFileReference section */
 		08543B5114949029C22825E9 /* Pods-Chicky-ChickyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky-ChickyUITests.release.xcconfig"; path = "Target Support Files/Pods-Chicky-ChickyUITests/Pods-Chicky-ChickyUITests.release.xcconfig"; sourceTree = "<group>"; };
-		106A40C5275E25FB00DB4D8F /* LikeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeViewModel.swift; sourceTree = "<group>"; };
+		106A40C5275E25FB00DB4D8F /* JaimeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaimeViewModel.swift; sourceTree = "<group>"; };
 		106A40C7275E266C00DB4D8F /* Jaime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jaime.swift; sourceTree = "<group>"; };
 		187A1140A29FBE4B1715FE81 /* Pods-Chicky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky.release.xcconfig"; path = "Target Support Files/Pods-Chicky/Pods-Chicky.release.xcconfig"; sourceTree = "<group>"; };
 		4139DF8D8CF5BCF624B83F8D /* Pods-Chicky.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky.debug.xcconfig"; path = "Target Support Files/Pods-Chicky/Pods-Chicky.debug.xcconfig"; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 				CE00D097275194E400B0E432 /* MessageViewModel.swift */,
 				CE00D0992751981000B0E432 /* ConversationViewModel.swift */,
 				8DFC6A702758000D00DA0175 /* CommentaireViewModel.swift */,
-				106A40C5275E25FB00DB4D8F /* LikeViewModel.swift */,
+				106A40C5275E25FB00DB4D8F /* JaimeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -552,7 +552,7 @@
 				8DFC6A712758000D00DA0175 /* CommentaireViewModel.swift in Sources */,
 				8D9254F3274854AF009ACD1A /* LoadingScreen.swift in Sources */,
 				94C4DFCE2742DA3000993FE5 /* GradientView.swift in Sources */,
-				106A40C6275E25FB00DB4D8F /* LikeViewModel.swift in Sources */,
+				106A40C6275E25FB00DB4D8F /* JaimeViewModel.swift in Sources */,
 				8D9EDC2E27515B950003F1A1 /* CheckBox.swift in Sources */,
 				94C4DFC22742C80900993FE5 /* Publication.swift in Sources */,
 				431677CF273920FD0062EA9D /* Chicky.xcdatamodeld in Sources */,

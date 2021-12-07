@@ -10,49 +10,72 @@ import UIKit
 class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // VARS
-    private var models = [Conversation]()
+    private var conversations : [Conversation] = []
     
     // WIDGETS
-    @IBOutlet weak var messagesTableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     // PROTOCOLS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return models.count
+        return conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = models[indexPath.row]
-        //let viewModel = MessageViewModel;
+             
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        let contentView = cell?.contentView
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let contentView = cell.contentView
+        let imageProfile = contentView?.viewWithTag(1) as! UIImageView
+        let labelUsername = contentView?.viewWithTag(2) as! UILabel
+        let labellastMessage = contentView?.viewWithTag(3) as! UILabel
+      
+        labelUsername.text = "conversations[indexPath.row].recepteur?.nom"
+        labellastMessage.text = conversations[indexPath.row].dernierMessage
         
-        let imageProfile = contentView.viewWithTag(1) as! UIImageView
-        let labelUsername = contentView.viewWithTag(2) as! UILabel
-        let labelMessage = contentView.viewWithTag(3) as! UILabel
-        //let buttonSupprimer = contentView.viewWithTag(4) as! UIButton
         
-        imageProfile.image = UIImage(named: "image-person")
-        labelUsername.text = "username"
-        //labelMessage.text = model.dernierMessage
-        
-        return cell
+        return cell!
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+            ConversationViewModel().suppConversation(_id: conversations[indexPath.row]._id) { success in
+                if success {
+                    print("deleted chat")
+                    self.conversations.remove(at: indexPath.row)
+                    tableView.reloadData()
+                } else {
+                    print("error while deleting chat")
+                }
+            }
+        }
+    }
+    
     
     // LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureModels()
+       
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        initializeHistory()
     }
     
     // METHODS
-    private func configureModels() {
-        let examples = [
-            "Jamel", "Maher", "Anis", "Akram"
-        ]
+    func initializeHistory() {
         
-        for example in examples{
-         //   models.append(Conversation(dernierMessage: example))
+        ConversationViewModel().getAllConversation{success, conversationsfromRep in
+            if success {
+                self.conversations = conversationsfromRep!
+                self.tableView.reloadData()
+            }else {
+                self.present(Alert.makeAlert(titre: "Error", message: "Could not load conversations "),animated: true)
+
+            }
         }
     }
     

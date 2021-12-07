@@ -9,6 +9,15 @@ import Foundation
 
 struct Commentaire {
     
+    internal init(_id: String? = nil, description: String?, date: Date?, publication: Publication? = nil, utilisateur: Utilisateur? = nil) {
+        self._id = _id
+        self.description = description
+        self.date = date
+        self.publication = publication
+        self.utilisateur = utilisateur
+    }
+    
+    
     let _id : String?
     let description : String?
     let date : Date?

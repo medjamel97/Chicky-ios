@@ -8,13 +8,19 @@
 import Foundation
 
 struct Jaime {
+    internal init(_id: String? = nil, date: Date? = nil, utilisateur: Utilisateur? = nil, publication: Publication? = nil) {
+        self._id = _id
+        self.date = date
+        self.utilisateur = utilisateur
+        self.publication = publication
+    }
+    
     
     var _id: String?
     var date: Date?
-    var vue: Bool?
     
     // relations
-    var user: Utilisateur?
+    var utilisateur: Utilisateur?
     var publication: Publication?
     
 }

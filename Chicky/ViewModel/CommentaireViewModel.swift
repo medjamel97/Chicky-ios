@@ -63,8 +63,6 @@ class CommentaireViewModel {
                    parameters: [
                     "description": commentaire.description!,
                     "date": commentaire.date!,
-                    "idPublication": commentaire.idPublication!,
-                    "idUser": commentaire.idUser!,
                    ])
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -124,9 +122,8 @@ class CommentaireViewModel {
         Commentaire(
             _id: jsonItem["_id"].stringValue,
             description: jsonItem["description"].stringValue,
-            date: Date(),
-                    idPublication: jsonItem["idPublication"].stringValue,
-                    idUser: jsonItem["idUser"].stringValue
+            date: Date()
+                   
         )
     }
 }

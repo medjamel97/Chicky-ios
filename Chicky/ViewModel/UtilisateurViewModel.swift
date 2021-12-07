@@ -42,7 +42,7 @@ public class UtilisateurViewModel: ObservableObject{
     }
     
     func uploadImage(imgData: Data, params: [String: Any]) {
-        let image = UIImage.init(named: "myImage")
+     /*   let image = UIImage.init(named: "myImage")
         let imgData = image!.pngData()
         
         let parameters = ["name": rname] //Optional for extra parameter
@@ -69,7 +69,7 @@ public class UtilisateurViewModel: ObservableObject{
             case .failure(let encodingError):
                 print(encodingError)
             }
-        }
+        }*/
     }
     
     

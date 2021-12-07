@@ -141,13 +141,15 @@ class AccueilView: UIViewController  {
     }
     
     @objc func likeButtonAction(sender: UIButton) {
-        
+        /*
         LikeViewModel().addLike(like: Like(seen: false, liked: currentPublication )) { success in
             self.currentLikeButton?.setTitleColor(UIColor.red, for: .normal)
         }
+        */
     }
     
     @objc func showCommentsAction(sender: UIButton) {
+        /*
         let chat = Chat(date: Date(), lastMessage: "This chat hasn't started yet")
         ChatViewModel().addChat(chat: chat, senderId: PublicationDefaults.standard.string(forKey: "publicationId")!, receiverId: (currentPublication?._id)!, completed: { success in
             if success {
@@ -155,7 +157,7 @@ class AccueilView: UIViewController  {
             } else {
                 self.present(Alert.makeAlert(titre: "Error", message: "Could not add chat"),animated: true)
             }
-        })
+        })*/
     }
     
     

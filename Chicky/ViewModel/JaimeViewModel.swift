@@ -9,10 +9,47 @@ import SwiftyJSON
 import Alamofire
 import UIKit.UIImage
 
-class LikeViewModel {
+class JaimeViewModel {
     
-    func getMyLikes(completed: @escaping (Bool, [Like]?) -> Void ) {
-        AF.request(Constantes.host + "/like/my",
+    func makeJaime(jsonItem: JSON) -> Jaime {
+        var publications: [Publication] = []
+        for i in jsonItem["commentaire"] {
+            publications.append(makePublication(jsonItem: i.1))
+        }
+        return Jaime(
+            _id: jsonItem["_id"].stringValue,
+            utilisateur: makeUtilisateur(jsonItem: jsonItem["utilisateur"])
+        )
+    }
+    
+    
+    func makeUtilisateur(jsonItem: JSON) -> Utilisateur {
+        return Utilisateur(
+            _id: jsonItem["_id"].stringValue,
+            pseudo: jsonItem["pseudo"].stringValue,
+            email: jsonItem["email"].stringValue,
+            mdp: jsonItem["mdp"].stringValue,
+            nom: jsonItem["nom"].stringValue,
+            prenom: jsonItem["prenom"].stringValue,
+            dateNaissance: Date(),
+            idPhoto: jsonItem["idPhoto"].stringValue,
+            sexe: jsonItem["sexe"].boolValue,
+            score: jsonItem["score"].intValue,
+            bio: jsonItem["bio"].stringValue,
+            isVerified: jsonItem["isVerified"].boolValue
+        )
+    }
+    
+    func makePublication(jsonItem: JSON) -> Publication {
+        Publication(_id: jsonItem["_id"].stringValue)
+    }
+    
+    
+    
+    
+    
+    func getMyLikes(completed: @escaping (Bool, [Jaime]?) -> Void ) {
+      /*  AF.request(Constantes.host + "/like/my",
                    method: .post,
                    parameters: [
                     "liked": UserDefaults.standard.string(forKey: "userId")!
@@ -31,9 +68,9 @@ class LikeViewModel {
                     debugPrint(error)
                     completed(false, nil)
                 }
-            }
+            }*/
     }
-    
+    /*
     func getLikeById(_id: String?, completed: @escaping (Bool, Like?) -> Void ) {
         AF.request(Constantes.host + "/like/by-id",
                    method: .get,
@@ -137,5 +174,10 @@ class LikeViewModel {
             location: jsonItem["location"].stringValue,
             isVerified: jsonItem["isVerified"].boolValue
         )
-    }
+    }*/
+    
+
+    
+    
+    
 }

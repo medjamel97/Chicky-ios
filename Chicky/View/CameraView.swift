@@ -30,7 +30,7 @@ class CameraView: UIViewController {
     
     // ACTIONS
     @IBAction func ajouterPublication(_ sender: Any) {
-        let publication = Publication( idPhoto:"", description: descriptionTextField.text, date: Date(), commentaires: [], idUser: "61a5f30300c0b43d5cfb5b16")
+        let publication = Publication( idPhoto:"", description: descriptionTextField.text, date: Date(), commentaires: [])
         PublicationViewModel().addPublication(publication: publication) { success in
             if success {
                 self.present(Alert.makeAlert(titre: "Success", message: "Publication ajouté"),animated: true)

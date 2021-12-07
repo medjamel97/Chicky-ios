@@ -26,5 +26,5 @@ struct Utilisateur {
     var publications : [Publication]?
     var conversations : [Conversation]?
     var commentaires : [Commentaire]?
-    
+    var jaimes : [Jaime]?
 }
