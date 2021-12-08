@@ -17,6 +17,12 @@
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
+		<key>Privacy - Location Always Usage Description</key>
+		<string>always usage</string>
+		<key>Privacy - Location When In Use Usage Description</key>
+		<string>when in use usage</string>
+		<key>Privacy - Location Always and When In Use Usage Description</key>
+		<string>always and when in usage</string>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 		<key>UISceneConfigurations</key>
