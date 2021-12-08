@@ -25,7 +25,7 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         let contentView = cell?.contentView
         
-        let imageProfile = contentView?.viewWithTag(1) as! UIImageView
+        //let imageProfile = contentView?.viewWithTag(1) as! UIImageView
         let labelUsername = contentView?.viewWithTag(2) as! UILabel
         let labellastMessage = contentView?.viewWithTag(3) as! UILabel
       

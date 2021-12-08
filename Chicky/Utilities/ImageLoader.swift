@@ -28,29 +28,18 @@ class ImageLoader{
      
         if let cachedImage = self.imageCache.object(forKey: NSString(string: identifier))
         {
-            
             completion(cachedImage)
-            
         }else{
-            
             utilityQueue.async {
                 let url = URL(string: url)!
                 
                 guard let data = try? Data(contentsOf: url) else {return}
-                print(data)
                 let image = UIImage(data: data)
                 DispatchQueue.main.async {
-                    
                     self.imageCache.setObject(image!, forKey: NSString(string: identifier))
                     completion (image)
-                
-                
                 }
-                        
             }
-            
-            
         }
-        
     }
 }

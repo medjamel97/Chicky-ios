@@ -6,6 +6,7 @@
       "size" : "20x20"
     },
     {
+      "filename" : "Logo-167px-1.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
@@ -72,6 +73,7 @@
       "size" : "40x40"
     },
     {
+      "filename" : "Logo-167px-2.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"

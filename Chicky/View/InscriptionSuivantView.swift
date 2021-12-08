@@ -64,8 +64,6 @@ class InscriptionSuivantView: UIViewController {
             return
         }
         
-        
-       
         /*if (dateDeNaissancePicker.) {
             self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre date de naissance"), animated: true)
             return
@@ -118,7 +116,7 @@ class InscriptionSuivantView: UIViewController {
     
     
     @IBAction func telechargerImage(_ sender: Any) {
-        UtilisateurViewModel().uploadImage(imgData: UIImage(named: "image-person")!.pngData()!, params: ["String" : "Any"])
+        //UtilisateurViewModel().uploadImage(imgData: UIImage(named: "image-person")!.pngData()!, params: ["String" : "Any"])
     }
     
 }

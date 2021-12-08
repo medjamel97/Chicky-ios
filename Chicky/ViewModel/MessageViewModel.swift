@@ -12,7 +12,7 @@ import Alamofire
 public class MessageViewModel: ObservableObject{
     	
     func recupererMessage(completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "/message",
+        AF.request(Constantes.host + "message",
                    method: .get)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -29,7 +29,7 @@ public class MessageViewModel: ObservableObject{
     }
     
     func manipulerMessage(message: Message?, methode:HTTPMethod, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "/message",
+        AF.request(Constantes.host + "message",
                    method: methode,
                    parameters: ["_id": message!._id, "description": message!.description])
             .validate(statusCode: 200..<300)
@@ -47,7 +47,7 @@ public class MessageViewModel: ObservableObject{
     }
     
     func supprimerMessage(email: String, mdp: String, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "/message", method: .delete)
+        AF.request(Constantes.host + "message", method: .delete)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in

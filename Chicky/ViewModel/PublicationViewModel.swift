@@ -13,8 +13,7 @@ import UIKit.UIImage
 class PublicationViewModel {
     
     func getAllPublications(  completed: @escaping (Bool, [Publication]?) -> Void ) {
-        print("hi")
-        AF.request(Constantes.host + "/publication/all",
+        AF.request(Constantes.host + "publication/all",
                    method: .get/*,
                                 parameters: [
                                 "idPublication": idPublication!
@@ -39,7 +38,7 @@ class PublicationViewModel {
     }
     
     func getPublication(_id: String?, completed: @escaping (Bool, Publication?) -> Void ) {
-        AF.request(Constantes.host + "/publication/",
+        AF.request(Constantes.host + "publication/",
                    method: .get,
                    parameters: [
                     "_id": _id!
@@ -74,7 +73,7 @@ class PublicationViewModel {
                 multipartFormData.append((value.data(using: .utf8))!, withName: key)
             }
             
-        },to: Constantes.host + "/publication/",
+        },to: Constantes.host + "publication/",
                   method: .post)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -91,7 +90,7 @@ class PublicationViewModel {
     }
     
     func editPublication(publication: Publication, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "/publication/",
+        AF.request(Constantes.host + "publication/",
                    method: .put,
                    parameters: [
                     "_id": publication._id!,
@@ -114,7 +113,7 @@ class PublicationViewModel {
     }
     
     func deletePublication(_id: String?, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "/publication/",
+        AF.request(Constantes.host + "publication/",
                    method: .delete,
                    parameters: [
                     "_id": _id!

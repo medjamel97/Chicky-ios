@@ -12,10 +12,16 @@ class AccueilView: UIViewController  {
     // VAR
     var liked = false
     var publications : [Publication] = []
-    var currentPublication : Publication?
     var publicationCounter = 0
-    var oldUiView : UIView?
-    var newUiView : UIView?
+    var isInitialized = false
+    
+    var previousPublication : Publication?
+    var currentPublication : Publication?
+    var nextPublication : Publication?
+    
+    var previousPublicationView = UIView()
+    var currentPublicationView = UIView()
+    var nextPublicationView = UIView()
     
     // WIDGET
     @IBOutlet weak var swipeAreaView: UIView!
@@ -23,6 +29,7 @@ class AccueilView: UIViewController  {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var publicationImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    
     // PROTOCOLS
     
     // LIFECYCLE
@@ -32,108 +39,79 @@ class AccueilView: UIViewController  {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        setupLayout()
-    }
-    
-    // METHODS
-    func setupLayout() {
         publicationCounter = 0
         currentPublication = nil
+        
+        previousPublicationView.backgroundColor = UIColor.red
+        previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+    
+        currentPublicationView.backgroundColor = UIColor.green
+        currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+         
+        nextPublicationView.backgroundColor = UIColor.blue
+        nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+     
+        swipeAreaView.addSubview(previousPublicationView)
+        swipeAreaView.addSubview(currentPublicationView)
+        swipeAreaView.addSubview(nextPublicationView)
         
         PublicationViewModel().getAllPublications { [self] success, results in
             if success {
                 self.publications.append(contentsOf: results!)
-
-                if results!.count > 0 {
-                    if results![publicationCounter].idPhoto != nil {
-                        
-                        currentPublication = results![publicationCounter]
-                        
-                        let url = "http://localhost:3000/img/"+(currentPublication?.idPhoto)!
-                        print(url)
-                        ImageLoader.shared.loadImage(identifier:(currentPublication?.idPhoto)!, url: url, completion: { [self]image in
-
-                            
-                            newUiView = makePublicationCard(description: publications[publicationCounter].description!, uiImage: image!)
-                            
-                            swipeAreaView.addSubview(newUiView!)
-                            
-                            publicationCounter += 1
-                        })
-                    }
-                }
                 
+                if publications.count > 0 {
+                    setupPublications()
+                    isInitialized = true
+                }
             }
         }
     }
     
-    @IBAction func topSwipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer ) {
-        if gestureRecognizer.state == .ended {
-            nextPublication(swipeIsTop: true)
-        }
-    }
-    
-    @IBAction func downSwipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer ) {
-        if gestureRecognizer.state == .ended {
-            nextPublication(swipeIsTop: false)
-        }
-    }
-    
-    func nextPublication(swipeIsTop: Bool) {
-        print("Switch user")
-        if publicationCounter < publications.count {
-            currentPublication = publications[publicationCounter]
-            
-            oldUiView = newUiView
-            
-            if swipeIsTop {
-                UIView.animate(withDuration: 0.5, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: {
-                    // put here the code you would like to animate
-                    self.oldUiView?.frame.origin.y = -1000
-                }, completion: {(finished:Bool) in
-                    // the code you put here will be compiled once the animation finishes
-                    self.oldUiView!.removeFromSuperview()
-                })
-            } else {
-                UIView.animate(withDuration: 0.5, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: {
-                    // put here the code you would like to animate
-                    self.oldUiView?.frame.origin.x = 1000
-                }, completion: {(finished:Bool) in
-                    // the code you put here will be compiled once the animation finishes
-                    self.oldUiView!.removeFromSuperview()
-                })
-            }
-            
-            let url = "http://localhost:3000/img/"+(publications[publicationCounter].idPhoto)!
-            print(url)
-            if publications[publicationCounter].idPhoto != nil {
-                ImageLoader.shared.loadImage(identifier:(publications[publicationCounter].idPhoto)!, url: url, completion: { [self]image in
-                    
-                    newUiView = makePublicationCard(description: publications[publicationCounter].description!, uiImage: image!)
-                    swipeAreaView.addSubview(newUiView!)
-                    swipeAreaView.sendSubviewToBack(newUiView!)
-                    
-                    publicationCounter += 1
-                })
-            }
-            
-            
-            
-        } else {
-            self.present(Alert.makeAlert(titre: "Notice", message: "Fin de publications !"),animated: true)
-        }
-    }
-    
-    func makePublicationCard(description: String , uiImage: UIImage) -> UIView {
-        print("creating pub")
+    // METHODS
+    func setupPublications(){
         
-        let card = UIView()
-        card.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-        card.backgroundColor = UIColor(white: 0.9, alpha: 1)
-        card.layer.cornerRadius = 20
+        print("Counter is :" + String(publicationCounter))
+        print("-----------")
+        if publicationCounter > 0  {
+            print("making previousPub")
+            previousPublication = publications[publicationCounter - 1]
+            waitForImage(element: previousPublicationView, elementIndex: -1, publication: previousPublication!)
+        } else {
+            previousPublication = nil
+        }
+        
+        if publications.count >= publicationCounter {
+            print("making currentPub")
+            currentPublication = publications[publicationCounter]
+            waitForImage(element: currentPublicationView, elementIndex: 0, publication: currentPublication!)
+        }
+        
+        if publications.count > publicationCounter + 1  {
+            print("making nextPub")
+            nextPublication = publications[publicationCounter + 1]
+            waitForImage(element: nextPublicationView, elementIndex: 1, publication: nextPublication!)
+        } else {
+            nextPublication = nil
+        }
+        print("-----------")
+    }
+    
+    func waitForImage(element: UIView, elementIndex: Int, publication : Publication) {
+        ImageLoader.shared.loadImage(
+            identifier: publication.idPhoto!,
+            url: Constantes.images + publication.idPhoto!,
+            completion: { [self]image in
+                makePublicationCard(element: element, elementIndex: elementIndex, description: publication.description!, uiImage: image!)
+            })
+    }
+    
+    func makePublicationCard(element: UIView, elementIndex: Int, description: String , uiImage: UIImage) {
+        
+        //element.backgroundColor = UIColor(white: 0.9, alpha: 1)
+        element.layer.cornerRadius = 20
         
         let image = UIImageView(image: uiImage)
-        image.frame = CGRect(x: 0, y: 0, width: card.frame.width, height: card.frame.height)
+        image.frame = CGRect(x: 0, y: 0, width: element.frame.width, height: element.frame.height)
         image.contentMode = .scaleToFill
         image.tag = 1
         image.layer.cornerRadius = 20
@@ -146,44 +124,93 @@ class AccueilView: UIViewController  {
         descriptionLabel.frame = CGRect(x: 30, y: image.frame.height - 100, width: image.frame.width, height: 50)
         
         /*let likeButton = UIButton()
-        likeButton.setTitle("Send a message", for: .normal)
-        likeButton.setTitleColor(UIColor.tintColor, for: .normal)
-        likeButton.frame = CGRect(x: 30, y: image.frame.height + 100, width: card.frame.width / 2, height: 40)
-        likeButton.addTarget(self, action: #selector(AccueilView.likeButtonAction), for: .touchUpInside)
+         likeButton.setTitle("Send a message", for: .normal)
+         likeButton.setTitleColor(UIColor.tintColor, for: .normal)
+         likeButton.frame = CGRect(x: 30, y: image.frame.height + 100, width: card.frame.width / 2, height: 40)
+         likeButton.addTarget(self, action: #selector(AccueilView.likeButtonAction), for: .touchUpInside)
+         
+         let commentButton = UIButton()
+         commentButton.setImage(UIImage(systemName: "heart"), for: .normal)
+         commentButton.setTitleColor(UIColor.blue, for: .normal)
+         commentButton.frame = CGRect(x: likeButton.frame.width + 50, y: image.frame.height + 100, width: card.frame.width / 3, height: 40)
+         commentButton.addTarget(self, action: #selector(AccueilView.showCommentsAction), for: .touchUpInside)*/
         
-        let commentButton = UIButton()
-        commentButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        commentButton.setTitleColor(UIColor.blue, for: .normal)
-        commentButton.frame = CGRect(x: likeButton.frame.width + 50, y: image.frame.height + 100, width: card.frame.width / 3, height: 40)
-        commentButton.addTarget(self, action: #selector(AccueilView.showCommentsAction), for: .touchUpInside)*/
+        //element.addSubview(image)
+        //element.addSubview(descriptionLabel)
+        //element.addSubview(likeButton)
+        //element.addSubview(commentButton)
+    }
+    
+    func navigateToNextPublication() {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: {
+            // put here the code you would like to animate
+            self.previousPublicationView.frame.origin.y -= 1000
+            self.currentPublicationView.frame.origin.y -= 1000
+            self.nextPublicationView.frame.origin.y -= 1000
+        }, completion: { [self](finished:Bool) in
+            /*let aux = currentPublication
+            currentPublication = nextPublication
+            nextPublication = aux*/
+            previousPublicationView.backgroundColor = UIColor.red
+            previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         
-        card.addSubview(image)
-        card.addSubview(descriptionLabel)
-        //card.addSubview(likeButton)
-        //card.addSubview(commentButton)
+            currentPublicationView.backgroundColor = UIColor.green
+            currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+             
+            nextPublicationView.backgroundColor = UIColor.blue
+            nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+        })
+    }
+    
+    func navigateToPreviousPublication() {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: {
+            // put here the code you would like to animate
+            self.previousPublicationView.frame.origin.y += 1000
+            self.currentPublicationView.frame.origin.y += 1000
+            self.nextPublicationView.frame.origin.y += 1000
+        }, completion: { [self](finished:Bool) in
+            previousPublicationView.backgroundColor = UIColor.red
+            previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         
-        return card
+            currentPublicationView.backgroundColor = UIColor.green
+            currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+             
+            nextPublicationView.backgroundColor = UIColor.blue
+            nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+        })
     }
     
     @objc func likeButtonAction(sender: UIButton) {
-        /*
-        LikeViewModel().addLike(like: Like(seen: false, liked: currentPublication )) { success in
-            self.currentLikeButton?.setTitleColor(UIColor.red, for: .normal)
-        }
-        */
     }
     
     @objc func showCommentsAction(sender: UIButton) {
-        /*
-        let chat = Chat(date: Date(), lastMessage: "This chat hasn't started yet")
-        ChatViewModel().addChat(chat: chat, senderId: PublicationDefaults.standard.string(forKey: "publicationId")!, receiverId: (currentPublication?._id)!, completed: { success in
-            if success {
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                self.present(Alert.makeAlert(titre: "Error", message: "Could not add chat"),animated: true)
-            }
-        })*/
     }
     
+    @IBAction func topSwipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer ) {
+        if gestureRecognizer.state == .ended {
+            if ((nextPublication) != nil){
+                publicationCounter += 1
+                
+                navigateToNextPublication()
+                setupPublications()
+            } else {
+                nextPublicationView.removeFromSuperview()
+                print("last one")
+            }
+        }
+    }
     
+    @IBAction func downSwipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer ) {
+        if gestureRecognizer.state == .ended {
+            if ((previousPublication) != nil){
+                publicationCounter -= 1
+                
+                navigateToPreviousPublication()
+                setupPublications()
+            } else {
+                previousPublicationView.removeFromSuperview()
+                print("first one")
+            }
+        }
+    }
 }

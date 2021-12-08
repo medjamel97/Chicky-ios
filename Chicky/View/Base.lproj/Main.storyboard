@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EEi-Lg-f9k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EEi-Lg-f9k">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -118,7 +118,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ConnexionView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name@domain.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L07-Bi-Dno">
@@ -623,21 +623,6 @@
                                     <action selector="inscription:" destination="NPo-i3-DwE" eventType="touchUpInside" id="4IL-th-eSt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJ0-W8-Hpb">
-                                <rect key="frame" x="20" y="695" width="374" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="titleShadowOffset" width="50" height="-70"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="icon-google" imagePlacement="leading" title="Inscription avec google" imagePadding="20" cornerStyle="medium" titleAlignment="automatic">
-                                    <backgroundConfiguration key="background">
-                                        <color key="strokeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </backgroundConfiguration>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="inscriptiongoogle:" destination="NPo-i3-DwE" eventType="touchUpInside" id="tdu-Qe-cVa"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="vous avez un compte" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68L-hF-zYV">
                                 <rect key="frame" x="114" y="827" width="120" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1058,6 +1043,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="6PE-CZ-jXl" appends="YES" id="4IW-Bs-SZY"/>
+                                    <outletCollection property="gestureRecognizers" destination="1Sg-ML-8nP" appends="YES" id="QQt-ic-bqk"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -1281,7 +1267,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6h9-iZ-KQX">
-                                <rect key="frame" x="276" y="254" width="118" height="26"/>
+                                <rect key="frame" x="290" y="253" width="104" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
@@ -1289,7 +1275,7 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="Se deconnecter">
                                             <attributes>
-                                                <font key="NSFont" size="10" name="Helvetica"/>
+                                                <font key="NSFont" size="8" name="Helvetica"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
@@ -1310,7 +1296,7 @@
                         <outlet property="profileImage" destination="G1m-0d-Zrw" id="QQj-DV-Jay"/>
                         <outlet property="usernameLabel" destination="kPV-Tq-fJo" id="WOw-c9-8ZO"/>
                         <segue destination="gbI-ff-a5Y" kind="show" identifier="modifierProfilSegue" id="qVP-eC-fgX"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="logoutSegue" id="Vw5-ag-V97"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="logoutSegue" modalPresentationStyle="fullScreen" id="Vw5-ag-V97"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtr-FX-ego" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1800,9 +1786,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="QPe-Uf-TyV"/>
-        <segue reference="kkL-bs-k6y"/>
-        <segue reference="Vw5-ag-V97"/>
+        <segue reference="drg-C8-dCr"/>
+        <segue reference="Kx5-Tc-jn8"/>
+        <segue reference="JOc-zL-uru"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Example-2" width="100" height="100"/>
@@ -1815,7 +1801,6 @@
         <image name="icon-cofee" width="24" height="24"/>
         <image name="icon-comment" width="24" height="24"/>
         <image name="icon-favorites" width="24" height="24"/>
-        <image name="icon-google" width="16" height="16"/>
         <image name="icon-home" width="24" height="24"/>
         <image name="icon-map" width="24" height="24"/>
         <image name="icon-plus" width="50" height="50"/>

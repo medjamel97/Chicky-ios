@@ -12,7 +12,7 @@ import UIKit.UIImage
 class CommentaireViewModel {
     
     func getAllCommentaires(idPublication: String?,  completed: @escaping (Bool, [Commentaire]?) -> Void ) {
-        AF.request(Constantes.host + "/commentaire/all",
+        AF.request(Constantes.host + "commentaire/all",
                    method: .get/*,
                   parameters: [
                    "idPublication": idPublication!
@@ -37,7 +37,7 @@ class CommentaireViewModel {
     }
     
     func getCommentaire(_id: String?, completed: @escaping (Bool, Commentaire?) -> Void ) {
-        AF.request(Constantes.host + "/commentaire/",
+        AF.request(Constantes.host + "commentaire/",
                    method: .get,
                    parameters: [
                     "_id": _id!
@@ -58,7 +58,7 @@ class CommentaireViewModel {
     }
     
     func addCommentaire(commentaire: Commentaire, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "/commentaire/",
+        AF.request(Constantes.host + "commentaire/",
                    method: .post,
                    parameters: [
                     "description": commentaire.description!,
@@ -78,7 +78,7 @@ class CommentaireViewModel {
     }
     
     func editCommentaire(commentaire: Commentaire, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "/commentaire/",
+        AF.request(Constantes.host + "commentaire/",
                    method: .put,
                    parameters: [
                     "_id": commentaire._id!,
@@ -99,7 +99,7 @@ class CommentaireViewModel {
     }
     
     func deleteCommentaire(_id: String?, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "/commentaire/",
+        AF.request(Constantes.host + "commentaire/",
                    method: .delete,
                    parameters: [
                     "_id": _id!

@@ -35,9 +35,6 @@ class ProfilView: UIViewController {
     
     // METHODS
     func initializeProfile(){
-        //UserDefaults.
-        //utilisateurViewModel.recupererUtilisateurParID(_id: "")
-        usernameLabel
     }
     
     

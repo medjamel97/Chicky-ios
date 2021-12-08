@@ -12,7 +12,7 @@ import UIKit.UIImage
 public class UtilisateurViewModel: ObservableObject{
     
     func inscription(utilisateur: Utilisateur, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "/utilisateur/inscription",
+        AF.request(Constantes.host + "utilisateur/inscription",
                    method: .post,
                    parameters: [
                     "pseudo": utilisateur.pseudo!,
@@ -40,40 +40,8 @@ public class UtilisateurViewModel: ObservableObject{
             }
     }
     
-    func uploadImage(imgData: Data, params: [String: Any]) {
-     /*   let image = UIImage.init(named: "myImage")
-        let imgData = image!.pngData()
-        
-        let parameters = ["name": rname] //Optional for extra parameter
-        
-        AF.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(image, withName: "fileset",fileName: "file.png", mimeType: "image/png")
-            for (key, value) in parameters {
-                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
-            } //Optional for extra parameters
-        },
-                  to:"mysite/upload.php")
-        { (result) in
-            switch result {
-            case .success(let upload, _, _):
-                
-                upload.uploadProgress(closure: { (progress) in
-                    print("Upload Progress: \(progress.fractionCompleted)")
-                })
-                
-                upload.responseJSON { response in
-                    print(response.result.value)
-                }
-                
-            case .failure(let encodingError):
-                print(encodingError)
-            }
-        }*/
-    }
-    
-    
     func connexion(email: String, mdp: String, completed: @escaping (Bool, Any?) -> Void) {
-        AF.request(Constantes.host + "/utilisateur/connexion",
+        AF.request(Constantes.host + "utilisateur/connexion",
                    method: .post,
                    parameters: ["email": email, "mdp": mdp])
             .validate(statusCode: 200..<300)
@@ -95,7 +63,7 @@ public class UtilisateurViewModel: ObservableObject{
     }
     
     func loginWithSocialApp(email: String, nom: String, completed: @escaping (Bool, Utilisateur?) -> Void ) {
-        AF.request(Constantes.host + "/utilisateur/connexionAvecReseauSocial",
+        AF.request(Constantes.host + "utilisateur/connexionAvecReseauSocial",
                    method: .post,
                    parameters: ["email": email, "nom": nom],
                    encoding: JSONEncoding.default)
@@ -119,7 +87,7 @@ public class UtilisateurViewModel: ObservableObject{
     
     func recupererUtilisateurParToken(userToken: String, completed: @escaping (Bool, Utilisateur?) -> Void ) {
         print("Looking for user --------------------")
-        AF.request(Constantes.host + "/utilisateur/recupererUtilisateurParToken",
+        AF.request(Constantes.host + "utilisateur/recupererUtilisateurParToken",
                    method: .post,
                    parameters: ["token": userToken],
                    encoding: JSONEncoding.default)
@@ -143,7 +111,7 @@ public class UtilisateurViewModel: ObservableObject{
     
     
     func reEnvoyerConfirmationEmail(email: String, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "/utilisateur/reEnvoyerConfirmationEmail",
+        AF.request(Constantes.host + "utilisateur/reEnvoyerConfirmationEmail",
                    method: .post,
                    parameters: ["email": email])
             .validate(statusCode: 200..<300)
@@ -161,7 +129,7 @@ public class UtilisateurViewModel: ObservableObject{
     }
     
     func motDePasseOublie(email: String, codeDeReinit: String, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "/utilisateur/motDePasseOublie",
+        AF.request(Constantes.host + "utilisateur/motDePasseOublie",
                    method: .post,
                    parameters: ["email": email, "codeDeReinit": codeDeReinit])
             .validate(statusCode: 200..<300)
@@ -179,7 +147,7 @@ public class UtilisateurViewModel: ObservableObject{
     }
     
     func changerMotDePasse(email: String, nouveauMotDePasse: String, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "/utilisateur/changerMotDePasse",
+        AF.request(Constantes.host + "utilisateur/changerMotDePasse",
                    method: .put,
                    parameters: ["email": email,"nouveauMotDePasse": nouveauMotDePasse])
             .validate(statusCode: 200..<300)
@@ -199,7 +167,7 @@ public class UtilisateurViewModel: ObservableObject{
     func recupererUtilisateurParID(_id: Int?) -> Utilisateur {
         var data: Utilisateur?
         
-        AF.request(Constantes.host + "/utilisateur",
+        AF.request(Constantes.host + "utilisateur",
                    method: .get,
                    parameters: ["_id": String(_id!)])
             .responseJSON(completionHandler: { jsonResponse in
@@ -214,7 +182,7 @@ public class UtilisateurViewModel: ObservableObject{
     func recupererToutUtilisateur() -> [Utilisateur] {
         var data: [Utilisateur]?
         
-        AF.request(Constantes.host + "/utilisateur").responseJSON(completionHandler: { jsonResponse in
+        AF.request(Constantes.host + "utilisateur").responseJSON(completionHandler: { jsonResponse in
             let jsonResponse = JSON(jsonResponse)
             
             for (_,subJson):(String, JSON) in jsonResponse {
@@ -227,7 +195,7 @@ public class UtilisateurViewModel: ObservableObject{
     
     func manipulerUtilisateur(utilisateur: Utilisateur, methode: HTTPMethod, completed: @escaping (Bool) -> Void) {
         print(utilisateur)
-        AF.request(Constantes.host + "/utilisateur/modifierProfil",
+        AF.request(Constantes.host + "utilisateur/modifierProfil",
                    method: methode,
                    parameters: [
                     //"_id" : utilisateur._id!,
@@ -249,7 +217,7 @@ public class UtilisateurViewModel: ObservableObject{
     
     func supprimerUtilisateur(utilisateur: Utilisateur) {
         
-        AF.request(Constantes.host + "/utilisateur",
+        AF.request(Constantes.host + "utilisateur",
                    method: .delete,
                    parameters: ["_id": utilisateur._id!],
                    encoding: JSONEncoding.default,

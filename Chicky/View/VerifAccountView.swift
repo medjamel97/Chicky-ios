@@ -37,7 +37,6 @@ class VerifCompteView: UIViewController {
         let token = UserDefaults.standard.string(forKey: "tokenConnexion")
 
         if token != nil {
-            print(token)
             UtilisateurViewModel().recupererUtilisateurParToken(userToken: token!) { success, utilisateur in
                 if success {
                     self.performSegue(withIdentifier: "redirectAccueil", sender: nil)

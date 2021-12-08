@@ -89,16 +89,6 @@ class InscriptionView: UIViewController {
         performSegue(withIdentifier: "inscriptionSuivantSegue", sender: utilisateur)
     }
     
-    @IBAction func inscriptiongoogle(_ sender: UIButton) {
-        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { user, error in
-            guard error == nil else { return }
-            guard let user = user else { return }
-            
-            let emailAddress = user.profile?.email
-        }
-    }
-    
-    
     @IBAction func redirectionConnexion(_ sender: UIButton) {
     }
 }

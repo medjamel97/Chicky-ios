@@ -8,5 +8,6 @@
 import Foundation
 
 struct Constantes {
-    static let host = "http://localhost:3000/api.chicky.com"
+    static let host = "http://localhost:3000/api/"
+    static let images = "http://localhost:3000/img/"
 }

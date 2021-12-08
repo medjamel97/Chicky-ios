@@ -13,7 +13,7 @@ public class ConversationViewModel: ObservableObject{
     
     
     func getAllConversation(completed: @escaping (Bool, [Conversation]?) -> Void ) {
-        AF.request(Constantes.host + "/conversation/",
+        AF.request(Constantes.host + "conversation/",
                    method: .get)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -33,7 +33,7 @@ public class ConversationViewModel: ObservableObject{
     }
     
     func recupererConversations(completed: @escaping (Bool, Any?) -> Void) {
-        AF.request(Constantes.host + "/conversation",
+        AF.request(Constantes.host + "conversation",
                    method: .get)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -52,7 +52,7 @@ public class ConversationViewModel: ObservableObject{
     }
     
     func manipulerConversation(conversation: Conversation?, methode:HTTPMethod, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "/conversation",
+        AF.request(Constantes.host + "conversation",
                    method: methode,
                    parameters: ["idPhoto": conversation!._id, "nom": conversation!.dernierMessage])
             .validate(statusCode: 200..<300)
@@ -70,7 +70,7 @@ public class ConversationViewModel: ObservableObject{
     }
     
     func supprimerConversation(_id: String?, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "/conversation/supp",
+        AF.request(Constantes.host + "conversation/supp",
                    method: .post,
                    parameters: ["_id": _id])
             .validate(statusCode: 200..<300)
