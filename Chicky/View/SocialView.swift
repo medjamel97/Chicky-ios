@@ -33,7 +33,7 @@ class SocialView: UIViewController, CLLocationManagerDelegate {
     // LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-       // getNearByLandmarks()
+        getNearByLandmarks()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,8 +56,11 @@ class SocialView: UIViewController, CLLocationManagerDelegate {
         let search = MKLocalSearch(request: request)
         search.start{(response, error) in
             if let response = response {
+               
                 let mapItems = response.mapItems
+                print ("------ Map items--------")
                 print(mapItems)
+                print ("------ Map items--------")
             }
         }
     }
@@ -78,6 +81,8 @@ class SocialView: UIViewController, CLLocationManagerDelegate {
     func setUsersClosestLocation(mLattitude: CLLocationDegrees, mLongitude: CLLocationDegrees) -> String {
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: mLattitude, longitude: mLongitude)
+        print ("--------------")
+        print(location)
 
         geoCoder.reverseGeocodeLocation(location) {
             (placemarks, error) -> Void in
@@ -103,6 +108,7 @@ class SocialView: UIViewController, CLLocationManagerDelegate {
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
 
         if CLLocationManager.locationServicesEnabled() {

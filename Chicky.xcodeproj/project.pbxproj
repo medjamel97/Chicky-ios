@@ -19,6 +19,7 @@
 		431677DF273920FE0062EA9D /* ChickyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677DE273920FE0062EA9D /* ChickyTests.swift */; };
 		431677E9273920FE0062EA9D /* ChickyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677E8273920FE0062EA9D /* ChickyUITests.swift */; };
 		431677EB273920FE0062EA9D /* ChickyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677EA273920FE0062EA9D /* ChickyUITestsLaunchTests.swift */; };
+		8D214992276366D1007CD4D0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D214991276366D1007CD4D0 /* MapKit.framework */; };
 		8D52EE4A2756178500DC7028 /* VerifAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D52EE492756178500DC7028 /* VerifAccountView.swift */; };
 		8D8774F3275282DD0039CB29 /* MdpOublieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F2275282DD0039CB29 /* MdpOublieView.swift */; };
 		8D8774F5275283400039CB29 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F4275283400039CB29 /* ConfirmationView.swift */; };
@@ -97,6 +98,7 @@
 		431677EA273920FE0062EA9D /* ChickyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChickyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		69844C1A4BA56201C1B700AA /* Pods_Chicky_ChickyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chicky_ChickyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844441E750DD109EC9701A82 /* Pods_ChickyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChickyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D214991276366D1007CD4D0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8D52EE492756178500DC7028 /* VerifAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifAccountView.swift; sourceTree = "<group>"; };
 		8D8774F2275282DD0039CB29 /* MdpOublieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MdpOublieView.swift; sourceTree = "<group>"; };
 		8D8774F4275283400039CB29 /* ConfirmationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D214992276366D1007CD4D0 /* MapKit.framework in Frameworks */,
 				AA66A5341C1B942C75DB0025 /* Pods_Chicky.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +293,7 @@
 		BD720087CBD64A10262EDBA9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D214991276366D1007CD4D0 /* MapKit.framework */,
 				934D3B0EF32BEB14149B163E /* Pods_Chicky.framework */,
 				69844C1A4BA56201C1B700AA /* Pods_Chicky_ChickyUITests.framework */,
 				844441E750DD109EC9701A82 /* Pods_ChickyTests.framework */,
