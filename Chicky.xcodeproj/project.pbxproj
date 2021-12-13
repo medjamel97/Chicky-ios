@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		106A40C6275E25FB00DB4D8F /* JaimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106A40C5275E25FB00DB4D8F /* JaimeViewModel.swift */; };
 		106A40C8275E266C00DB4D8F /* Jaime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106A40C7275E266C00DB4D8F /* Jaime.swift */; };
+		109A3AFC2767CED7009868A6 /* CommentairesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109A3AFB2767CED7009868A6 /* CommentairesView.swift */; };
+		10CA8A2C276772BD000DA6A8 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 10CA8A2B276772BD000DA6A8 /* video.mp4 */; };
 		10DC5754275F115E00D00B77 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DC5753275F115E00D00B77 /* ImageLoader.swift */; };
 		431677C5273920FD0062EA9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677C4273920FD0062EA9D /* AppDelegate.swift */; };
 		431677C7273920FD0062EA9D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677C6273920FD0062EA9D /* SceneDelegate.swift */; };
@@ -80,6 +82,8 @@
 		08543B5114949029C22825E9 /* Pods-Chicky-ChickyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky-ChickyUITests.release.xcconfig"; path = "Target Support Files/Pods-Chicky-ChickyUITests/Pods-Chicky-ChickyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		106A40C5275E25FB00DB4D8F /* JaimeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaimeViewModel.swift; sourceTree = "<group>"; };
 		106A40C7275E266C00DB4D8F /* Jaime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jaime.swift; sourceTree = "<group>"; };
+		109A3AFB2767CED7009868A6 /* CommentairesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentairesView.swift; sourceTree = "<group>"; };
+		10CA8A2B276772BD000DA6A8 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		10DC5753275F115E00D00B77 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		187A1140A29FBE4B1715FE81 /* Pods-Chicky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky.release.xcconfig"; path = "Target Support Files/Pods-Chicky/Pods-Chicky.release.xcconfig"; sourceTree = "<group>"; };
 		4139DF8D8CF5BCF624B83F8D /* Pods-Chicky.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky.debug.xcconfig"; path = "Target Support Files/Pods-Chicky/Pods-Chicky.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 				94C4DFBC2742C67F00993FE5 /* Model */,
 				94C4DFCC2742DA0800993FE5 /* Utilities */,
 				431677D0273920FE0062EA9D /* Assets.xcassets */,
+				10CA8A2B276772BD000DA6A8 /* video.mp4 */,
 				431677D5273920FE0062EA9D /* Info.plist */,
 				431677CD273920FD0062EA9D /* Chicky.xcdatamodeld */,
 			);
@@ -272,6 +277,7 @@
 				431677C8273920FD0062EA9D /* MessagerieView.swift */,
 				940D718027430EA600722B97 /* SocialView.swift */,
 				8DF504FE276113B800832E37 /* CategorieViewController.swift */,
+				109A3AFB2767CED7009868A6 /* CommentairesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -426,6 +432,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10CA8A2C276772BD000DA6A8 /* video.mp4 in Resources */,
 				8D9EDC30275169940003F1A1 /* Launch Screen.storyboard in Resources */,
 				431677D1273920FE0062EA9D /* Assets.xcassets in Resources */,
 				431677CC273920FD0062EA9D /* Main.storyboard in Resources */,
@@ -558,6 +565,7 @@
 			files = (
 				CE00D09A2751981000B0E432 /* ConversationViewModel.swift in Sources */,
 				94C4DFD22742F64600993FE5 /* AccueilView.swift in Sources */,
+				109A3AFC2767CED7009868A6 /* CommentairesView.swift in Sources */,
 				8DD51270274C12CB006A4434 /* InscriptionSuivantView.swift in Sources */,
 				8D8774F7275283860039CB29 /* ChangerMdpView.swift in Sources */,
 				431677C9273920FD0062EA9D /* MessagerieView.swift in Sources */,

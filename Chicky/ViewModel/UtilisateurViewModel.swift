@@ -25,7 +25,7 @@ public class UtilisateurViewModel: ObservableObject{
                     "sexe": utilisateur.sexe!,
                     "score": utilisateur.score!,
                     "bio": utilisateur.bio!
-                   ])
+                   ] ,encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
