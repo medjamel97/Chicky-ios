@@ -24,6 +24,7 @@
 		8D214992276366D1007CD4D0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D214991276366D1007CD4D0 /* MapKit.framework */; };
 		8D3A7ECE2767DDE8001E86EC /* PostsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3A7ECD2767DDE8001E86EC /* PostsCollectionViewCell.swift */; };
 		8D3A7ED02767DDFB001E86EC /* PeopleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3A7ECF2767DDFB001E86EC /* PeopleCollectionViewCell.swift */; };
+		8D3A7ED42768041D001E86EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3A7ED32768041D001E86EC /* ViewController.swift */; };
 		8D52EE4A2756178500DC7028 /* VerifAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D52EE492756178500DC7028 /* VerifAccountView.swift */; };
 		8D8774F3275282DD0039CB29 /* MdpOublieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F2275282DD0039CB29 /* MdpOublieView.swift */; };
 		8D8774F5275283400039CB29 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F4275283400039CB29 /* ConfirmationView.swift */; };
@@ -109,6 +110,7 @@
 		8D2F5F4E2767CB90007883A7 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		8D3A7ECD2767DDE8001E86EC /* PostsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D3A7ECF2767DDFB001E86EC /* PeopleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D3A7ED32768041D001E86EC /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8D52EE492756178500DC7028 /* VerifAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifAccountView.swift; sourceTree = "<group>"; };
 		8D8774F2275282DD0039CB29 /* MdpOublieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MdpOublieView.swift; sourceTree = "<group>"; };
 		8D8774F4275283400039CB29 /* ConfirmationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				940D718027430EA600722B97 /* SocialView.swift */,
 				8DF504FE276113B800832E37 /* CategorieViewController.swift */,
 				109A3AFB2767CED7009868A6 /* CommentairesView.swift */,
+				8D3A7ED32768041D001E86EC /* ViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				8D8774F5275283400039CB29 /* ConfirmationView.swift in Sources */,
 				940D718727430F6400722B97 /* ProfilView.swift in Sources */,
 				CE00D098275194E400B0E432 /* MessageViewModel.swift in Sources */,
+				8D3A7ED42768041D001E86EC /* ViewController.swift in Sources */,
 				8D52EE4A2756178500DC7028 /* VerifAccountView.swift in Sources */,
 				10DC5754275F115E00D00B77 /* ImageLoader.swift in Sources */,
 				94C4DFC72742C82D00993FE5 /* Commentaire.swift in Sources */,
