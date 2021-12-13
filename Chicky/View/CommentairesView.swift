@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CommentairesView: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CommentairesView: UIViewController {
     
     @IBOutlet weak var commentairesTableView: UITableView!
     override func viewDidLoad() {

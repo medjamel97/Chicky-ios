@@ -193,6 +193,37 @@ public class UtilisateurViewModel: ObservableObject{
         return data!
     }
     
+    func getAllUtilisateurs(  completed: @escaping (Bool, [Utilisateur]?) -> Void ) {
+        AF.request(Constantes.host + "utilisateur",
+                   method: .get/*,
+                                parameters: [
+                                "idPublication": idPublication!
+                                ]*/)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    let jsonData = JSON(response.data!)
+                    
+                    var utilisateurs : [Utilisateur]? = []
+                 //   for singleJsonItem in jsonData["utilisateur"] {
+                   //     utilisateurs!.append(self.makePublication(jsonItem: singleJsonItem.1))
+                    // }
+                    print(jsonData)
+                    for singleJsonItem in jsonData["utilisateurs"] {
+                        utilisateurs!.append(self.makeItem(jsonItem: singleJsonItem.1))
+                    }
+                    completed(true, utilisateurs)
+                case let .failure(error):
+                    debugPrint(error)
+                    completed(false, nil)
+                }
+            }
+    }
+    
+    
+    
     func manipulerUtilisateur(utilisateur: Utilisateur, methode: HTTPMethod, completed: @escaping (Bool) -> Void) {
         print(utilisateur)
         AF.request(Constantes.host + "utilisateur/modifierProfil",

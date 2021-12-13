@@ -22,6 +22,8 @@
 		431677E9273920FE0062EA9D /* ChickyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677E8273920FE0062EA9D /* ChickyUITests.swift */; };
 		431677EB273920FE0062EA9D /* ChickyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677EA273920FE0062EA9D /* ChickyUITestsLaunchTests.swift */; };
 		8D214992276366D1007CD4D0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D214991276366D1007CD4D0 /* MapKit.framework */; };
+		8D3A7ECE2767DDE8001E86EC /* PostsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3A7ECD2767DDE8001E86EC /* PostsCollectionViewCell.swift */; };
+		8D3A7ED02767DDFB001E86EC /* PeopleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3A7ECF2767DDFB001E86EC /* PeopleCollectionViewCell.swift */; };
 		8D52EE4A2756178500DC7028 /* VerifAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D52EE492756178500DC7028 /* VerifAccountView.swift */; };
 		8D8774F3275282DD0039CB29 /* MdpOublieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F2275282DD0039CB29 /* MdpOublieView.swift */; };
 		8D8774F5275283400039CB29 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F4275283400039CB29 /* ConfirmationView.swift */; };
@@ -105,6 +107,8 @@
 		8D2F5F4B2767CB33007883A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D2F5F4D2767CB39007883A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		8D2F5F4E2767CB90007883A7 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		8D3A7ECD2767DDE8001E86EC /* PostsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D3A7ECF2767DDFB001E86EC /* PeopleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D52EE492756178500DC7028 /* VerifAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifAccountView.swift; sourceTree = "<group>"; };
 		8D8774F2275282DD0039CB29 /* MdpOublieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MdpOublieView.swift; sourceTree = "<group>"; };
 		8D8774F4275283400039CB29 /* ConfirmationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
@@ -261,6 +265,8 @@
 			children = (
 				8D9EDC2F275169940003F1A1 /* Launch Screen.storyboard */,
 				431677CA273920FD0062EA9D /* Main.storyboard */,
+				8D3A7ECF2767DDFB001E86EC /* PeopleCollectionViewCell.swift */,
+				8D3A7ECD2767DDE8001E86EC /* PostsCollectionViewCell.swift */,
 				8D52EE492756178500DC7028 /* VerifAccountView.swift */,
 				94C4DFCA2742D30A00993FE5 /* InscriptionView.swift */,
 				8DD5126F274C12CB006A4434 /* InscriptionSuivantView.swift */,
@@ -567,6 +573,7 @@
 				94C4DFD22742F64600993FE5 /* AccueilView.swift in Sources */,
 				109A3AFC2767CED7009868A6 /* CommentairesView.swift in Sources */,
 				8DD51270274C12CB006A4434 /* InscriptionSuivantView.swift in Sources */,
+				8D3A7ED02767DDFB001E86EC /* PeopleCollectionViewCell.swift in Sources */,
 				8D8774F7275283860039CB29 /* ChangerMdpView.swift in Sources */,
 				431677C9273920FD0062EA9D /* MessagerieView.swift in Sources */,
 				8DF2C893274FED0000900B6F /* PublicationViewModel.swift in Sources */,
@@ -595,6 +602,7 @@
 				10DC5754275F115E00D00B77 /* ImageLoader.swift in Sources */,
 				94C4DFC72742C82D00993FE5 /* Commentaire.swift in Sources */,
 				94C4DFCB2742D30A00993FE5 /* InscriptionView.swift in Sources */,
+				8D3A7ECE2767DDE8001E86EC /* PostsCollectionViewCell.swift in Sources */,
 				8D8774F3275282DD0039CB29 /* MdpOublieView.swift in Sources */,
 				94C4DFD02742DF1C00993FE5 /* RoundedCornersView.swift in Sources */,
 				94C4DFC02742C79300993FE5 /* Message.swift in Sources */,
