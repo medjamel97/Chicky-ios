@@ -38,6 +38,13 @@ class AccueilView: UIViewController  {
     // PROTOCOLS
     
     // LIFECYCLE
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "commentairesSegue" {
+            let destination = segue.destination as! CommentairesView
+            destination.publication = currentPublication
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,20 +54,17 @@ class AccueilView: UIViewController  {
         publicationCounter = 0
         currentPublication = nil
         
-        previousPublicationView.backgroundColor = UIColor.red
         previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         
-        currentPublicationView.backgroundColor = UIColor.green
         currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         
-        nextPublicationView.backgroundColor = UIColor.blue
         nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         
         swipeAreaView.addSubview(previousPublicationView)
         swipeAreaView.addSubview(currentPublicationView)
         swipeAreaView.addSubview(nextPublicationView)
         
-        PublicationViewModel().getAllPublications { [self] success, results in
+        PublicationViewModel().recupererToutPublication { [self] success, results in
             if success {
                 self.publications.append(contentsOf: results!)
                 
@@ -169,7 +173,9 @@ class AccueilView: UIViewController  {
         ratingStackView.addArrangedSubview(star4)
         ratingStackView.addArrangedSubview(star5)
         
-        // LIKE BUTTON
+        ratingStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AccueilView.showRatingAction)))
+        
+        // ADD RATING BUTTON
         let likeButton = UIButton()
         likeButton.setImage(UIImage(named: "icon-favorites-filled"), for: .normal)
         likeButton.setTitleColor(UIColor.white, for: .normal)
@@ -235,12 +241,56 @@ class AccueilView: UIViewController  {
         })
     }
     
+    @objc func showRatingAction(sender: UIButton) {
+        let actionSheet = UIAlertController(title: "\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        
+        let star1 = UIButton()
+        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        let star2 = UIButton()
+        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        let star3 = UIButton()
+        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        let star4 = UIButton()
+        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        let star5 = UIButton()
+        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        
+        let ratingStackView = UIStackView(frame: CGRect(x: 130, y: 20, width: 125, height: 25))
+        
+        ratingStackView.addArrangedSubview(star1)
+        ratingStackView.addArrangedSubview(star2)
+        ratingStackView.addArrangedSubview(star3)
+        ratingStackView.addArrangedSubview(star4)
+        ratingStackView.addArrangedSubview(star5)
+        
+        let addRatingLabel = UILabel(frame: CGRect(x: 8, y: 70, width: 380, height: 25))
+        addRatingLabel.textColor = UIColor.gray
+        addRatingLabel.text = "Please choose your rating"
+        addRatingLabel.textAlignment = .center
+        
+        actionSheet.view.addSubview(ratingStackView)
+        actionSheet.view.addSubview(addRatingLabel)
+        actionSheet.addAction(UIAlertAction(title: "Delete my rating", style: .destructive, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
     @objc func likeButtonAction(sender: UIButton) {
         
     }
     
     @objc func showCommentsAction(sender: UIButton) {
-        
+        performSegue(withIdentifier: "commentairesSegue", sender: currentPublication)
     }
     
     @IBAction func topSwipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer ) {

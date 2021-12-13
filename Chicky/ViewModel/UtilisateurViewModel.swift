@@ -52,6 +52,7 @@ public class UtilisateurViewModel: ObservableObject{
                     let jsonData = JSON(response.data!)
                     let utilisateur = self.makeItem(jsonItem: jsonData["utilisateur"])
                     UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "tokenConnexion")
+                    UserDefaults.standard.setValue(utilisateur._id, forKey: "idUtilisateur")
                     print(utilisateur)
                     
                     completed(true, utilisateur)
@@ -73,11 +74,12 @@ public class UtilisateurViewModel: ObservableObject{
                 switch response.result {
                 case .success:
                     let jsonData = JSON(response.data!)
-                    let user = self.makeItem(jsonItem: jsonData["utilisateur"])
+                    let utilisateur = self.makeItem(jsonItem: jsonData["utilisateur"])
                     
                     print("this is the new token value : " + jsonData["token"].stringValue)
                     UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "tokenConnexion")
-                    completed(true, user)
+                    UserDefaults.standard.setValue(utilisateur._id, forKey: "idUtilisateur")
+                    completed(true, utilisateur)
                 case let .failure(error):
                     debugPrint(error)
                     completed(false, nil)

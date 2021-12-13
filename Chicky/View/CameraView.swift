@@ -38,7 +38,7 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         }
         
         let publication = Publication( description: descriptionTextField.text, date: Date(), commentaires: [])
-        PublicationViewModel().addPublication(publication: publication, uiImage: currentPhoto!) { success in
+        PublicationViewModel().ajouterPublication(publication: publication, uiImage: currentPhoto!) { success in
             if success {
                 self.present(Alert.makeAlert(titre: "Success", message: "Publication ajouté"),animated: true)
             }

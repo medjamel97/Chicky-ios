@@ -10,6 +10,7 @@
 		106A40C6275E25FB00DB4D8F /* JaimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106A40C5275E25FB00DB4D8F /* JaimeViewModel.swift */; };
 		106A40C8275E266C00DB4D8F /* Jaime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106A40C7275E266C00DB4D8F /* Jaime.swift */; };
 		109A3AFC2767CED7009868A6 /* CommentairesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109A3AFB2767CED7009868A6 /* CommentairesView.swift */; };
+		109A3AFE2767D760009868A6 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109A3AFD2767D760009868A6 /* DateUtils.swift */; };
 		10CA8A2C276772BD000DA6A8 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 10CA8A2B276772BD000DA6A8 /* video.mp4 */; };
 		10DC5754275F115E00D00B77 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DC5753275F115E00D00B77 /* ImageLoader.swift */; };
 		431677C5273920FD0062EA9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677C4273920FD0062EA9D /* AppDelegate.swift */; };
@@ -56,7 +57,6 @@
 		94C4DFC72742C82D00993FE5 /* Commentaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C4DFC62742C82D00993FE5 /* Commentaire.swift */; };
 		94C4DFCB2742D30A00993FE5 /* InscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C4DFCA2742D30A00993FE5 /* InscriptionView.swift */; };
 		94C4DFCE2742DA3000993FE5 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C4DFCD2742DA3000993FE5 /* GradientView.swift */; };
-		94C4DFD02742DF1C00993FE5 /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C4DFCF2742DF1C00993FE5 /* RoundedCornersView.swift */; };
 		94C4DFD22742F64600993FE5 /* AccueilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C4DFD12742F64600993FE5 /* AccueilView.swift */; };
 		AA66A5341C1B942C75DB0025 /* Pods_Chicky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934D3B0EF32BEB14149B163E /* Pods_Chicky.framework */; };
 		CE00D098275194E400B0E432 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00D097275194E400B0E432 /* MessageViewModel.swift */; };
@@ -86,6 +86,7 @@
 		106A40C5275E25FB00DB4D8F /* JaimeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JaimeViewModel.swift; sourceTree = "<group>"; };
 		106A40C7275E266C00DB4D8F /* Jaime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jaime.swift; sourceTree = "<group>"; };
 		109A3AFB2767CED7009868A6 /* CommentairesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentairesView.swift; sourceTree = "<group>"; };
+		109A3AFD2767D760009868A6 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		10CA8A2B276772BD000DA6A8 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		10DC5753275F115E00D00B77 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		187A1140A29FBE4B1715FE81 /* Pods-Chicky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky.release.xcconfig"; path = "Target Support Files/Pods-Chicky/Pods-Chicky.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,7 +143,6 @@
 		94C4DFC62742C82D00993FE5 /* Commentaire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commentaire.swift; sourceTree = "<group>"; };
 		94C4DFCA2742D30A00993FE5 /* InscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InscriptionView.swift; sourceTree = "<group>"; };
 		94C4DFCD2742DA3000993FE5 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		94C4DFCF2742DF1C00993FE5 /* RoundedCornersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
 		94C4DFD12742F64600993FE5 /* AccueilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccueilView.swift; sourceTree = "<group>"; };
 		CDD42EF90213BFF3B3E39E54 /* Pods-Chicky-ChickyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky-ChickyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Chicky-ChickyUITests/Pods-Chicky-ChickyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE00D097275194E400B0E432 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
@@ -295,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				94C4DFCD2742DA3000993FE5 /* GradientView.swift */,
-				94C4DFCF2742DF1C00993FE5 /* RoundedCornersView.swift */,
 				8D9254F027482EF1009ACD1A /* Constantes.swift */,
 				8D9254F2274854AF009ACD1A /* LoadingScreen.swift */,
 				8DF2C890274FC20F00900B6F /* Alert.swift */,
@@ -303,6 +302,7 @@
 				10DC5753275F115E00D00B77 /* ImageLoader.swift */,
 				8DF504FC2760FA2300832E37 /* PinAnnotation.swift */,
 				8DF5050027612B6C00832E37 /* LocationManager.swift */,
+				109A3AFD2767D760009868A6 /* DateUtils.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -342,7 +342,7 @@
 				431677BD273920FD0062EA9D /* Sources */,
 				431677BE273920FD0062EA9D /* Frameworks */,
 				431677BF273920FD0062EA9D /* Resources */,
-				1EC2A6C715DB266417326C06 /* [CP] Embed Pods Frameworks */,
+				8ED1A377B98A5A5B2F840FBB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -380,7 +380,7 @@
 				431677E0273920FE0062EA9D /* Sources */,
 				431677E1273920FE0062EA9D /* Frameworks */,
 				431677E2273920FE0062EA9D /* Resources */,
-				E3F0856D7C6C71B1B7A4EA5C /* [CP] Embed Pods Frameworks */,
+				B1EDE32F0793DCAC0546781B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -465,7 +465,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1EC2A6C715DB266417326C06 /* [CP] Embed Pods Frameworks */ = {
+		8ED1A377B98A5A5B2F840FBB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -548,7 +548,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E3F0856D7C6C71B1B7A4EA5C /* [CP] Embed Pods Frameworks */ = {
+		B1EDE32F0793DCAC0546781B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -598,6 +598,7 @@
 				940D718927430F8900722B97 /* MusiqueView.swift in Sources */,
 				8D9254EF27482A9E009ACD1A /* UtilisateurViewModel.swift in Sources */,
 				940D717F27430E3D00722B97 /* CameraView.swift in Sources */,
+				109A3AFE2767D760009868A6 /* DateUtils.swift in Sources */,
 				8D8774F5275283400039CB29 /* ConfirmationView.swift in Sources */,
 				940D718727430F6400722B97 /* ProfilView.swift in Sources */,
 				CE00D098275194E400B0E432 /* MessageViewModel.swift in Sources */,
@@ -608,7 +609,6 @@
 				94C4DFCB2742D30A00993FE5 /* InscriptionView.swift in Sources */,
 				8D3A7ECE2767DDE8001E86EC /* PostsCollectionViewCell.swift in Sources */,
 				8D8774F3275282DD0039CB29 /* MdpOublieView.swift in Sources */,
-				94C4DFD02742DF1C00993FE5 /* RoundedCornersView.swift in Sources */,
 				94C4DFC02742C79300993FE5 /* Message.swift in Sources */,
 				940D717B27430DB200722B97 /* ConnexionView.swift in Sources */,
 				431677C7273920FD0062EA9D /* SceneDelegate.swift in Sources */,
@@ -703,6 +703,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -765,6 +766,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

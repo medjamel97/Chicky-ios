@@ -11,12 +11,12 @@ import UIKit.UIImage
 
 class CommentaireViewModel {
     
-    func getAllCommentaires(idPublication: String?,  completed: @escaping (Bool, [Commentaire]?) -> Void ) {
-        AF.request(Constantes.host + "commentaire/all",
-                   method: .get/*,
-                  parameters: [
-                   "idPublication": idPublication!
-                   ]*/)
+    func recupererCommentaireParPublication(idPublication: String?,  completed: @escaping (Bool, [Commentaire]?) -> Void ) {
+        AF.request(Constantes.host + "commentaire/par-publication",
+                   method: .post,
+                   parameters: [
+                    "publication": idPublication!
+                   ], encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
@@ -36,34 +36,15 @@ class CommentaireViewModel {
             }
     }
     
-    func getCommentaire(_id: String?, completed: @escaping (Bool, Commentaire?) -> Void ) {
-        AF.request(Constantes.host + "commentaire/",
-                   method: .get,
-                   parameters: [
-                    "_id": _id!
-                   ])
-            .validate(statusCode: 200..<300)
-            .validate(contentType: ["application/json"])
-            .responseData { response in
-                switch response.result {
-                case .success:
-                    let jsonData = JSON(response.data!)
-                    let commentaire = self.makeCommentaire(jsonItem: jsonData["commentaire"])
-                    completed(true, commentaire)
-                case let .failure(error):
-                    debugPrint(error)
-                    completed(false, nil)
-                }
-            }
-    }
-    
-    func addCommentaire(commentaire: Commentaire, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "commentaire/",
+    func ajouterCommentaire(idPublication: String, commentaire: Commentaire, completed: @escaping (Bool) -> Void ) {
+        AF.request(Constantes.host + "commentaire",
                    method: .post,
                    parameters: [
                     "description": commentaire.description!,
-                    "date": commentaire.date!,
-                   ])
+                    "date": DateUtils.formatFromDate(date: commentaire.date!),
+                    "publication": idPublication,
+                    "utilisateur": UserDefaults.standard.string(forKey: "idUtilisateur")!
+                   ], encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
@@ -77,14 +58,14 @@ class CommentaireViewModel {
             }
     }
     
-    func editCommentaire(commentaire: Commentaire, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "commentaire/",
+    func modifierCommentaire(commentaire: Commentaire, completed: @escaping (Bool) -> Void ) {
+        AF.request(Constantes.host + "commentaire",
                    method: .put,
                    parameters: [
                     "_id": commentaire._id!,
                     "description": commentaire.description!,
                     "date": commentaire.date!
-                   ])
+                   ], encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
@@ -98,13 +79,13 @@ class CommentaireViewModel {
             }
     }
     
-    func deleteCommentaire(_id: String?, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "commentaire/",
+    func supprimerCommentaire(_id: String?, completed: @escaping (Bool) -> Void ) {
+        AF.request(Constantes.host + "commentaire",
                    method: .delete,
                    parameters: [
                     "_id": _id!
                     
-                   ])
+                   ], encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
@@ -122,8 +103,35 @@ class CommentaireViewModel {
         Commentaire(
             _id: jsonItem["_id"].stringValue,
             description: jsonItem["description"].stringValue,
-            date: Date()
-                   
+            date: DateUtils.formatFromString(string: jsonItem["date"].stringValue),
+            publication: makePublication(jsonItem: jsonItem["publication"]),
+            utilisateur: makeUtilisateur(jsonItem: jsonItem["utilisateur"])
+        )
+    }
+    
+    func makeUtilisateur(jsonItem: JSON) -> Utilisateur {
+        return Utilisateur(
+            _id: jsonItem["_id"].stringValue,
+            pseudo: jsonItem["pseudo"].stringValue,
+            email: jsonItem["email"].stringValue,
+            mdp: jsonItem["mdp"].stringValue,
+            nom: jsonItem["nom"].stringValue,
+            prenom: jsonItem["prenom"].stringValue,
+            dateNaissance: Date(),
+            idPhoto: jsonItem["idPhoto"].stringValue,
+            sexe: jsonItem["sexe"].boolValue,
+            score: jsonItem["score"].intValue,
+            bio: jsonItem["bio"].stringValue,
+            isVerified: jsonItem["isVerified"].boolValue
+        )
+    }
+    
+    func makePublication(jsonItem: JSON) -> Publication {
+        return Publication(
+            _id: jsonItem["_id"].stringValue,
+            idPhoto: jsonItem["idPhoto"].stringValue,
+            description: jsonItem["description"].stringValue,
+            date: DateUtils.formatFromString(string: jsonItem["date"].stringValue)
         )
     }
 }
