@@ -86,27 +86,35 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
      
     
     // PROTOCOLS
-       
+    var utilisateurAux : [Utilisateur] = []
     var publicationAux : [Publication] = []
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         publicationAux = publications
+        utilisateurAux = utilisateurs
     }
   
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        utilisateurs = []
         publications = []
        for publication in publicationAux {
-            if (publication.description) == searchText{
+           if publication.description!.lowercased().contains(searchText.lowercased()) {
 
                 publications.append(publication)
+            }
+        }
+        for user in utilisateurAux {
+            if user.prenom!.lowercased().contains(searchText.lowercased()) {
+                utilisateurs.append(user)
             }
         }
         
         
         cvPosts.reloadData()
+        cvPeople.reloadData()
         
         if searchText == "" {
             publications = publicationAux
+            utilisateurs = utilisateurAux
         }
     }
         
