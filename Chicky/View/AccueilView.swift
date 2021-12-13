@@ -173,21 +173,14 @@ class AccueilView: UIViewController  {
         ratingStackView.addArrangedSubview(star4)
         ratingStackView.addArrangedSubview(star5)
         
+        ratingStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AccueilView.showRatingAction)))
+        
         // ADD RATING BUTTON
         let likeButton = UIButton()
         likeButton.setImage(UIImage(named: "icon-favorites-filled"), for: .normal)
         likeButton.setTitleColor(UIColor.white, for: .normal)
         likeButton.frame = CGRect(x: 25, y: card.frame.height - 60, width: 30, height: 30)
         likeButton.addTarget(self, action: #selector(AccueilView.likeButtonAction), for: .touchUpInside)
-        
-        // LIKE BUTTON
-        let likeButton = UIButton()
-        likeButton.setImage(UIImage(named: "icon-favorites-filled"), for: .normal)
-        likeButton.setTitleColor(UIColor.white, for: .normal)
-        likeButton.frame = CGRect(x: 25, y: card.frame.height - 60, width: 30, height: 30)
-        likeButton.addTarget(self, action: #selector(AccueilView.likeButtonAction), for: .touchUpInside)
-        
-        
         
         // COMMENT BUTTON
         let commentButton = UIButton()
@@ -246,6 +239,50 @@ class AccueilView: UIViewController  {
             
             setupPublications()
         })
+    }
+    
+    @objc func showRatingAction(sender: UIButton) {
+        let actionSheet = UIAlertController(title: "\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        
+        let star1 = UIButton()
+        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        let star2 = UIButton()
+        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        let star3 = UIButton()
+        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        let star4 = UIButton()
+        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        let star5 = UIButton()
+        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        
+        let ratingStackView = UIStackView(frame: CGRect(x: 130, y: 20, width: 125, height: 25))
+        
+        ratingStackView.addArrangedSubview(star1)
+        ratingStackView.addArrangedSubview(star2)
+        ratingStackView.addArrangedSubview(star3)
+        ratingStackView.addArrangedSubview(star4)
+        ratingStackView.addArrangedSubview(star5)
+        
+        let addRatingLabel = UILabel(frame: CGRect(x: 8, y: 70, width: 380, height: 25))
+        addRatingLabel.textColor = UIColor.gray
+        addRatingLabel.text = "Please choose your rating"
+        addRatingLabel.textAlignment = .center
+        
+        actionSheet.view.addSubview(ratingStackView)
+        actionSheet.view.addSubview(addRatingLabel)
+        actionSheet.addAction(UIAlertAction(title: "Delete my rating", style: .destructive, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(actionSheet, animated: true, completion: nil)
     }
     
     @objc func likeButtonAction(sender: UIButton) {
