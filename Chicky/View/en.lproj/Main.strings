@@ -9,7 +9,7 @@
 "199-yC-smg.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Music"; ObjectID = "36J-mR-PIB"; */
-"36J-mR-PIB.text" = "Musique";
+"36J-mR-PIB.text" = "Music";
 
 /* Class = "UITextField"; placeholder = "name@domain.com"; ObjectID = "4cm-fX-gIa"; */
 "4cm-fX-gIa.placeholder" = "name@domain.com";
@@ -380,8 +380,8 @@
 /* Class = "UILabel"; text = "Eminem"; ObjectID = "tme-5b-EHb"; */
 "tme-5b-EHb.text" = "Eminem";
 
-/* Class = "UILabel"; text = "Mdp oubliè"; ObjectID = "utc-sT-PWL"; */
-"utc-sT-PWL.text" = "Mdp oubliè";
+/* Class = "UILabel"; text = "Forgetten password"; ObjectID = "utc-sT-PWL"; */
+"utc-sT-PWL.text" = "Forgetten password";
 
 /* Class = "UIButton"; configuration.title = "Change profile"; ObjectID = "v8N-8e-6FF"; */
 "v8N-8e-6FF.configuration.title" = "Change profile";

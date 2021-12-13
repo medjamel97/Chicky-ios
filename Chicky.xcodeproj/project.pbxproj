@@ -98,6 +98,9 @@
 		69844C1A4BA56201C1B700AA /* Pods_Chicky_ChickyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chicky_ChickyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844441E750DD109EC9701A82 /* Pods_ChickyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChickyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D214991276366D1007CD4D0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8D2F5F4B2767CB33007883A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8D2F5F4D2767CB39007883A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		8D2F5F4E2767CB90007883A7 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		8D52EE492756178500DC7028 /* VerifAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifAccountView.swift; sourceTree = "<group>"; };
 		8D8774F2275282DD0039CB29 /* MdpOublieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MdpOublieView.swift; sourceTree = "<group>"; };
 		8D8774F4275283400039CB29 /* ConfirmationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
@@ -109,10 +112,6 @@
 		8D9EDC2F275169940003F1A1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8DD36B9A274C779700EEFE79 /* ModifierProfilView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifierProfilView.swift; sourceTree = "<group>"; };
 		8DD5126F274C12CB006A4434 /* InscriptionSuivantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InscriptionSuivantView.swift; sourceTree = "<group>"; };
-		8DE22CB62767C14100A3A456 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8DE22CB72767C1B200A3A456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8DE22CB82767C1DD00A3A456 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		8DE22CBB2767C2A900A3A456 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8DF2C890274FC20F00900B6F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		8DF2C892274FED0000900B6F /* PublicationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicationViewModel.swift; sourceTree = "<group>"; };
 		8DF504FC2760FA2300832E37 /* PinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinAnnotation.swift; sourceTree = "<group>"; };
@@ -407,8 +406,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				fr,
+				Base,
 			);
 			mainGroup = 431677B8273920FD0062EA9D;
 			productRefGroup = 431677C2273920FD0062EA9D /* Products */;
@@ -636,10 +635,9 @@
 		431677CA273920FD0062EA9D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8DE22CB62767C14100A3A456 /* fr */,
-				8DE22CB72767C1B200A3A456 /* Base */,
-				8DE22CB82767C1DD00A3A456 /* fr */,
-				8DE22CBB2767C2A900A3A456 /* en */,
+				8D2F5F4B2767CB33007883A7 /* Base */,
+				8D2F5F4D2767CB39007883A7 /* en */,
+				8D2F5F4E2767CB90007883A7 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
