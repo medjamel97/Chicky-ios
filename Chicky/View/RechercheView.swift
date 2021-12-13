@@ -93,7 +93,7 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
         // METHODS
         func initializeHistory() {
             
-            PublicationViewModel().getAllPublications{success, publicationsfromRep in
+            PublicationViewModel().recupererToutPublication{success, publicationsfromRep in
                 if success {
                     self.publications = publicationsfromRep!
                    // self.tableView.reloadData()

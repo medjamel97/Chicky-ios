@@ -35,6 +35,7 @@ class ProfilView: UIViewController {
     
     // METHODS
     func initializeProfile(){
+        usernameLabel.text = "@" + (utilisateur?.pseudo)!
     }
     
     

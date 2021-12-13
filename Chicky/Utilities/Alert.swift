@@ -29,4 +29,11 @@ public class Alert {
         alert.addAction(action)
         return(alert)
     }
+    
+    static func makeServerErrorAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "Error", message: "Internal server error", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        return(alert)
+    }
 }

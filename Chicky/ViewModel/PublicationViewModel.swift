@@ -12,7 +12,7 @@ import UIKit.UIImage
 
 class PublicationViewModel {
     
-    func getAllPublications(  completed: @escaping (Bool, [Publication]?) -> Void ) {
+    func recupererToutPublication(  completed: @escaping (Bool, [Publication]?) -> Void ) {
         AF.request(Constantes.host + "publication/all",
                    method: .get/*,
                                 parameters: [
@@ -37,28 +37,7 @@ class PublicationViewModel {
             }
     }
     
-    func getPublication(_id: String?, completed: @escaping (Bool, Publication?) -> Void ) {
-        AF.request(Constantes.host + "publication/",
-                   method: .get,
-                   parameters: [
-                    "_id": _id!
-                   ])
-            .validate(statusCode: 200..<300)
-            .validate(contentType: ["application/json"])
-            .responseData { response in
-                switch response.result {
-                case .success:
-                    let jsonData = JSON(response.data!)
-                    let publication = self.makePublication(jsonItem: jsonData["publication"])
-                    completed(true, publication)
-                case let .failure(error):
-                    debugPrint(error)
-                    completed(false, nil)
-                }
-            }
-    }
-    
-    func addPublication(publication: Publication, uiImage: UIImage, completed: @escaping (Bool) -> Void ) {
+    func ajouterPublication(publication: Publication, uiImage: UIImage, completed: @escaping (Bool) -> Void ) {
         
         AF.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(uiImage.jpegData(compressionQuality: 0.5)!, withName: "video" , fileName: "video.mp4", mimeType: "video/mp4")
@@ -89,7 +68,7 @@ class PublicationViewModel {
             }
     }
     
-    func editPublication(publication: Publication, completed: @escaping (Bool) -> Void ) {
+    func modifierPublication(publication: Publication, completed: @escaping (Bool) -> Void ) {
         AF.request(Constantes.host + "publication/",
                    method: .put,
                    parameters: [
@@ -112,7 +91,7 @@ class PublicationViewModel {
             }
     }
     
-    func deletePublication(_id: String?, completed: @escaping (Bool) -> Void ) {
+    func supprimerPublication(_id: String?, completed: @escaping (Bool) -> Void ) {
         AF.request(Constantes.host + "publication/",
                    method: .delete,
                    parameters: [

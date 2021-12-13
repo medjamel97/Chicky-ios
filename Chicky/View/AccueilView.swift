@@ -38,6 +38,13 @@ class AccueilView: UIViewController  {
     // PROTOCOLS
     
     // LIFECYCLE
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "commentairesSegue" {
+            let destination = segue.destination as! CommentairesView
+            destination.publication = currentPublication
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,20 +54,17 @@ class AccueilView: UIViewController  {
         publicationCounter = 0
         currentPublication = nil
         
-        previousPublicationView.backgroundColor = UIColor.red
         previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         
-        currentPublicationView.backgroundColor = UIColor.green
         currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         
-        nextPublicationView.backgroundColor = UIColor.blue
         nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         
         swipeAreaView.addSubview(previousPublicationView)
         swipeAreaView.addSubview(currentPublicationView)
         swipeAreaView.addSubview(nextPublicationView)
         
-        PublicationViewModel().getAllPublications { [self] success, results in
+        PublicationViewModel().recupererToutPublication { [self] success, results in
             if success {
                 self.publications.append(contentsOf: results!)
                 
@@ -169,12 +173,21 @@ class AccueilView: UIViewController  {
         ratingStackView.addArrangedSubview(star4)
         ratingStackView.addArrangedSubview(star5)
         
+        // ADD RATING BUTTON
+        let likeButton = UIButton()
+        likeButton.setImage(UIImage(named: "icon-favorites-filled"), for: .normal)
+        likeButton.setTitleColor(UIColor.white, for: .normal)
+        likeButton.frame = CGRect(x: 25, y: card.frame.height - 60, width: 30, height: 30)
+        likeButton.addTarget(self, action: #selector(AccueilView.likeButtonAction), for: .touchUpInside)
+        
         // LIKE BUTTON
         let likeButton = UIButton()
         likeButton.setImage(UIImage(named: "icon-favorites-filled"), for: .normal)
         likeButton.setTitleColor(UIColor.white, for: .normal)
         likeButton.frame = CGRect(x: 25, y: card.frame.height - 60, width: 30, height: 30)
         likeButton.addTarget(self, action: #selector(AccueilView.likeButtonAction), for: .touchUpInside)
+        
+        
         
         // COMMENT BUTTON
         let commentButton = UIButton()
@@ -240,7 +253,7 @@ class AccueilView: UIViewController  {
     }
     
     @objc func showCommentsAction(sender: UIButton) {
-        
+        performSegue(withIdentifier: "commentairesSegue", sender: currentPublication)
     }
     
     @IBAction func topSwipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer ) {
