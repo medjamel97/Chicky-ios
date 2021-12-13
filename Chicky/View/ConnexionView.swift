@@ -28,6 +28,8 @@ class ConnexionView: UIViewController {
     // PROTOCOLS
     
     
+   
+    
     // LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,9 +114,9 @@ class ConnexionView: UIViewController {
             let name = (user.profile?.givenName)! + " " + (user.profile?.familyName)!
             
             loginWithSocialMedia(email: email, name: name, socialMediaName: "Google")
-            
-            stopSpinner()
         }
+     
+        
     }
     
     func loginWithSocialMedia(email: String?, name: String?,

@@ -7,25 +7,107 @@
 
 import UIKit
 
-class RechercheView: UIViewController {
+class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,UISearchBarDelegate {
+    
+    let searchController = UISearchController()
+    
+    // VARS
+    private var publications : [Publication] = []
+    
+    @IBOutlet weak var publicationcv: UICollectionView!
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return publications.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       //let cell = collectionView.dequeueReusableCell(withIdentifier: "cell")
+      //let contentView = cell?.contentView
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let contentView = cell.contentView
+        
+        
+        let labeldescription = contentView.viewWithTag(2) as! UILabel
+        let imagePublication = contentView.viewWithTag(1) as! UIImageView
+        
+        labeldescription.text = publications[indexPath.row].description
+    //     imageCategorie.image = UIImage(named: categorie[indexPath.row])
+        print(publications[indexPath.row].idPhoto!)
 
-    // VAR
+        ImageLoader.shared.loadImage(
+            identifier: publications[indexPath.row].idPhoto!,
+            url: Constantes.images + publications[indexPath.row].idPhoto!,
+            completion: { [] image in
+                imagePublication.image = image
+            })
+        
+       // imagePublication.image = UIImage(named: "Cafe")
+        
+        return cell
+    }
     
-    
-    // WIDGETS
-    @IBOutlet weak var rechercheTextField: UITextField!
+
+      
+        
+        // WIDGETS
+     
+        
+     
     
     // PROTOCOLS
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+       
+    var publicationAux : [Publication] = []
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        publicationAux = publications
+    }
+  
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        publications = []
+       for publication in publicationAux {
+            if (publication.description) == searchText{
+
+                publications.append(publication)
+            }
+        }
+        
+        
+        publicationcv.reloadData()
+        
+        if searchText == "" {
+            publications = publicationAux
+        }
+    }
+        
+        
+        // LIFECYCLE
+        override func viewDidLoad() {
+            super.viewDidLoad()
+           
+        }
+        
+        override func viewDidAppear(_ animated: Bool) {
+            initializeHistory()
+        }
+        
+        // METHODS
+        func initializeHistory() {
+            
+            PublicationViewModel().getAllPublications{success, publicationsfromRep in
+                if success {
+                    self.publications = publicationsfromRep!
+                   // self.tableView.reloadData()
+                    self.publicationcv.reloadData()
+                    //self.coll
+                
+                }else {
+                    self.present(Alert.makeAlert(titre: "Error", message: "Could not load publications "),animated: true)
+
+                }
+            }
+        }
+        
+        // ACTIONS
+        
     }
 
-    // METHODS
-    
-    
-    // ACTIONS
-    @IBAction func effacerTout(_ sender: UIButton) {
-    }
-}
