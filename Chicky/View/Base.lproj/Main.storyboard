@@ -463,6 +463,40 @@
             </objects>
             <point key="canvasLocation" x="8265" y="840"/>
         </scene>
+        <!--Commentaires View-->
+        <scene sceneID="1kG-iQ-KAu">
+            <objects>
+                <viewController id="ViP-lA-1qk" customClass="CommentairesView" customModule="Chicky" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RVF-mF-XEx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7yw-YP-w6Y">
+                                <rect key="frame" x="0.0" y="58" width="414" height="784"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Commentaires" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ye-Ub-ZpY">
+                                <rect key="frame" x="20" y="20" width="374" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Vc3-wv-dWr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="E7X-gT-rgh"/>
+                    <connections>
+                        <outlet property="commentaireTableView" destination="7yw-YP-w6Y" id="iZo-WI-XaU"/>
+                        <outlet property="commentairesTableView" destination="7yw-YP-w6Y" id="sqi-Wc-xn4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gAC-eN-2zu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5486.9565217391309" y="839.73214285714278"/>
+        </scene>
         <!--Musique View-->
         <scene sceneID="qYv-mI-INP">
             <objects>
@@ -916,101 +950,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYJ-mI-RyH">
-                                <rect key="frame" x="0.0" y="802" width="414" height="94"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v79-tg-ioY" userLabel="SwipeArea">
                                 <rect key="frame" x="18" y="114" width="381" height="680"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JFN-nw-Gxf" customClass="GradientView" customModule="Chicky" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="339" width="381" height="341"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description de la video" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9MR-Cb-Zpd">
-                                                <rect key="frame" x="15" y="208" width="339" height="34"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWm-qN-A0Z">
-                                                <rect key="frame" x="5" y="282" width="84" height="39"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="icon-favorites" imagePlacement="trailing">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="999">
-                                                            <attributes>
-                                                                <font key="NSFont" size="21" name="Helvetica"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvY-sH-Tv4">
-                                                <rect key="frame" x="97" y="282" width="84" height="39"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="icon-comment" imagePlacement="trailing">
-                                                    <backgroundConfiguration key="background"/>
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="999">
-                                                            <attributes>
-                                                                <font key="NSFont" size="21" name="Helvetica"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNi-XQ-HuY">
-                                                <rect key="frame" x="15" y="250" width="120" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jmM-OV-rXc">
-                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="24"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-star-filled" translatesAutoresizingMaskIntoConstraints="NO" id="0Iy-bt-hUl">
-                                                                <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
-                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-star-filled" translatesAutoresizingMaskIntoConstraints="NO" id="r3f-jY-kvT">
-                                                                <rect key="frame" x="24" y="0.0" width="24" height="24"/>
-                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-star-filled" translatesAutoresizingMaskIntoConstraints="NO" id="OWo-ZM-cIH">
-                                                                <rect key="frame" x="48" y="0.0" width="24" height="24"/>
-                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-star-filled" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-Jc-NYr">
-                                                                <rect key="frame" x="72" y="0.0" width="24" height="24"/>
-                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                                            </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-star-empty" translatesAutoresizingMaskIntoConstraints="NO" id="4cx-wo-Qws">
-                                                                <rect key="frame" x="96" y="0.0" width="24" height="24"/>
-                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                                            </imageView>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                            </view>
-                                        </subviews>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="20"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
                                 <gestureRecognizers/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1024,6 +966,11 @@
                                     <outletCollection property="gestureRecognizers" destination="6PE-CZ-jXl" appends="YES" id="4IW-Bs-SZY"/>
                                     <outletCollection property="gestureRecognizers" destination="1Sg-ML-8nP" appends="YES" id="QQt-ic-bqk"/>
                                 </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYJ-mI-RyH">
+                                <rect key="frame" x="0.0" y="802" width="414" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gFT-Uq-cSq">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
@@ -1064,10 +1011,8 @@
                     <navigationItem key="navigationItem" id="EzH-0R-xxs"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="commentButton" destination="gvY-sH-Tv4" id="w94-My-4u4"/>
-                        <outlet property="descriptionLabel" destination="9MR-Cb-Zpd" id="iEe-rN-hB7"/>
-                        <outlet property="likeButton" destination="SWm-qN-A0Z" id="dVC-ov-c6V"/>
                         <outlet property="swipeAreaView" destination="v79-tg-ioY" id="0fT-vN-FXh"/>
+                        <segue destination="ViP-lA-1qk" kind="show" id="HdB-lT-pV1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Rp-ui-cEM" sceneMemberID="firstResponder"/>
@@ -1868,7 +1813,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="QPe-Uf-TyV"/>
         <segue reference="PDK-vX-ayz"/>
-        <segue reference="Kx5-Tc-jn8"/>
+        <segue reference="kkL-bs-k6y"/>
         <segue reference="Vw5-ag-V97"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1880,14 +1825,10 @@
         <image name="forward.fill" catalog="system" width="128" height="79"/>
         <image name="icon-chat" width="24" height="24"/>
         <image name="icon-cofee" width="24" height="24"/>
-        <image name="icon-comment" width="24" height="24"/>
-        <image name="icon-favorites" width="24" height="24"/>
         <image name="icon-home" width="24" height="24"/>
         <image name="icon-map" width="24" height="24"/>
         <image name="icon-plus" width="50" height="50"/>
         <image name="icon-recherche" width="24" height="24"/>
-        <image name="icon-star-empty" width="24" height="24"/>
-        <image name="icon-star-filled" width="24" height="24"/>
         <image name="icon-trash" width="24" height="24"/>
         <image name="image-person" width="150" height="150"/>
         <image name="location" catalog="system" width="128" height="118"/>

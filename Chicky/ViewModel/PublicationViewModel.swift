@@ -61,7 +61,7 @@ class PublicationViewModel {
     func addPublication(publication: Publication, uiImage: UIImage, completed: @escaping (Bool) -> Void ) {
         
         AF.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(uiImage.jpegData(compressionQuality: 0.5)!, withName: "image" , fileName: "image.jpeg", mimeType: "image/jpeg")
+            multipartFormData.append(uiImage.jpegData(compressionQuality: 0.5)!, withName: "video" , fileName: "video.mp4", mimeType: "video/mp4")
             
             for (key, value) in
                     [

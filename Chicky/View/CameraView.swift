@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MobileCoreServices
+import UniformTypeIdentifiers
 
 class CameraView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -43,18 +45,6 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         }
     }
     
-    func loadImage() {
-        /*let url = "http://localhost:3000/img/"+(user?.photo)!
-        print(url)
-        if user?.photo != nil {
-            ImageLoader.shared.loadImage(identifier:(user?.photo)!, url: url, completion: {image in
-                print(url)
-                imageUser.image = image
-                
-            })
-        }*/
-    }
-    
     @IBAction func changePhoto(_ sender: Any) {
         showActionSheet()
     }
@@ -66,20 +56,24 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         myPickerControllerCamera.sourceType = UIImagePickerController.SourceType.camera
         myPickerControllerCamera.allowsEditing = true
         self.present(myPickerControllerCamera, animated: true, completion: nil)
-
+        
     }
-  
-  
-  func gallery()
-  {
-
-      let myPickerControllerGallery = UIImagePickerController()
-      myPickerControllerGallery.delegate = self
-      myPickerControllerGallery.sourceType = UIImagePickerController.SourceType.photoLibrary
-      myPickerControllerGallery.allowsEditing = true
-      self.present(myPickerControllerGallery, animated: true, completion: nil)
-
-  }
+    
+    
+    func gallery()
+    {
+        let myPickerControllerGallery = UIImagePickerController()
+        myPickerControllerGallery.delegate = self
+        myPickerControllerGallery.mediaTypes = [kUTTypeVideo as String]
+        self.present(myPickerControllerGallery, animated: true, completion: nil)
+        
+        /*let myPickerControllerGallery = UIImagePickerController()
+        myPickerControllerGallery.delegate = self
+        myPickerControllerGallery.sourceType = UIImagePickerController.SourceType.photoLibrary
+        myPickerControllerGallery.allowsEditing = true
+        self.present(myPickerControllerGallery, animated: true, completion: nil)*/
+        
+    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -93,29 +87,29 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         addImageButton.isHidden = true
         
         /*UserViewModel().uploadImageProfile(uiImage: selectedImage,completed: { success in
-            if success {
-                self.initializeProfile()
-            }
-        })*/
+         if success {
+         self.initializeProfile()
+         }
+         })*/
         
         self.dismiss(animated: true, completion: nil)
     }
     
     func showActionSheet(){
-
+        
         let actionSheetController: UIAlertController = UIAlertController(title: NSLocalizedString("Upload Image", comment: ""), message: nil, preferredStyle: .actionSheet)
         actionSheetController.view.tintColor = UIColor.black
         let cancelActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { action -> Void in
             print("Cancel")
         }
         actionSheetController.addAction(cancelActionButton)
-
+        
         let saveActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Take Photo", comment: ""), style: .default)
         { action -> Void in
             self.camera()
         }
         actionSheetController.addAction(saveActionButton)
-
+        
         let deleteActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Choose From Gallery", comment: ""), style: .default)
         { action -> Void in
             self.gallery()
@@ -124,6 +118,6 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         actionSheetController.addAction(deleteActionButton)
         self.present(actionSheetController, animated: true, completion: nil)
     }
-
+    
     
 }

@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class AccueilView: UIViewController  {
     
+    var player : AVPlayer? = AVPlayer()
     // VAR
+    var moviePlayer: AVPlayerViewController?
+    
     var liked = false
     var publications : [Publication] = []
     var publicationCounter = 0
@@ -44,13 +49,13 @@ class AccueilView: UIViewController  {
         
         previousPublicationView.backgroundColor = UIColor.red
         previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-    
+        
         currentPublicationView.backgroundColor = UIColor.green
         currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-         
+        
         nextPublicationView.backgroundColor = UIColor.blue
         nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-     
+        
         swipeAreaView.addSubview(previousPublicationView)
         swipeAreaView.addSubview(currentPublicationView)
         swipeAreaView.addSubview(nextPublicationView)
@@ -101,44 +106,91 @@ class AccueilView: UIViewController  {
             identifier: publication.idPhoto!,
             url: Constantes.images + publication.idPhoto!,
             completion: { [self]image in
-                makePublicationCard(element: element, elementIndex: elementIndex, description: publication.description!, uiImage: image!)
+                makePublicationCard(card: element, elementIndex: elementIndex, description: publication.description!, uiImage: image!)
             })
     }
     
-    func makePublicationCard(element: UIView, elementIndex: Int, description: String , uiImage: UIImage) {
+    func makePublicationCard(card: UIView, elementIndex: Int, description: String , uiImage: UIImage) {
         
-        //element.backgroundColor = UIColor(white: 0.9, alpha: 1)
-        element.layer.cornerRadius = 20
+        //CARD
+        card.layer.cornerRadius = ROUNDED_RADIUS
+        card.layer.shadowOffset = CGSize(width: 0,height: 0)
+        card.layer.shadowRadius = ROUNDED_RADIUS
+        card.layer.shadowOpacity = 0.4
         
-        let image = UIImageView(image: uiImage)
-        image.frame = CGRect(x: 0, y: 0, width: element.frame.width, height: element.frame.height)
-        image.contentMode = .scaleAspectFill
-        image.tag = 1
-        image.layer.cornerRadius = 20
-        image.clipsToBounds = true
+        // GRADIENT
+        let gradientView = GradientView()
+        gradientView.secondColor = UIColor.black
+        gradientView.frame = CGRect(x: 0, y: card.frame.height/2 , width: card.frame.width, height: card.frame.height/2)
+        gradientView.layer.cornerRadius = ROUNDED_RADIUS
         
+        // VIDEO
+        guard let path = Bundle.main.path(forResource: "video", ofType:"mp4") else {
+            debugPrint("video.mp4 not found")
+            return
+        }
+        player = AVPlayer(url: URL(fileURLWithPath: path))
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill;
+        playerLayer.frame = card.bounds
+        playerLayer.cornerRadius = ROUNDED_RADIUS
+        playerLayer.masksToBounds = true
+        
+        // DESCRIPTION
         let descriptionLabel = UILabel()
         descriptionLabel.tag = 2
         descriptionLabel.text = description
         descriptionLabel.textColor = UIColor.white
-        descriptionLabel.frame = CGRect(x: 30, y: image.frame.height - 100, width: image.frame.width, height: 50)
+        descriptionLabel.frame = CGRect(x: 30, y: card.frame.height - 150, width: card.frame.width, height: 50)
         
-        /*let likeButton = UIButton()
-         likeButton.setTitle("Send a message", for: .normal)
-         likeButton.setTitleColor(UIColor.tintColor, for: .normal)
-         likeButton.frame = CGRect(x: 30, y: image.frame.height + 100, width: card.frame.width / 2, height: 40)
-         likeButton.addTarget(self, action: #selector(AccueilView.likeButtonAction), for: .touchUpInside)
-         
-         let commentButton = UIButton()
-         commentButton.setImage(UIImage(systemName: "heart"), for: .normal)
-         commentButton.setTitleColor(UIColor.blue, for: .normal)
-         commentButton.frame = CGRect(x: likeButton.frame.width + 50, y: image.frame.height + 100, width: card.frame.width / 3, height: 40)
-         commentButton.addTarget(self, action: #selector(AccueilView.showCommentsAction), for: .touchUpInside)*/
+        // STARS
+        let star1 = UIImageView(image: UIImage(named: "icon-star-filled"))
+        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        let star2 = UIImageView(image: UIImage(named: "icon-star-filled"))
+        star2.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star2.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        let star3 = UIImageView(image: UIImage(named: "icon-star-filled"))
+        star3.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star3.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        let star4 = UIImageView(image: UIImage(named: "icon-star-filled"))
+        star4.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star4.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        let star5 = UIImageView(image: UIImage(named: "icon-star-empty"))
+        star5.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        star5.widthAnchor.constraint(equalToConstant: 25).isActive = true
         
-        element.addSubview(image)
-        element.addSubview(descriptionLabel)
-        //element.addSubview(likeButton)
-        //element.addSubview(commentButton)
+        // RATING STACK VIEW
+        let ratingStackView = UIStackView()
+        ratingStackView.frame = CGRect(x: 30, y: card.frame.height - 100, width: 125, height: 25)
+        ratingStackView.addArrangedSubview(star1)
+        ratingStackView.addArrangedSubview(star2)
+        ratingStackView.addArrangedSubview(star3)
+        ratingStackView.addArrangedSubview(star4)
+        ratingStackView.addArrangedSubview(star5)
+        
+        // LIKE BUTTON
+        let likeButton = UIButton()
+        likeButton.setImage(UIImage(named: "icon-favorites-filled"), for: .normal)
+        likeButton.setTitleColor(UIColor.white, for: .normal)
+        likeButton.frame = CGRect(x: 25, y: card.frame.height - 60, width: 30, height: 30)
+        likeButton.addTarget(self, action: #selector(AccueilView.likeButtonAction), for: .touchUpInside)
+        
+        // COMMENT BUTTON
+        let commentButton = UIButton()
+        commentButton.setImage(UIImage(named: "icon-comment"), for: .normal)
+        commentButton.setTitleColor(UIColor.white, for: .normal)
+        commentButton.frame = CGRect(x: 60, y: card.frame.height - 60, width: 30, height: 30)
+        commentButton.addTarget(self, action: #selector(AccueilView.showCommentsAction), for: .touchUpInside)
+        
+        // CARD SUBVIEWS
+        card.layer.addSublayer(playerLayer)
+        player!.play()
+        card.addSubview(gradientView)
+        card.addSubview(descriptionLabel)
+        card.addSubview(ratingStackView)
+        card.addSubview(likeButton)
+        card.addSubview(commentButton)
     }
     
     func navigateToNextPublication() {
@@ -151,10 +203,10 @@ class AccueilView: UIViewController  {
             
             previousPublicationView.backgroundColor = UIColor.red
             previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-        
+            
             currentPublicationView.backgroundColor = UIColor.green
             currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-             
+            
             nextPublicationView.backgroundColor = UIColor.blue
             nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
             
@@ -172,10 +224,10 @@ class AccueilView: UIViewController  {
         }, completion: { [self](finished:Bool) in
             previousPublicationView.backgroundColor = UIColor.red
             previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-        
+            
             currentPublicationView.backgroundColor = UIColor.green
             currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-             
+            
             nextPublicationView.backgroundColor = UIColor.blue
             nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
             
@@ -184,9 +236,11 @@ class AccueilView: UIViewController  {
     }
     
     @objc func likeButtonAction(sender: UIButton) {
+        
     }
     
     @objc func showCommentsAction(sender: UIButton) {
+        
     }
     
     @IBAction func topSwipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer ) {
@@ -203,6 +257,7 @@ class AccueilView: UIViewController  {
     }
     
     @IBAction func downSwipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer ) {
+        
         if gestureRecognizer.state == .ended {
             if ((previousPublication) != nil){
                 publicationCounter -= 1
