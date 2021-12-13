@@ -21,5 +21,4 @@ pod 'AlamofireImage', '~> 4.1'
 pod 'SwiftyJSON', '~> 4.0'
 pod 'GoogleSignIn'
 
-
 end

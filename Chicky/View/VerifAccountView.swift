@@ -16,12 +16,6 @@ class VerifCompteView: UIViewController {
     // life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let spinner = SpinnerViewController()
-        addChild(spinner)
-        spinner.view.frame = view.frame
-        view.addSubview(spinner.view)
-        spinner.didMove(toParent: self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,7 +39,7 @@ class VerifCompteView: UIViewController {
                 }
             }
         } else {
-            print("saret nul")
+            print("no user")
             self.performSegue(withIdentifier: "redirectConnexion", sender: nil)
         }
     }

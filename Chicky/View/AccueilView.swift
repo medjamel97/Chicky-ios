@@ -112,7 +112,7 @@ class AccueilView: UIViewController  {
         
         let image = UIImageView(image: uiImage)
         image.frame = CGRect(x: 0, y: 0, width: element.frame.width, height: element.frame.height)
-        image.contentMode = .scaleToFill
+        image.contentMode = .scaleAspectFill
         image.tag = 1
         image.layer.cornerRadius = 20
         image.clipsToBounds = true
@@ -135,22 +135,20 @@ class AccueilView: UIViewController  {
          commentButton.frame = CGRect(x: likeButton.frame.width + 50, y: image.frame.height + 100, width: card.frame.width / 3, height: 40)
          commentButton.addTarget(self, action: #selector(AccueilView.showCommentsAction), for: .touchUpInside)*/
         
-        //element.addSubview(image)
-        //element.addSubview(descriptionLabel)
+        element.addSubview(image)
+        element.addSubview(descriptionLabel)
         //element.addSubview(likeButton)
         //element.addSubview(commentButton)
     }
     
     func navigateToNextPublication() {
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
             // put here the code you would like to animate
             self.previousPublicationView.frame.origin.y -= 1000
             self.currentPublicationView.frame.origin.y -= 1000
             self.nextPublicationView.frame.origin.y -= 1000
         }, completion: { [self](finished:Bool) in
-            /*let aux = currentPublication
-            currentPublication = nextPublication
-            nextPublication = aux*/
+            
             previousPublicationView.backgroundColor = UIColor.red
             previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         
@@ -159,11 +157,14 @@ class AccueilView: UIViewController  {
              
             nextPublicationView.backgroundColor = UIColor.blue
             nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+            
+            setupPublications()
         })
     }
     
     func navigateToPreviousPublication() {
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: {
+        
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
             // put here the code you would like to animate
             self.previousPublicationView.frame.origin.y += 1000
             self.currentPublicationView.frame.origin.y += 1000
@@ -177,6 +178,8 @@ class AccueilView: UIViewController  {
              
             nextPublicationView.backgroundColor = UIColor.blue
             nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+            
+            setupPublications()
         })
     }
     
@@ -192,9 +195,8 @@ class AccueilView: UIViewController  {
                 publicationCounter += 1
                 
                 navigateToNextPublication()
-                setupPublications()
             } else {
-                nextPublicationView.removeFromSuperview()
+                //nextPublicationView.removeFromSuperview()
                 print("last one")
             }
         }
@@ -206,9 +208,8 @@ class AccueilView: UIViewController  {
                 publicationCounter -= 1
                 
                 navigateToPreviousPublication()
-                setupPublications()
             } else {
-                previousPublicationView.removeFromSuperview()
+                //previousPublicationView.removeFromSuperview()
                 print("first one")
             }
         }
