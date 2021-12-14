@@ -35,6 +35,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" name="AccentColor"/>
+                        <color key="tintColor" name="AccentColor"/>
                         <constraints>
                             <constraint firstItem="NTa-pk-ZUO" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="82" id="6EP-6I-tLr"/>
                             <constraint firstItem="NTa-pk-ZUO" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="231" id="Lbf-Yr-5bO"/>

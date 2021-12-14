@@ -113,10 +113,4 @@ class InscriptionSuivantView: UIViewController {
             child.removeFromParent()
         })
     }
-    
-    
-    @IBAction func telechargerImage(_ sender: Any) {
-        //UtilisateurViewModel().uploadImage(imgData: UIImage(named: "image-person")!.pngData()!, params: ["String" : "Any"])
-    }
-    
 }

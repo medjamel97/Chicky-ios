@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CommentairesView: UIViewController {
+class CommentairesView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // VARS
     var publication: Publication?
@@ -31,10 +31,92 @@ class CommentairesView: UIViewController {
         let imageProfile = contentView?.viewWithTag(1) as! UIImageView
         let labelUsername = contentView?.viewWithTag(2) as! UILabel
         let labelCommentaire = contentView?.viewWithTag(3) as! UILabel
+        let editButton = contentView?.viewWithTag(4) as! UIButton
+        let deleteButton = contentView?.viewWithTag(5) as! UIButton
+        let newCommentTF = contentView?.viewWithTag(6) as! UITextField
+        let checkButton = contentView?.viewWithTag(7) as! UIButton
+        let crossButton = contentView?.viewWithTag(8) as! UIButton
         
-        let commentaire = commentaires[indexPath.row]
+        imageProfile.layer.cornerRadius = ROUNDED_RADIUS
         
-        //imageProfile.image = commentaire.utilisateur.idPhoto
+        newCommentTF.isHidden = true
+        checkButton.isHidden = true
+        crossButton.isHidden = true
+        
+        
+        var commentaire = commentaires[indexPath.row]
+        
+        if commentaires[indexPath.row].utilisateur?._id == UserDefaults.standard.string(forKey: "idUtilisateur") {
+            
+            editButton.addAction(UIAction(handler: { uiaction in
+                labelCommentaire.isHidden = true
+                editButton.isHidden = true
+                deleteButton.isHidden = true
+                newCommentTF.isHidden = false
+                checkButton.isHidden = false
+                crossButton.isHidden = false
+                
+                newCommentTF.text = commentaire.description
+                
+                
+                checkButton.addAction(UIAction(handler: { uiaction in
+                    if newCommentTF.text!.isEmpty {
+                        self.present(Alert.makeAlert(titre: "Avertissement", message: "Description ne peut pas etre vide"),animated: true)
+                        return
+                    }
+                    
+                    
+                    labelCommentaire.isHidden = false
+                    editButton.isHidden = false
+                    deleteButton.isHidden = false
+                    newCommentTF.isHidden = true
+                    checkButton.isHidden = true
+                    crossButton.isHidden = true
+                    
+                    commentaire.description = newCommentTF.text
+                    CommentaireViewModel().modifierCommentaire(commentaire: commentaire) { success in
+                        if success {
+                            print("Edited")
+                            labelCommentaire.text = commentaire.description
+                            
+                        } else {
+                            self.present(Alert.makeServerErrorAlert(),animated: true)
+                        }
+                    }
+                }), for: .touchUpInside)
+                
+                crossButton.addAction(UIAction(handler: { uiaction in
+                    labelCommentaire.isHidden = false
+                    editButton.isHidden = false
+                    deleteButton.isHidden = false
+                    newCommentTF.isHidden = true
+                    checkButton.isHidden = true
+                    crossButton.isHidden = true
+                }), for: .touchUpInside)
+            }), for: .touchUpInside)
+            
+            deleteButton.addAction(UIAction(handler: { uiaction in
+                self.present(Alert.makeActionAlert(titre: "Warning", message: "Are you sure you want to delete your comment", action: UIAlertAction(title: "Yes", style: .destructive, handler: { uiaction in
+                    CommentaireViewModel().supprimerCommentaire(_id: commentaire._id) { success in
+                        if success {
+                            self.recupererCommentaires()
+                        } else {
+                            self.present(Alert.makeServerErrorAlert(),animated: true)
+                        }
+                    }
+                })),animated: true)
+            }), for: .touchUpInside)
+            
+        } else {
+            editButton.isHidden = true
+            deleteButton.isHidden = true
+        }
+        
+        ImageLoader.shared.loadImage(identifier: (commentaire.utilisateur?.idPhoto!)!, url: Constantes.images + (commentaire.utilisateur?.idPhoto)!) { imageResp in
+            
+            imageProfile.image = imageResp
+        }
+        
         labelUsername.text = (commentaire.utilisateur?.prenom)! + " " + (commentaire.utilisateur?.nom)!
         labelCommentaire.text = commentaire.description
         
@@ -48,15 +130,15 @@ class CommentairesView: UIViewController {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            /*CommentaireViewModel().supprimerCommentaire(_id: commentaires[indexPath.row]._id) { success in
-             if success {
-             print("deleted chat")
-             self.commentaires.remove(at: indexPath.row)
-             tableView.reloadData()
-             } else {
-             print("error while deleting chat")
-             }
-             }*/
+            CommentaireViewModel().supprimerCommentaire(_id: commentaires[indexPath.row]._id) { success in
+                if success {
+                    print("deleted chat")
+                    self.commentaires.remove(at: indexPath.row)
+                    tableView.reloadData()
+                } else {
+                    print("error while deleting chat")
+                }
+            }
         }
     }
     

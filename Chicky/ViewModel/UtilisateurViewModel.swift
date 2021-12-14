@@ -197,22 +197,14 @@ public class UtilisateurViewModel: ObservableObject{
     
     func getAllUtilisateurs(  completed: @escaping (Bool, [Utilisateur]?) -> Void ) {
         AF.request(Constantes.host + "utilisateur",
-                   method: .get/*,
-                                parameters: [
-                                "idPublication": idPublication!
-                                ]*/)
+                   method: .get)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
                 switch response.result {
                 case .success:
                     let jsonData = JSON(response.data!)
-                    
                     var utilisateurs : [Utilisateur]? = []
-                 //   for singleJsonItem in jsonData["utilisateur"] {
-                   //     utilisateurs!.append(self.makePublication(jsonItem: singleJsonItem.1))
-                    // }
-                    print(jsonData)
                     for singleJsonItem in jsonData["utilisateurs"] {
                         utilisateurs!.append(self.makeItem(jsonItem: singleJsonItem.1))
                     }
@@ -224,7 +216,34 @@ public class UtilisateurViewModel: ObservableObject{
             }
     }
     
-    
+    func changerPhotoDeProfil(email: String, uiImage: UIImage, completed: @escaping (Bool) -> Void ) {
+        
+        AF.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(uiImage.jpegData(compressionQuality: 0.5)!, withName: "image" , fileName: "image.jpeg", mimeType: "image/jpeg")
+            
+            for (key, value) in
+                    [
+                        "email": email,
+                    ]
+            {
+                multipartFormData.append((value.data(using: .utf8))!, withName: key)
+            }
+            
+        },to: Constantes.host + "utilisateur/photo-profil",
+                  method: .post)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("Success")
+                    completed(true)
+                case let .failure(error):
+                    completed(false)
+                    print(error)
+                }
+            }
+    }
     
     func manipulerUtilisateur(utilisateur: Utilisateur, methode: HTTPMethod, completed: @escaping (Bool) -> Void) {
         print(utilisateur)
@@ -237,9 +256,9 @@ public class UtilisateurViewModel: ObservableObject{
                     //"mdp": utilisateur.mdp!,
                     "nom": utilisateur.nom!,
                     "prenom": utilisateur.prenom!,
-                    //"dateNaissance": utilisateur.dateNaissance!,
+                    "dateNaissance": DateUtils.formatFromDate(date: utilisateur.dateNaissance!),
                     //"idPhoto": utilisateur.idPhoto!,
-                    "sexe": utilisateur.sexe!,
+                    "sexe": String(utilisateur.sexe!),
                     //"score": utilisateur.score!,
                     //"bio": utilisateur.bio!
                    ])
@@ -261,12 +280,6 @@ public class UtilisateurViewModel: ObservableObject{
     }
     
     func makeItem(jsonItem: JSON) -> Utilisateur {
-        //let isoDate = jsonItem["dateNaissance"]
-        let isoDate = "2016-04-14T10:44:00+0000"
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let date = dateFormatter.date(from:isoDate)!
         
         return Utilisateur(
             _id: jsonItem["_id"].stringValue,
@@ -275,7 +288,7 @@ public class UtilisateurViewModel: ObservableObject{
             mdp: jsonItem["mdp"].stringValue,
             nom: jsonItem["nom"].stringValue,
             prenom: jsonItem["prenom"].stringValue,
-            dateNaissance: date,
+            dateNaissance: DateUtils.formatFromString(string: jsonItem["dateNaissance"].stringValue),
             idPhoto: jsonItem["idPhoto"].stringValue,
             sexe: jsonItem["sexe"].boolValue,
             score: jsonItem["score"].intValue,

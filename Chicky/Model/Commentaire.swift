@@ -19,7 +19,7 @@ struct Commentaire {
     
     
     let _id : String?
-    let description : String?
+    var description : String?
     let date : Date?
     
     // relations

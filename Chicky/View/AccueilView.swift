@@ -241,48 +241,168 @@ class AccueilView: UIViewController  {
         })
     }
     
+    var star1 : UIButton = UIButton()
+    var star2 : UIButton = UIButton()
+    var star3 : UIButton = UIButton()
+    var star4 : UIButton = UIButton()
+    var star5 : UIButton = UIButton()
+    
+    var noteAcutelle: Int?
+    var noteChoisi: Int?
+    
     @objc func showRatingAction(sender: UIButton) {
         let actionSheet = UIAlertController(title: "\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
         
-        let star1 = UIButton()
-        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
-        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        let star2 = UIButton()
-        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
-        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        let star3 = UIButton()
-        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
-        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        let star4 = UIButton()
-        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
-        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        let star5 = UIButton()
-        star1.setImage(UIImage(named: "icon-star-empty"), for: .normal)
-        star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        initializeStarButton(starButton: star1, isEmpty: true)
+        initializeStarButton(starButton: star2, isEmpty: true)
+        initializeStarButton(starButton: star3, isEmpty: true)
+        initializeStarButton(starButton: star4, isEmpty: true)
+        initializeStarButton(starButton: star5, isEmpty: true)
         
-        let ratingStackView = UIStackView(frame: CGRect(x: 130, y: 20, width: 125, height: 25))
+        EvaluationViewModel().recupererEvaluationParUtilisateur(idPublication: currentPublication?._id) { [self] success, evaluationRep in
+            if success {
+                self.noteAcutelle = evaluationRep?.note
+                
+                var hasNote = false
+                
+                if noteAcutelle != 0 {
+                    hasNote = true
+                }
+                
+                print("noteAcutelle")
+                print(noteAcutelle!)
+                
+                if hasNote {
+                    initializeStarButton(starButton: star1, isEmpty: noteAcutelle! <= 0)
+                    initializeStarButton(starButton: star2, isEmpty: noteAcutelle! <= 1)
+                    initializeStarButton(starButton: star3, isEmpty: noteAcutelle! <= 2)
+                    initializeStarButton(starButton: star4, isEmpty: noteAcutelle! <= 3)
+                    initializeStarButton(starButton: star5, isEmpty: noteAcutelle! <= 4)
+                }
+                
+                star1.addTarget(self, action: #selector(AccueilView.hoverStar1), for: .touchUpInside)
+                star2.addTarget(self, action: #selector(AccueilView.hoverStar2), for: .touchUpInside)
+                star3.addTarget(self, action: #selector(AccueilView.hoverStar3), for: .touchUpInside)
+                star4.addTarget(self, action: #selector(AccueilView.hoverStar4), for: .touchUpInside)
+                star5.addTarget(self, action: #selector(AccueilView.hoverStar5), for: .touchUpInside)
+                
+                let ratingStackView = UIStackView(frame: CGRect(x: 130, y: 20, width: 125, height: 25))
+                ratingStackView.addArrangedSubview(star1)
+                ratingStackView.addArrangedSubview(star2)
+                ratingStackView.addArrangedSubview(star3)
+                ratingStackView.addArrangedSubview(star4)
+                ratingStackView.addArrangedSubview(star5)
+                
+                let addRatingLabel = UILabel(frame: CGRect(x: 8, y: 70, width: 380, height: 25))
+                addRatingLabel.textColor = UIColor.gray
+                addRatingLabel.text = "Please choose your rating"
+                addRatingLabel.textAlignment = .center
+                
+                actionSheet.view.addSubview(ratingStackView)
+                actionSheet.view.addSubview(addRatingLabel)
+                
+                if noteAcutelle != nil {
+                    actionSheet.addAction(UIAlertAction(title: "Delete my rating", style: .destructive, handler: { act in
+                        EvaluationViewModel().supprimerEvaluation(_id: "") { success in
+                            if success {
+                                self.dismiss(animated: true, completion: nil)
+                            } else {
+                                self.present(Alert.makeServerErrorAlert(),animated: true)
+                            }
+                        }
+                    }))
+                }
+                
+                actionSheet.addAction(UIAlertAction(title: "Save", style: .default, handler: { uication in
+                    if hasNote {
+                        EvaluationViewModel().modifierEvaluation(id: (evaluationRep?._id)!, note: noteChoisi!) { success in
+                            if success {
+                                
+                            } else {
+                                self.present(Alert.makeServerErrorAlert(),animated: true)
+                            }
+                        }
+                    } else {
+                        EvaluationViewModel().ajouterEvaluation(idPublication: (currentPublication?._id)!, note: noteChoisi!) { success in
+                            if success {
+                                
+                            } else {
+                                self.present(Alert.makeServerErrorAlert(),animated: true)
+                            }
+                        }
+                        
+                    }
+                }))
+                actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                present(actionSheet, animated: true, completion: nil)
+            } else {
+                self.present(Alert.makeServerErrorAlert(),animated: true)
+            }
+        }
+    }
+    
+    func initializeStarButton(starButton: UIButton, isEmpty: Bool) {
+        var name: String
         
-        ratingStackView.addArrangedSubview(star1)
-        ratingStackView.addArrangedSubview(star2)
-        ratingStackView.addArrangedSubview(star3)
-        ratingStackView.addArrangedSubview(star4)
-        ratingStackView.addArrangedSubview(star5)
+        if isEmpty {
+            name = "icon-star-empty"
+        } else {
+            name = "icon-star-filled"
+        }
         
-        let addRatingLabel = UILabel(frame: CGRect(x: 8, y: 70, width: 380, height: 25))
-        addRatingLabel.textColor = UIColor.gray
-        addRatingLabel.text = "Please choose your rating"
-        addRatingLabel.textAlignment = .center
+        starButton.setImage(UIImage(named: name), for: .normal)
+        starButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        starButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
+    }
+    
+    @objc func hoverStar1(sender: UIButton) {
+        star1.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star2.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star3.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star4.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star5.setImage(UIImage(named: "icon-star-empty"), for: .normal)
         
-        actionSheet.view.addSubview(ratingStackView)
-        actionSheet.view.addSubview(addRatingLabel)
-        actionSheet.addAction(UIAlertAction(title: "Delete my rating", style: .destructive, handler: nil))
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(actionSheet, animated: true, completion: nil)
+        noteChoisi = 1
+    }
+    
+    @objc func hoverStar2(sender: UIButton) {
+        star1.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star2.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star3.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star4.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star5.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        
+        noteChoisi = 2
+    }
+    
+    @objc func hoverStar3(sender: UIButton) {
+        star1.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star2.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star3.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star4.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        star5.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        
+        noteChoisi = 3
+    }
+    
+    @objc func hoverStar4(sender: UIButton) {
+        star1.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star2.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star3.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star4.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star5.setImage(UIImage(named: "icon-star-empty"), for: .normal)
+        
+        noteChoisi = 4
+    }
+    
+    @objc func hoverStar5(sender: UIButton) {
+        star1.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star2.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star3.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star4.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        star5.setImage(UIImage(named: "icon-star-filled"), for: .normal)
+        
+        noteChoisi = 5
     }
     
     @objc func likeButtonAction(sender: UIButton) {

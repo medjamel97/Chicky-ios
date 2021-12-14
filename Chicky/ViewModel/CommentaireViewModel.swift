@@ -63,8 +63,7 @@ class CommentaireViewModel {
                    method: .put,
                    parameters: [
                     "_id": commentaire._id!,
-                    "description": commentaire.description!,
-                    "date": commentaire.date!
+                    "description": commentaire.description!
                    ], encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])

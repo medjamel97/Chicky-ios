@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>ns always</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>ns when use</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -27,6 +23,16 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.129859709709-ji8he9ntqhetpgtmuj4a6hmdgd40s4eu</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>tn.esprit.chicky</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tn.esprit.chicky.payments</string>
 			</array>
 		</dict>
 	</array>

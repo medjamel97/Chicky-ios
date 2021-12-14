@@ -7,15 +7,17 @@
 
 import UIKit
 
-class ModifierProfilView: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // VAR
     var utilisateur: Utilisateur?
+    var currentPhoto : UIImage?
     
     // WIDGET
     @IBOutlet weak var nomTextField: UITextField!
     @IBOutlet weak var prenomTextField: UITextField!
-    @IBOutlet weak var uploadImage: UIImageView!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var dateNaissancePicker: UIDatePicker!
     @IBOutlet weak var sexeChooser: UISegmentedControl!
     
     @IBOutlet weak var addPictureBtn: UIButton!
@@ -36,11 +38,18 @@ class ModifierProfilView: UIViewController,UIImagePickerControllerDelegate, UINa
             
             nomTextField.text = result?.nom
             prenomTextField.text = result?.prenom
-          
+            
             if ((result?.sexe) != nil){
                 sexeChooser.selectedSegmentIndex = 1
             } else {
                 sexeChooser.selectedSegmentIndex = 2
+            }
+            
+            dateNaissancePicker.date = (utilisateur?.dateNaissance)!
+            
+            ImageLoader.shared.loadImage(identifier: (utilisateur?.idPhoto)!, url: Constantes.images + (utilisateur?.idPhoto)!) { imageResp in
+                
+                profileImage.image = imageResp
             }
         }
     }
@@ -64,20 +73,12 @@ class ModifierProfilView: UIViewController,UIImagePickerControllerDelegate, UINa
             return
         }
         
-        
-       
-        /*if (dateDeNaissancePicker.) {
-            self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre date de naissance"), animated: true)
-            return
-        }*/
-        
-        
         //utilisateur?.idPhoto = ""
         utilisateur?.score = 0
         utilisateur?.bio = ""
         utilisateur?.nom = nomTextField.text
         utilisateur?.prenom = prenomTextField.text
-        //utilisateur?.dateNaissance = dateDeNaissancePicker.date
+        utilisateur?.dateNaissance = dateNaissancePicker.date
         
         if (sexeChooser.selectedSegmentIndex == 1 ){
             utilisateur?.sexe = true
@@ -87,7 +88,6 @@ class ModifierProfilView: UIViewController,UIImagePickerControllerDelegate, UINa
         
         
         UtilisateurViewModel().manipulerUtilisateur(utilisateur: utilisateur!,methode: .put, completed: { (success) in
-            // STOP Spinner
             
             if success {
                 self.present(Alert.makeAlert(titre: "Succes", message: "Profil modifié"),animated: true)
@@ -98,26 +98,74 @@ class ModifierProfilView: UIViewController,UIImagePickerControllerDelegate, UINa
         })
     }
     
-    
-    
-
-    @IBAction func uploadpdp(_ sender: Any) {
-        let picker = UIImagePickerController()
-        picker.allowsEditing = true
-        picker.delegate = self
-        present(picker, animated: true)
+    func camera()
+    {
+        let myPickerControllerCamera = UIImagePickerController()
+        myPickerControllerCamera.delegate = self
+        myPickerControllerCamera.sourceType = UIImagePickerController.SourceType.camera
+        myPickerControllerCamera.allowsEditing = true
+        self.present(myPickerControllerCamera, animated: true, completion: nil)
         
     }
     
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
-        guard let image = info [.editedImage] as? UIImage else {
+    func gallery()
+    {
+        let myPickerControllerGallery = UIImagePickerController()
+        myPickerControllerGallery.delegate = self
+        myPickerControllerGallery.sourceType = UIImagePickerController.SourceType.photoLibrary
+        myPickerControllerGallery.allowsEditing = true
+        self.present(myPickerControllerGallery, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        guard let selectedImage = info[.originalImage] as? UIImage else {
+            
             return
         }
-        dismiss(animated: true)
         
-        uploadImage.image = image
+        currentPhoto = selectedImage
+        UtilisateurViewModel().changerPhotoDeProfil(email: (utilisateur?.email)!, uiImage: selectedImage,completed: { [self] success in
+            if success {
+                profileImage.image = selectedImage
+                self.present(Alert.makeAlert(titre: "Succes", message: "Photo modifié avec succés"),animated: true)
+            } else {
+                self.present(Alert.makeServerErrorAlert(),animated: true)
+            }
+        })
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
+    func showActionSheet(){
+        
+        let actionSheetController: UIAlertController = UIAlertController(title: NSLocalizedString("Upload Image", comment: ""), message: nil, preferredStyle: .actionSheet)
+        actionSheetController.view.tintColor = UIColor.black
+        let cancelActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { action -> Void in
+            print("Cancel")
+        }
+        actionSheetController.addAction(cancelActionButton)
+        
+        let saveActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Take Photo", comment: ""), style: .default)
+        { action -> Void in
+            self.camera()
+        }
+        actionSheetController.addAction(saveActionButton)
+        
+        let deleteActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Choose From Gallery", comment: ""), style: .default)
+        { action -> Void in
+            self.gallery()
+        }
+        
+        actionSheetController.addAction(deleteActionButton)
+        self.present(actionSheetController, animated: true, completion: nil)
+    }
+    
+    // ACTIONS
+    @IBAction func changeProfilePic(_ sender: Any) {
+        showActionSheet()
+    }
     
 }
