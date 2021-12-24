@@ -167,6 +167,4 @@ extension SettingsView : BTAppSwitchDelegate{
     func appSwitcherWillProcessPaymentInfo(_ appSwitcher: Any) {
         
     }
-    
-    
 }

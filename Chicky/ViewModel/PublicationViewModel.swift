@@ -13,11 +13,8 @@ import UIKit.UIImage
 class PublicationViewModel {
     
     func recupererToutPublication(  completed: @escaping (Bool, [Publication]?) -> Void ) {
-        AF.request(Constantes.host + "publication/all",
-                   method: .get/*,
-                                parameters: [
-                                "idPublication": idPublication!
-                                ]*/)
+        AF.request(Constantes.host + "publication",
+                   method: .get)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
@@ -37,16 +34,21 @@ class PublicationViewModel {
             }
     }
     
-    func ajouterPublication(publication: Publication, uiImage: UIImage, completed: @escaping (Bool) -> Void ) {
+    func ajouterPublication(publication: Publication, videoUrl: URL, completed: @escaping (Bool) -> Void ) {
         
         AF.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(uiImage.jpegData(compressionQuality: 0.5)!, withName: "video" , fileName: "video.mp4", mimeType: "video/mp4")
+            
+            do {
+                let data = try Data(contentsOf: videoUrl, options: .mappedIfSafe)
+                
+                multipartFormData.append(data, withName: "video" , fileName: "video.mp4", mimeType: "video/mp4")
+                //  here you can see data bytes of selected video, this data object is upload to server by multipartFormData upload
+            } catch  {
+            }
             
             for (key, value) in
                     [
                         "description": publication.description!,
-                        //"date": publication.date!,
-                        //"utilisateur": UserDefaults.standard.string(forKey: "userId")!
                     ]
             {
                 multipartFormData.append((value.data(using: .utf8))!, withName: key)

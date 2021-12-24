@@ -11,7 +11,6 @@ import Alamofire
 
 class ImageLoader{
     
-
     static let shared: ImageLoader = {
             let instance = ImageLoader()
             return instance
@@ -22,7 +21,6 @@ class ImageLoader{
     
     static let ANNONCE_IMAGE = "ANNONCE_IMAGE"
     static let EVENT_IMAGE = "EVENT_IMAGE"
-
     
     func loadImage(identifier:String,url:String,completion: @escaping (UIImage?) -> () ) {
      

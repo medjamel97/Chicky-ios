@@ -105,7 +105,6 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
         myPickerControllerCamera.sourceType = UIImagePickerController.SourceType.camera
         myPickerControllerCamera.allowsEditing = true
         self.present(myPickerControllerCamera, animated: true, completion: nil)
-        
     }
     
     

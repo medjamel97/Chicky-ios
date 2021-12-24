@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,26 +25,26 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chicky" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
-                                <rect key="frame" x="0.0" y="557" width="414" height="43"/>
+                                <rect key="frame" x="0.0" y="567.5" width="414" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="NTa-pk-ZUO">
-                                <rect key="frame" x="82" y="275" width="250" height="250"/>
+                                <rect key="frame" x="103.5" y="363.5" width="207" height="179"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
-                        <color key="backgroundColor" name="AccentColor"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <color key="tintColor" name="AccentColor"/>
                         <constraints>
-                            <constraint firstItem="NTa-pk-ZUO" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="82" id="6EP-6I-tLr"/>
-                            <constraint firstItem="NTa-pk-ZUO" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="231" id="Lbf-Yr-5bO"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="NTa-pk-ZUO" secondAttribute="trailing" constant="82" id="Utf-KJ-8vE"/>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="top" secondItem="NTa-pk-ZUO" secondAttribute="bottom" constant="32" id="bjb-xg-MdJ"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="GJd-Yh-RWb" secondAttribute="bottom" constant="262" id="r4v-ck-Uqp"/>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="shr-yJ-Gk0"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="GJd-Yh-RWb" secondAttribute="trailing" id="vPG-0U-5ze"/>
+                            <constraint firstItem="NTa-pk-ZUO" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.5" id="0Lz-s1-ewA"/>
+                            <constraint firstItem="NTa-pk-ZUO" firstAttribute="centerY" secondItem="Bcu-3y-fUS" secondAttribute="centerY" id="JMz-ik-KIA"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerY" secondItem="Bcu-3y-fUS" secondAttribute="centerY" multiplier="1.3" id="ORo-dB-W3s"/>
+                            <constraint firstItem="NTa-pk-ZUO" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="QqJ-sK-JQ4"/>
+                            <constraint firstItem="NTa-pk-ZUO" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.2" id="bvq-k2-tVw"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.0479911" id="spm-eK-CUv"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="xDo-XD-qir"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="yKG-MH-79y"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -57,5 +58,8 @@
         <namedColor name="AccentColor">
             <color red="0.21899999678134918" green="0.48100000619888306" blue="0.76999998092651367" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

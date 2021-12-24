@@ -11,6 +11,9 @@
 /* Class = "UILabel"; text = "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "; ObjectID = "1Fe-9S-m0P"; */
 "1Fe-9S-m0P.text" = "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ";
 
+/* Class = "UILabel"; text = "App settings"; ObjectID = "1hQ-TK-RkF"; */
+"1hQ-TK-RkF.text" = "App settings";
+
 /* Class = "UILabel"; text = "People"; ObjectID = "36J-mR-PIB"; */
 "36J-mR-PIB.text" = "People";
 
@@ -21,7 +24,7 @@
 "5Cf-6X-Ge9.text" = "Label";
 
 /* Class = "UILabel"; text = "vous avez un compte"; ObjectID = "68L-hF-zYV"; */
-"68L-hF-zYV.text" = "Already have an account";
+"68L-hF-zYV.text" = "vous avez un compte";
 
 /* Class = "UILabel"; text = "Write code received in your email"; ObjectID = "6AP-L9-fEQ"; */
 "6AP-L9-fEQ.text" = "Write code received in your email";
@@ -38,6 +41,9 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "6lL-le-0hz"; */
 "6lL-le-0hz.normalTitle" = "Button";
 
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "80I-VO-6bk"; */
+"80I-VO-6bk.normalTitle" = "Button";
+
 /* Class = "UILabel"; text = "Confirm password"; ObjectID = "8E4-Ew-5i4"; */
 "8E4-Ew-5i4.text" = "Confirm password";
 
@@ -45,7 +51,7 @@
 "8VP-bR-hRh.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut ";
 
 /* Class = "UISegmentedControl"; 8h9-UT-rH6.segmentTitles[0] = "Choisir votre sexe"; ObjectID = "8h9-UT-rH6"; */
-"8h9-UT-rH6.segmentTitles[0]" = "Choose your gender";
+"8h9-UT-rH6.segmentTitles[0]" = "Choisir votre sexe";
 
 /* Class = "UISegmentedControl"; 8h9-UT-rH6.segmentTitles[1] = "Male"; ObjectID = "8h9-UT-rH6"; */
 "8h9-UT-rH6.segmentTitles[1]" = "Male";
@@ -92,11 +98,11 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "CUp-8g-ZV6"; */
 "CUp-8g-ZV6.normalTitle" = "Button";
 
-/* Class = "UILabel"; text = "Write your email to send code of forgetten password"; ObjectID = "DVO-KX-oD0"; */
-"DVO-KX-oD0.text" = "Write your email to send code of forgetten password";
+/* Class = "UILabel"; text = "Write your email to send code of forgotten password"; ObjectID = "DVO-KX-oD0"; */
+"DVO-KX-oD0.text" = "Write your email to send code of forgotten password";
 
 /* Class = "UILabel"; text = "Maintenant"; ObjectID = "El8-Y7-St1"; */
-"El8-Y7-St1.text" = "Now";
+"El8-Y7-St1.text" = "Maintenant";
 
 /* Class = "UITextField"; placeholder = "Ex : 123456"; ObjectID = "FB9-Bq-Hr6"; */
 "FB9-Bq-Hr6.placeholder" = "Ex : 123456";
@@ -119,6 +125,9 @@
 /* Class = "UISegmentedControl"; HAa-GO-NjC.segmentTitles[2] = "Female"; ObjectID = "HAa-GO-NjC"; */
 "HAa-GO-NjC.segmentTitles[2]" = "Female";
 
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "I0l-1s-ypP"; */
+"I0l-1s-ypP.normalTitle" = "Button";
+
 /* Class = "UITextField"; placeholder = "Write new password"; ObjectID = "KFi-6I-9NK"; */
 "KFi-6I-9NK.placeholder" = "Write new password";
 
@@ -131,11 +140,20 @@
 /* Class = "UILabel"; text = "Change your password"; ObjectID = "KTd-td-npD"; */
 "KTd-td-npD.text" = "Change your password";
 
+/* Class = "UIButton"; configuration.title = "FaceID"; ObjectID = "KmS-1x-DqS"; */
+"KmS-1x-DqS.configuration.title" = "FaceID";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "KmS-1x-DqS"; */
+"KmS-1x-DqS.normalTitle" = "Button";
+
 /* Class = "UITextField"; placeholder = "name@domain.com"; ObjectID = "L07-Bi-Dno"; */
 "L07-Bi-Dno.placeholder" = "name@domain.com";
 
 /* Class = "UITextField"; placeholder = "Search friend"; ObjectID = "Log-4A-yAK"; */
 "Log-4A-yAK.placeholder" = "Search friend";
+
+/* Class = "UILabel"; text = "French language"; ObjectID = "MHZ-6f-UYk"; */
+"MHZ-6f-UYk.text" = "French language";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "NCv-8N-T7Y"; */
 "NCv-8N-T7Y.text" = "Label";
@@ -145,6 +163,9 @@
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "NRW-Li-qFF"; */
 "NRW-Li-qFF.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Nkg-St-I88"; */
+"Nkg-St-I88.normalTitle" = "Button";
 
 /* Class = "UINavigationItem"; title = "Brown sugar coffee"; ObjectID = "Nuu-95-d36"; */
 "Nuu-95-d36.title" = "Brown sugar coffee";
@@ -176,11 +197,14 @@
 /* Class = "UILabel"; text = "New password"; ObjectID = "TAl-y3-hkk"; */
 "TAl-y3-hkk.text" = "New password";
 
+/* Class = "UIButton"; configuration.title = " Choose a video"; ObjectID = "Tlz-Se-xd4"; */
+"Tlz-Se-xd4.configuration.title" = " Choose a video";
+
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Tlz-Se-xd4"; */
 "Tlz-Se-xd4.normalTitle" = "Button";
 
-/* Class = "UIButton"; configuration.title = "FingerPrint or FaceID "; ObjectID = "Ue6-MW-yTS"; */
-"Ue6-MW-yTS.configuration.title" = "FingerPrint or FaceID ";
+/* Class = "UIButton"; configuration.title = "Verify"; ObjectID = "Ue6-MW-yTS"; */
+"Ue6-MW-yTS.configuration.title" = "Verify";
 
 /* Class = "UIButton"; highlightedTitle = "Log Out"; ObjectID = "Ue6-MW-yTS"; */
 "Ue6-MW-yTS.highlightedTitle" = "Log Out";
@@ -188,8 +212,8 @@
 /* Class = "UIButton"; normalTitle = "FingerPrint or FaceID "; ObjectID = "Ue6-MW-yTS"; */
 "Ue6-MW-yTS.normalTitle" = "FingerPrint or FaceID ";
 
-/* Class = "UIButton"; configuration.title = "Add"; ObjectID = "UeP-LI-TXK"; */
-"UeP-LI-TXK.configuration.title" = "Add";
+/* Class = "UIButton"; configuration.title = "Ajouter"; ObjectID = "UeP-LI-TXK"; */
+"UeP-LI-TXK.configuration.title" = "Ajouter";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "UeP-LI-TXK"; */
 "UeP-LI-TXK.normalTitle" = "Button";
@@ -217,6 +241,12 @@
 
 /* Class = "UILabel"; text = "130"; ObjectID = "XTO-PQ-ARM"; */
 "XTO-PQ-ARM.text" = "130";
+
+/* Class = "UIButton"; configuration.title = "Paypal"; ObjectID = "YEz-6I-4fO"; */
+"YEz-6I-4fO.configuration.title" = "Paypal";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "YEz-6I-4fO"; */
+"YEz-6I-4fO.normalTitle" = "Button";
 
 /* Class = "UIButton"; configuration.title = "Change password"; ObjectID = "YWy-JI-czY"; */
 "YWy-JI-czY.configuration.title" = "Change password";
@@ -272,8 +302,8 @@
 /* Class = "UILabel"; text = "Last Name"; ObjectID = "eHT-h7-Ite"; */
 "eHT-h7-Ite.text" = "Last Name";
 
-/* Class = "UILabel"; text = "Location"; ObjectID = "eMw-r3-gv3"; */
-"eMw-r3-gv3.text" = "Location";
+/* Class = "UILabel"; text = "Create"; ObjectID = "eSs-Ok-7Qv"; */
+"eSs-Ok-7Qv.text" = "Create";
 
 /* Class = "UIButton"; configuration.title = "Next"; ObjectID = "ecN-1I-csH"; */
 "ecN-1I-csH.configuration.title" = "Next";
@@ -308,8 +338,14 @@
 /* Class = "UILabel"; text = "Videos for you"; ObjectID = "heq-9L-NLy"; */
 "heq-9L-NLy.text" = "Videos for you";
 
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ie2-qW-0W2"; */
+"ie2-qW-0W2.normalTitle" = "Button";
+
 /* Class = "UILabel"; text = "Level"; ObjectID = "jZ1-yG-ZzT"; */
 "jZ1-yG-ZzT.text" = "Level";
+
+/* Class = "UILabel"; text = "Create a new post"; ObjectID = "jqM-d2-OF4"; */
+"jqM-d2-OF4.text" = "Create a new post";
 
 /* Class = "UILabel"; text = "Posts"; ObjectID = "k3h-rq-Mil"; */
 "k3h-rq-Mil.text" = "Posts";
@@ -329,11 +365,17 @@
 /* Class = "UILabel"; text = "Posts"; ObjectID = "lW0-BV-IDh"; */
 "lW0-BV-IDh.text" = "Posts";
 
+/* Class = "UILabel"; text = "Dark mode"; ObjectID = "lam-9V-ZlY"; */
+"lam-9V-ZlY.text" = "Dark mode";
+
 /* Class = "UILabel"; text = "Posts"; ObjectID = "lql-5H-ufG"; */
 "lql-5H-ufG.text" = "Posts";
 
 /* Class = "UILabel"; text = "Il y a 20 Minutes"; ObjectID = "lsK-cl-9Jr"; */
 "lsK-cl-9Jr.text" = "Il y a 20 Minutes";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "mGh-Io-wud"; */
+"mGh-Io-wud.normalTitle" = "Button";
 
 /* Class = "UIButton"; configuration.title = "Se connecter"; ObjectID = "mel-Je-YLo"; */
 "mel-Je-YLo.configuration.title" = "Se connecter";
@@ -368,17 +410,14 @@
 /* Class = "UILabel"; text = "Social"; ObjectID = "sSP-Xz-Zcv"; */
 "sSP-Xz-Zcv.text" = "Social";
 
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "sdK-ZL-FXk"; */
+"sdK-ZL-FXk.normalTitle" = "Button";
+
 /* Class = "UILabel"; text = "User"; ObjectID = "ss5-cj-cuT"; */
 "ss5-cj-cuT.text" = "User";
 
 /* Class = "UILabel"; text = "Artist"; ObjectID = "tme-5b-EHb"; */
 "tme-5b-EHb.text" = "Artist";
-
-/* Class = "UIButton"; configuration.title = "API"; ObjectID = "u7u-Pg-Xnv"; */
-"u7u-Pg-Xnv.configuration.title" = "API";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "u7u-Pg-Xnv"; */
-"u7u-Pg-Xnv.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Forgetten password"; ObjectID = "utc-sT-PWL"; */
 "utc-sT-PWL.text" = "Forgetten password";
@@ -389,8 +428,8 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "v8N-8e-6FF"; */
 "v8N-8e-6FF.normalTitle" = "Button";
 
-/* Class = "UIButton"; configuration.title = "Forgetten password ?"; ObjectID = "vGK-yi-eHx"; */
-"vGK-yi-eHx.configuration.title" = "Forgetten password ?";
+/* Class = "UIButton"; configuration.title = "Forgot your password ?"; ObjectID = "vGK-yi-eHx"; */
+"vGK-yi-eHx.configuration.title" = "Forgot your password ?";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "vGK-yi-eHx"; */
 "vGK-yi-eHx.normalTitle" = "Button";
@@ -398,14 +437,11 @@
 /* Class = "UITextField"; placeholder = "Ecrire un nouveau commentaire"; ObjectID = "vgA-24-7Mo"; */
 "vgA-24-7Mo.placeholder" = "Ecrire un nouveau commentaire";
 
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "vqI-ld-uOJ"; */
+"vqI-ld-uOJ.normalTitle" = "Button";
+
 /* Class = "UILabel"; text = "20"; ObjectID = "vs8-Bf-fWd"; */
 "vs8-Bf-fWd.text" = "20";
-
-/* Class = "UIButton"; configuration.title = "Override dark mode"; ObjectID = "vxM-gs-bfz"; */
-"vxM-gs-bfz.configuration.title" = "Override dark mode";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "vxM-gs-bfz"; */
-"vxM-gs-bfz.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Expire in :"; ObjectID = "wEk-EP-J4K"; */
 "wEk-EP-J4K.text" = "Expire in :";

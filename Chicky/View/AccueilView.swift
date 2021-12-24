@@ -11,7 +11,9 @@ import AVFoundation
 
 class AccueilView: UIViewController  {
     
-    var player : AVPlayer? = AVPlayer()
+    var player : AVPlayer?
+    var playerLayer : AVPlayerLayer?
+    
     // VAR
     var moviePlayer: AVPlayerViewController?
     
@@ -55,9 +57,7 @@ class AccueilView: UIViewController  {
         currentPublication = nil
         
         previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-        
         currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-        
         nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         
         swipeAreaView.addSubview(previousPublicationView)
@@ -84,7 +84,7 @@ class AccueilView: UIViewController  {
         if publicationCounter > 0  {
             print("making previousPub")
             previousPublication = publications[publicationCounter - 1]
-            waitForImage(element: previousPublicationView, elementIndex: -1, publication: previousPublication!)
+            makePublicationCard(card: previousPublicationView, elementIndex: -1, publication: previousPublication!)
         } else {
             previousPublication = nil
         }
@@ -92,29 +92,20 @@ class AccueilView: UIViewController  {
         if publications.count >= publicationCounter {
             print("making currentPub")
             currentPublication = publications[publicationCounter]
-            waitForImage(element: currentPublicationView, elementIndex: 0, publication: currentPublication!)
+            makePublicationCard(card: currentPublicationView, elementIndex: 0, publication: currentPublication!)
         }
         
         if publications.count > publicationCounter + 1  {
             print("making nextPub")
             nextPublication = publications[publicationCounter + 1]
-            waitForImage(element: nextPublicationView, elementIndex: 1, publication: nextPublication!)
+            makePublicationCard(card: nextPublicationView, elementIndex: 1, publication: nextPublication!)
         } else {
             nextPublication = nil
         }
         print("-----------")
     }
     
-    func waitForImage(element: UIView, elementIndex: Int, publication : Publication) {
-        ImageLoader.shared.loadImage(
-            identifier: publication.idPhoto!,
-            url: Constantes.images + publication.idPhoto!,
-            completion: { [self]image in
-                makePublicationCard(card: element, elementIndex: elementIndex, description: publication.description!, uiImage: image!)
-            })
-    }
-    
-    func makePublicationCard(card: UIView, elementIndex: Int, description: String , uiImage: UIImage) {
+    func makePublicationCard(card: UIView, elementIndex: Int, publication: Publication) {
         
         //CARD
         card.layer.cornerRadius = ROUNDED_RADIUS
@@ -129,21 +120,29 @@ class AccueilView: UIViewController  {
         gradientView.layer.cornerRadius = ROUNDED_RADIUS
         
         // VIDEO
-        guard let path = Bundle.main.path(forResource: "video", ofType:"mp4") else {
-            debugPrint("video.mp4 not found")
-            return
-        }
-        player = AVPlayer(url: URL(fileURLWithPath: path))
+        let videoURL = URL(string: Constantes.videos + publication.idPhoto!)
+        player = AVPlayer(url: videoURL!)
+        playerLayer = AVPlayerLayer(player: player)
+        playerLayer!.videoGravity = AVLayerVideoGravity.resizeAspectFill;
+        playerLayer!.frame = card.bounds
+        playerLayer!.cornerRadius = ROUNDED_RADIUS
+        playerLayer!.masksToBounds = true
+        
+        self.view.layer.addSublayer(playerLayer!)
+        player!.play()
+        
+        /*player = AVPlayer(url: URL(fileURLWithPath: "http://localhost:3000/vid/1640364482500video.mp4"))
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill;
         playerLayer.frame = card.bounds
         playerLayer.cornerRadius = ROUNDED_RADIUS
         playerLayer.masksToBounds = true
+        */
         
         // DESCRIPTION
         let descriptionLabel = UILabel()
         descriptionLabel.tag = 2
-        descriptionLabel.text = description
+        descriptionLabel.text = publication.description
         descriptionLabel.textColor = UIColor.white
         descriptionLabel.frame = CGRect(x: 30, y: card.frame.height - 150, width: card.frame.width, height: 50)
         
@@ -190,8 +189,7 @@ class AccueilView: UIViewController  {
         commentButton.addTarget(self, action: #selector(AccueilView.showCommentsAction), for: .touchUpInside)
         
         // CARD SUBVIEWS
-        card.layer.addSublayer(playerLayer)
-        player!.play()
+        card.layer.addSublayer(playerLayer!)
         card.addSubview(gradientView)
         card.addSubview(descriptionLabel)
         card.addSubview(ratingStackView)
@@ -315,11 +313,13 @@ class AccueilView: UIViewController  {
                 
                 actionSheet.addAction(UIAlertAction(title: "Save", style: .default, handler: { uication in
                     if hasNote {
-                        EvaluationViewModel().modifierEvaluation(id: (evaluationRep?._id)!, note: noteChoisi!) { success in
-                            if success {
-                                
-                            } else {
-                                self.present(Alert.makeServerErrorAlert(),animated: true)
+                        if noteChoisi != nil {
+                            EvaluationViewModel().modifierEvaluation(id: (evaluationRep?._id)!, note: noteChoisi!) { success in
+                                if success {
+                                    
+                                } else {
+                                    self.present(Alert.makeServerErrorAlert(),animated: true)
+                                }
                             }
                         }
                     } else {

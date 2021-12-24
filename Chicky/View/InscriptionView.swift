@@ -64,7 +64,6 @@ class InscriptionView: UIViewController {
         }else if (emailTextField.text?.contains("@") == false){
             makeAlert(titre: "Erreur", message: "Veuillez saisir correctement votre email")
             return
-            
         }
         
         if (motDePasseTextField.text == "") {

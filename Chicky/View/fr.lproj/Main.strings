@@ -380,8 +380,8 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "u7u-Pg-Xnv"; */
 "u7u-Pg-Xnv.normalTitle" = "Button";
 
-/* Class = "UILabel"; text = "Forgetten password"; ObjectID = "utc-sT-PWL"; */
-"utc-sT-PWL.text" = "Forgetten password";
+/* Class = "UILabel"; text = "Forgot your password ?"; ObjectID = "utc-sT-PWL"; */
+"utc-sT-PWL.text" = "Mot de passe oublié ?";
 
 /* Class = "UIButton"; configuration.title = "Edit profile"; ObjectID = "v8N-8e-6FF"; */
 "v8N-8e-6FF.configuration.title" = "Edit profile";
