@@ -54,7 +54,6 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
-    
     // ACTIONS
     @IBAction func modifierProfil(_ sender: Any) {
         
@@ -121,7 +120,6 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         guard let selectedImage = info[.originalImage] as? UIImage else {
-            
             return
         }
         

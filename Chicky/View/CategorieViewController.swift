@@ -38,7 +38,7 @@ class CategorieViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
           cat = categorie[indexPath.row]
       
-        performSegue(withIdentifier: "map", sender: cat)
+        self.dismiss(animated: true, completion: nil)
     }
     
     
