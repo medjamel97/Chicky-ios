@@ -43,7 +43,7 @@ class SettingsView: UIViewController {
         
         frLabel.text = "French".localized() + " language"
         
-        braintreeClient = BTAPIClient(authorization: "sandbox_jyzn55fh_8hsh8cdnn22jr8b5")
+        braintreeClient = BTAPIClient(authorization: " ")
         
         
         let data = "www.google.com".data(using: String.Encoding.ascii)
@@ -56,8 +56,6 @@ class SettingsView: UIViewController {
                 qrImage.image =  UIImage(ciImage: output)
             }
         }
-        
-        
     }
     
     // ACTIONS

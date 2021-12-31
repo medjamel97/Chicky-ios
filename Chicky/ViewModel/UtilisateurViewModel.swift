@@ -11,6 +11,28 @@ import UIKit.UIImage
 
 public class UtilisateurViewModel: ObservableObject{
     
+    static let sharedInstance = UtilisateurViewModel()
+    
+    func recupererToutUtilisateur( completed: @escaping (Bool, [Utilisateur]?) -> Void ) {
+        AF.request(Constantes.host + "utilisateur",
+                   method: .get)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    var utilisateurs : [Utilisateur]? = []
+                    for singleJsonItem in JSON(response.data!)["utilisateurs"] {
+                        utilisateurs!.append(self.makeItem(jsonItem: singleJsonItem.1))
+                    }
+                    completed(true, utilisateurs)
+                case let .failure(error):
+                    debugPrint(error)
+                    completed(false, nil)
+                }
+            }
+    }
+    
     func inscription(utilisateur: Utilisateur, completed: @escaping (Bool) -> Void) {
         AF.request(Constantes.host + "utilisateur/inscription",
                    method: .post,
@@ -162,56 +184,6 @@ public class UtilisateurViewModel: ObservableObject{
                 case let .failure(error):
                     print(error)
                     completed(false)
-                }
-            }
-    }
-    
-    func recupererUtilisateurParID(_id: Int?) -> Utilisateur {
-        var data: Utilisateur?
-        
-        AF.request(Constantes.host + "utilisateur",
-                   method: .get,
-                   parameters: ["_id": String(_id!)])
-            .responseJSON(completionHandler: { jsonResponse in
-                let jsonResponse = JSON(jsonResponse)[0]
-                
-                data = self.makeItem(jsonItem: jsonResponse)
-            })
-        
-        return data!
-    }
-    
-    func recupererToutUtilisateur() -> [Utilisateur] {
-        var data: [Utilisateur]?
-        
-        AF.request(Constantes.host + "utilisateur").responseJSON(completionHandler: { jsonResponse in
-            let jsonResponse = JSON(jsonResponse)
-            
-            for (_,subJson):(String, JSON) in jsonResponse {
-                data!.append(self.makeItem(jsonItem: subJson))
-            }
-        })
-        
-        return data!
-    }
-    
-    func getAllUtilisateurs(  completed: @escaping (Bool, [Utilisateur]?) -> Void ) {
-        AF.request(Constantes.host + "utilisateur",
-                   method: .get)
-            .validate(statusCode: 200..<300)
-            .validate(contentType: ["application/json"])
-            .responseData { response in
-                switch response.result {
-                case .success:
-                    let jsonData = JSON(response.data!)
-                    var utilisateurs : [Utilisateur]? = []
-                    for singleJsonItem in jsonData["utilisateurs"] {
-                        utilisateurs!.append(self.makeItem(jsonItem: singleJsonItem.1))
-                    }
-                    completed(true, utilisateurs)
-                case let .failure(error):
-                    debugPrint(error)
-                    completed(false, nil)
                 }
             }
     }

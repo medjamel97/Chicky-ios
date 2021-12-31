@@ -30,6 +30,7 @@ class CategorieViewController: UIViewController, UITableViewDataSource, UITableV
         
         imageCategorie.image = UIImage(named: categorie[indexPath.row])
         labelCategorie.text = categorie[indexPath.row]
+    
         
         return cell!
         
@@ -39,6 +40,7 @@ class CategorieViewController: UIViewController, UITableViewDataSource, UITableV
           cat = categorie[indexPath.row]
       
         self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "catSegue", sender: cat)
     }
     
     

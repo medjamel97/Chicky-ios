@@ -8,20 +8,20 @@
 import Foundation
 
 struct Conversation {
-    internal init(_id: String?=nil, dernierMessage: String?=nil, envoyeur: Utilisateur?=nil, recepteur: Utilisateur?=nil, messages: [Message]?=nil) {
+    
+    internal init(_id: String? = nil, dernierMessage: String, dateDernierMessage: Date, envoyeur: Utilisateur, recepteur: Utilisateur) {
         self._id = _id
         self.dernierMessage = dernierMessage
+        self.dateDernierMessage = dateDernierMessage
         self.envoyeur = envoyeur
         self.recepteur = recepteur
-        self.messages = messages
     }
     
-    
-    let _id : String?
-    let dernierMessage : String?
+    var _id : String?
+    var dernierMessage : String
+    var dateDernierMessage : Date
     
     // relations
-    let envoyeur : Utilisateur?
-    let recepteur : Utilisateur?
-    let messages: [Message]?
+    var envoyeur : Utilisateur
+    var recepteur : Utilisateur
 }

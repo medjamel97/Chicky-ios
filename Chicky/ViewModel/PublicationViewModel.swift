@@ -9,12 +9,40 @@
 import SwiftyJSON
 import Alamofire
 import UIKit.UIImage
+import Foundation
 
 class PublicationViewModel {
+    
+    static let sharedInstance = PublicationViewModel()
     
     func recupererToutPublication(  completed: @escaping (Bool, [Publication]?) -> Void ) {
         AF.request(Constantes.host + "publication",
                    method: .get)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    let jsonData = JSON(response.data!)
+                    
+                    var publications : [Publication]? = []
+                    for singleJsonItem in jsonData["publication"] {
+                        publications!.append(self.makePublication(jsonItem: singleJsonItem.1))
+                    }
+                    completed(true, publications)
+                case let .failure(error):
+                    debugPrint(error)
+                    completed(false, nil)
+                }
+            }
+    }
+    
+    func recupererMesPublication(  completed: @escaping (Bool, [Publication]?) -> Void ) {
+        AF.request(Constantes.host + "publication/mes",
+                   method: .post,
+                   parameters: [
+                    "user": UserDefaults.standard.string(forKey: "idUtilisateur")!
+                   ])
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseData { response in
@@ -48,7 +76,8 @@ class PublicationViewModel {
             
             for (key, value) in
                     [
-                        "description": publication.description!,
+                        "user": UserDefaults.standard.string(forKey: "idUtilisateur")!,
+                        "description": publication.description!
                     ]
             {
                 multipartFormData.append((value.data(using: .utf8))!, withName: key)

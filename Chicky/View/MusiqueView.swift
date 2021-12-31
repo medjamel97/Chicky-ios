@@ -10,8 +10,10 @@ import UIKit
 class MusiqueView: UIViewController {
 
     // VAR
+    var currentMusic: Musique?
     
-    
+    @IBOutlet weak var titreMusiqueLabel: UILabel!
+    @IBOutlet weak var artisteMusiqueLabel: UILabel!
     // WIDGET
     
     
@@ -21,7 +23,12 @@ class MusiqueView: UIViewController {
     // LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        titreMusiqueLabel.text = currentMusic?.titre
+        artisteMusiqueLabel.text = currentMusic?.artiste
     }
+    
+    
     
     // METHODS
     

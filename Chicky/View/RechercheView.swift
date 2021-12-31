@@ -12,14 +12,23 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     // VARS
     let searchController = UISearchController()
-    var utilisateurAux : [Utilisateur] = []
-    var publicationAux : [Publication] = []
+    
+    var utilisateursAux : [Utilisateur] = []
+    var publicationsAux : [Publication] = []
+    var musiquesAux : [Musique] = []
+    
     var publications : [Publication] = []
     var utilisateurs : [Utilisateur] = []
+    var musiques : [Musique] = []
+    
+    var selectedPublication : Publication?
+    var selectedUtilisateur : Utilisateur?
+    var selectedMusic : Musique?
     
     // WIDGETS
     @IBOutlet weak var cvPosts: UICollectionView!
     @IBOutlet weak var cvPeople: UICollectionView!
+    @IBOutlet weak var cvMusique: UICollectionView!
     
     // PROTOCOLS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -28,6 +37,8 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
             return publications.count
         } else if (collectionView == cvPeople) {
             return utilisateurs.count
+        } else if (collectionView == cvMusique) {
+            return musiques.count
         }
         
         return 0
@@ -35,9 +46,8 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if (collectionView == cvPeople) {
-            print("cv peoople")
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pCell", for: indexPath) as! PeopleCollectionViewCell
+        if collectionView == cvPeople {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pCell", for: indexPath)
             let contentView = cell.contentView
             
             let imageUtilisateur = contentView.viewWithTag(1) as! UIImageView
@@ -54,9 +64,27 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
                 })
             
             return cell
+        } else if collectionView == cvPosts {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+            let contentView = cell.contentView
+            
+            let imagePublication = contentView.viewWithTag(1) as! UIImageView
+            let labeldescription = contentView.viewWithTag(2) as! UILabel
+            
+            imagePublication.layer.cornerRadius = ROUNDED_RADIUS
+            labeldescription.text = publications[indexPath.row].description
+            print(publications[indexPath.row].idPhoto!)
+            
+            ImageLoader.shared.loadImage(
+                identifier: publications[indexPath.row].idPhoto!,
+                url: Constantes.images + publications[indexPath.row].idPhoto!,
+                completion: { [] image in
+                    imagePublication.image = image
+                })
+            
+            return cell
         } else {
-            print("cv posts")
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PostsCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "musicCell", for: indexPath)
             let contentView = cell.contentView
             
             let imagePublication = contentView.viewWithTag(1) as! UIImageView
@@ -77,23 +105,44 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "musicPlayerSegue" {
+            let destination = segue.destination as! MusiqueView
+            destination.currentMusic = selectedMusic
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "musicPlayerSegue", sender: selectedMusic)
+    }
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        publicationAux = publications
-        utilisateurAux = utilisateurs
+        publicationsAux = publications
+        utilisateursAux = utilisateurs
+        musiquesAux = musiques
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         utilisateurs = []
         publications = []
-        for publication in publicationAux {
+        musiques = []
+        
+        for publication in publicationsAux {
             if publication.description!.lowercased().starts(with: searchText.lowercased()) {
                 
                 publications.append(publication)
             }
         }
-        for user in utilisateurAux {
+        
+        for user in utilisateursAux {
             if user.prenom!.lowercased().starts(with: searchText.lowercased()) {
                 utilisateurs.append(user)
+            }
+        }
+        
+        for musique in musiques {
+            if musique.titre.lowercased().starts(with: searchText.lowercased()) || musique.artiste.lowercased().starts(with: searchText.lowercased()) {
+                musiques.append(musique)
             }
         }
         
@@ -101,8 +150,9 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
         cvPeople.reloadData()
         
         if searchText == "" {
-            publications = publicationAux
-            utilisateurs = utilisateurAux
+            publications = publicationsAux
+            utilisateurs = utilisateursAux
+            musiques = musiquesAux
         }
     }
     
@@ -119,7 +169,7 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     // METHODS
     func initializeHistory() {
-        PublicationViewModel().recupererToutPublication{success, publicationsfromRep in
+        PublicationViewModel.sharedInstance.recupererToutPublication{success, publicationsfromRep in
             if success {
                 self.publications = publicationsfromRep!
                 self.cvPosts.reloadData()
@@ -128,13 +178,21 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
             }
         }
         
-        UtilisateurViewModel().getAllUtilisateurs{success, utilisateursFromRep in
+        UtilisateurViewModel.sharedInstance.recupererToutUtilisateur {success, utilisateursFromRep in
             if success {
                 self.utilisateurs = utilisateursFromRep!
                 self.cvPeople.reloadData()
-            }else {
+            } else {
                 self.present(Alert.makeAlert(titre: "Error", message: "Could not load users "),animated: true)
-                
+            }
+        }
+        
+        MusiqueViewModel.sharedInstance.recupererTout {success, musiquesFromRep in
+            if success {
+                self.musiques = musiquesFromRep!
+                self.cvMusique.reloadData()
+            } else {
+                self.present(Alert.makeAlert(titre: "Error", message: "Could not load musiques "),animated: true)
             }
         }
     }

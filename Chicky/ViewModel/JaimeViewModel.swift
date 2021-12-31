@@ -11,6 +11,8 @@ import UIKit.UIImage
 
 class JaimeViewModel {
     
+    static let sharedInstance = JaimeViewModel()
+    
     func makeJaime(jsonItem: JSON) -> Jaime {
         var publications: [Publication] = []
         for i in jsonItem["commentaire"] {

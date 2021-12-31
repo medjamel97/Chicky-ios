@@ -11,6 +11,8 @@ import UIKit.UIImage
 
 class CommentaireViewModel {
     
+    static let sharedInstance = CommentaireViewModel()
+    
     func recupererCommentaireParPublication(idPublication: String?,  completed: @escaping (Bool, [Commentaire]?) -> Void ) {
         AF.request(Constantes.host + "commentaire/par-publication",
                    method: .post,

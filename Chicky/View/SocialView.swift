@@ -56,11 +56,31 @@ class SocialView: UIViewController, CLLocationManagerDelegate {
         let search = MKLocalSearch(request: request)
         search.start{(response, error) in
             if let response = response {
-               
+       
                 let mapItems = response.mapItems
                 print ("------ Map items--------")
                 print(mapItems)
                 print ("------ Map items--------")
+                
+           /*     let geoCoder = CLGeocoder()
+                let location = CLLocation(latitude: mLattitude, longitude: mLongitude)
+                geoCoder.reverseGeocodeLocation(location) {
+                    (placemarks, error) -> Void in
+
+                    if let mPlacemark = placemarks{
+                        if let dict = mPlacemark[0].addressDictionary as? [String: Any]{
+                            if let Name = dict["Name"] as? String{
+                                if let City = dict["City"] as? String{
+                                    self.currentLocationStr = Name + ", " + City
+                                }
+                            }
+                        }
+                    }
+                }
+                */
+                
+                
+                
             }
         }
     }

@@ -16,9 +16,8 @@ class ConnexionView: UIViewController {
     let googleLoginButton = GIDSignInButton()
     let utilisateurViewModel = UtilisateurViewModel()
     let spinner = SpinnerViewController()
-
-    var email: String?
     
+    var email: String?
     
     // WIDGET
     @IBOutlet weak var emailTextField: UITextField!
@@ -44,8 +43,6 @@ class ConnexionView: UIViewController {
         super.viewDidLayoutSubviews()
         
         googleLoginButton.frame = CGRect(x: googleStackView.center.x/1.5 , y: 0, width: googleStackView.center.x, height: googleStackView.frame.height)
-        
-        
     }
     
     // METHODS
@@ -105,8 +102,6 @@ class ConnexionView: UIViewController {
     }
     
     @objc func googleSignIn() {
-        
-        
         GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { [self] user, error in
             guard error == nil else { return }
             guard let user = user else { return }
@@ -116,8 +111,6 @@ class ConnexionView: UIViewController {
             
             loginWithSocialMedia(email: email, name: name, socialMediaName: "Google")
         }
-     
-        
     }
     
     func loginWithSocialMedia(email: String?, name: String?,

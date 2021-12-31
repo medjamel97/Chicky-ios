@@ -11,6 +11,8 @@ import UIKit.UIImage
 
 class EvaluationViewModel {
     
+    static let sharedInstance = EvaluationViewModel()
+    
     func recupererEvaluationParPublication(idPublication: String?, completed: @escaping (Bool, [Evaluation]?) -> Void ) {
         AF.request(Constantes.host + "evaluation/par-publication",
                    method: .post,

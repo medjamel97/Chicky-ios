@@ -6,14 +6,20 @@
 //
 
 import Foundation
+import MessageKit
 
-struct Message {
-    
-    let _id: String?
-    let description: String?
-    let date: Date?
+struct Sender: SenderType {
+    var senderId: String
+    var displayName: String
+}
+
+struct Message : MessageType {
+    var sender: SenderType
+    var messageId: String
+    var sentDate: Date
+    var kind: MessageKind
     
     // relations
-    let conversation : Conversation?
-    
+    //var conversationEnvoyeur : Conversation
+    //var conversationRecepteur : Conversation
 }

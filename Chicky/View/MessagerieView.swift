@@ -7,10 +7,11 @@
 
 import UIKit
 
-class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelegate, ModalTransitionListener {
     
     // VARS
     private var conversations : [Conversation] = []
+    private var selectedConversation: Conversation?
     
     // WIDGETS
     @IBOutlet weak var tableView: UITableView!
@@ -24,14 +25,25 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
              
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         let contentView = cell?.contentView
-        
-        //let imageProfile = contentView?.viewWithTag(1) as! UIImageView
+
+        let imageProfile = contentView?.viewWithTag(1) as! UIImageView
         let labelUsername = contentView?.viewWithTag(2) as! UILabel
         let labellastMessage = contentView?.viewWithTag(3) as! UILabel
-      
-        labelUsername.text = "recepteur?.nom"
-        labellastMessage.text = conversations[indexPath.row].dernierMessage
         
+        imageProfile.roundedGrayPhoto()
+        
+        let conversation = conversations[indexPath.row]
+        let recepteur = conversation.recepteur
+        
+        ImageLoader.shared.loadImage(
+            identifier: recepteur.idPhoto!,
+            url: Constantes.images + recepteur.idPhoto!,
+            completion: { [] image in
+                imageProfile.image = image
+            })
+        
+        labelUsername.text = recepteur.prenom! + " " + recepteur.nom!
+        labellastMessage.text = conversation.dernierMessage
         
         return cell!
     }
@@ -42,7 +54,7 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            ConversationViewModel().supprimerConversation(_id: conversations[indexPath.row]._id) { success in
+            /*ConversationViewModel().supprimerConversation(_id: conversations[indexPath.row]._id) { success in
                 if success {
                     print("deleted chat")
                     self.conversations.remove(at: indexPath.row)
@@ -50,25 +62,41 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
                 } else {
                     print("error while deleting chat")
                 }
-            }
+            }*/
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedConversation = conversations[indexPath.row]
+        self.performSegue(withIdentifier: "conversationSegue", sender: selectedConversation)
     }
     
     
     // LIFECYCLE
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "conversationSegue" {
+            let destination = segue.destination as! ChatView
+            destination.currentConversation = selectedConversation
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
+        ModalTransitionMediator.instance.setListener(listener: self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        initializeHistory()
+        initialize()
     }
     
     // METHODS
-    func initializeHistory() {
-        
-        ConversationViewModel().getAllConversation{success, conversationsfromRep in
+    func popoverDismissed() {
+        initialize()
+    }
+    
+    func initialize() {
+        MessagerieViewModel.sharedInstance.recupererMesConversations { success, conversationsfromRep in
             if success {
                 self.conversations = conversationsfromRep!
                 self.tableView.reloadData()
@@ -78,8 +106,5 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
     }
-    
-    // ACTIONS
-    
 }
 
