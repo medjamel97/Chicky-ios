@@ -76,9 +76,6 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate & UINavigati
         if let action = self.action(for: .camera, title: "Take video") {
             alertController.addAction(action)
         }
-        if let action = self.action(for: .savedPhotosAlbum, title: "Camera roll") {
-            alertController.addAction(action)
-        }
         if let action = self.action(for: .photoLibrary, title: "Video library") {
             alertController.addAction(action)
         }

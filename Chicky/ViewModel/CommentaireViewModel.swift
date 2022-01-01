@@ -14,7 +14,7 @@ class CommentaireViewModel {
     static let sharedInstance = CommentaireViewModel()
     
     func recupererCommentaireParPublication(idPublication: String?,  completed: @escaping (Bool, [Commentaire]?) -> Void ) {
-        AF.request(Constantes.host + "commentaire/par-publication",
+        AF.request(HOST_URL + "commentaire/par-publication",
                    method: .post,
                    parameters: [
                     "publication": idPublication!
@@ -39,7 +39,7 @@ class CommentaireViewModel {
     }
     
     func ajouterCommentaire(idPublication: String, commentaire: Commentaire, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "commentaire",
+        AF.request(HOST_URL + "commentaire",
                    method: .post,
                    parameters: [
                     "description": commentaire.description!,
@@ -61,7 +61,7 @@ class CommentaireViewModel {
     }
     
     func modifierCommentaire(commentaire: Commentaire, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "commentaire",
+        AF.request(HOST_URL + "commentaire",
                    method: .put,
                    parameters: [
                     "_id": commentaire._id!,
@@ -81,7 +81,7 @@ class CommentaireViewModel {
     }
     
     func supprimerCommentaire(_id: String?, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "commentaire",
+        AF.request(HOST_URL + "commentaire",
                    method: .delete,
                    parameters: [
                     "_id": _id!

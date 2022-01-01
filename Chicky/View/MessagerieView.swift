@@ -37,7 +37,7 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
         
         ImageLoader.shared.loadImage(
             identifier: recepteur.idPhoto!,
-            url: Constantes.images + recepteur.idPhoto!,
+            url: IMAGE_URL + recepteur.idPhoto!,
             completion: { [] image in
                 imageProfile.image = image
             })
@@ -77,6 +77,7 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
         if segue.identifier == "conversationSegue" {
             let destination = segue.destination as! ChatView
             destination.currentConversation = selectedConversation
+            destination.title = (selectedConversation?.recepteur.prenom)! + " " + (selectedConversation?.recepteur.nom)!
         }
     }
     

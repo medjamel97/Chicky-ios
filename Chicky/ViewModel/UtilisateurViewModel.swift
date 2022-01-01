@@ -14,7 +14,7 @@ public class UtilisateurViewModel: ObservableObject{
     static let sharedInstance = UtilisateurViewModel()
     
     func recupererToutUtilisateur( completed: @escaping (Bool, [Utilisateur]?) -> Void ) {
-        AF.request(Constantes.host + "utilisateur",
+        AF.request(HOST_URL + "utilisateur",
                    method: .get)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -34,7 +34,7 @@ public class UtilisateurViewModel: ObservableObject{
     }
     
     func inscription(utilisateur: Utilisateur, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "utilisateur/inscription",
+        AF.request(HOST_URL + "utilisateur/inscription",
                    method: .post,
                    parameters: [
                     "pseudo": utilisateur.pseudo!,
@@ -63,7 +63,7 @@ public class UtilisateurViewModel: ObservableObject{
     }
     
     func connexion(email: String, mdp: String, completed: @escaping (Bool, Any?) -> Void) {
-        AF.request(Constantes.host + "utilisateur/connexion",
+        AF.request(HOST_URL + "utilisateur/connexion",
                    method: .post,
                    parameters: ["email": email, "mdp": mdp])
             .validate(statusCode: 200..<300)
@@ -86,7 +86,7 @@ public class UtilisateurViewModel: ObservableObject{
     }
     
     func loginWithSocialApp(email: String, nom: String, completed: @escaping (Bool, Utilisateur?) -> Void ) {
-        AF.request(Constantes.host + "utilisateur/connexionAvecReseauSocial",
+        AF.request(HOST_URL + "utilisateur/connexionAvecReseauSocial",
                    method: .post,
                    parameters: ["email": email, "nom": nom],
                    encoding: JSONEncoding.default)
@@ -111,7 +111,7 @@ public class UtilisateurViewModel: ObservableObject{
     
     func recupererUtilisateurParToken(userToken: String, completed: @escaping (Bool, Utilisateur?) -> Void ) {
         print("Looking for user --------------------")
-        AF.request(Constantes.host + "utilisateur/recupererUtilisateurParToken",
+        AF.request(HOST_URL + "utilisateur/recupererUtilisateurParToken",
                    method: .post,
                    parameters: ["token": userToken],
                    encoding: JSONEncoding.default)
@@ -135,7 +135,7 @@ public class UtilisateurViewModel: ObservableObject{
     
     
     func reEnvoyerConfirmationEmail(email: String, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "utilisateur/reEnvoyerConfirmationEmail",
+        AF.request(HOST_URL + "utilisateur/reEnvoyerConfirmationEmail",
                    method: .post,
                    parameters: ["email": email])
             .validate(statusCode: 200..<300)
@@ -153,7 +153,7 @@ public class UtilisateurViewModel: ObservableObject{
     }
     
     func motDePasseOublie(email: String, codeDeReinit: String, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "utilisateur/motDePasseOublie",
+        AF.request(HOST_URL + "utilisateur/motDePasseOublie",
                    method: .post,
                    parameters: ["email": email, "codeDeReinit": codeDeReinit])
             .validate(statusCode: 200..<300)
@@ -171,7 +171,7 @@ public class UtilisateurViewModel: ObservableObject{
     }
     
     func changerMotDePasse(email: String, nouveauMotDePasse: String, completed: @escaping (Bool) -> Void) {
-        AF.request(Constantes.host + "utilisateur/changerMotDePasse",
+        AF.request(HOST_URL + "utilisateur/changerMotDePasse",
                    method: .put,
                    parameters: ["email": email,"nouveauMotDePasse": nouveauMotDePasse])
             .validate(statusCode: 200..<300)
@@ -201,7 +201,7 @@ public class UtilisateurViewModel: ObservableObject{
                 multipartFormData.append((value.data(using: .utf8))!, withName: key)
             }
             
-        },to: Constantes.host + "utilisateur/photo-profil",
+        },to: HOST_URL + "utilisateur/photo-profil",
                   method: .post)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -219,7 +219,7 @@ public class UtilisateurViewModel: ObservableObject{
     
     func manipulerUtilisateur(utilisateur: Utilisateur, methode: HTTPMethod, completed: @escaping (Bool) -> Void) {
         print(utilisateur)
-        AF.request(Constantes.host + "utilisateur/modifierProfil",
+        AF.request(HOST_URL + "utilisateur/modifierProfil",
                    method: methode,
                    parameters: [
                     //"_id" : utilisateur._id!,
@@ -241,7 +241,7 @@ public class UtilisateurViewModel: ObservableObject{
     
     func supprimerUtilisateur(utilisateur: Utilisateur) {
         
-        AF.request(Constantes.host + "utilisateur",
+        AF.request(HOST_URL + "utilisateur",
                    method: .delete,
                    parameters: ["_id": utilisateur._id!],
                    encoding: JSONEncoding.default,

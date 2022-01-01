@@ -40,7 +40,7 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
         
         ImageLoader.shared.loadImage(
             identifier: publications[indexPath.row].idPhoto!,
-            url: Constantes.images + publications[indexPath.row].idPhoto!,
+            url: IMAGE_URL + publications[indexPath.row].idPhoto!,
             completion: { [] image in
                 imagePublication.image = image
             })
@@ -70,7 +70,7 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
             nomPrenomTF.text = (result?.prenom)! + " " + (result?.nom)!
             usernameLabel.text = "@" + (utilisateur?.pseudo)!
             
-            ImageLoader.shared.loadImage(identifier: (utilisateur?.idPhoto)!, url: Constantes.images + (utilisateur?.idPhoto)!) { imageResp in
+            ImageLoader.shared.loadImage(identifier: (utilisateur?.idPhoto)!, url: IMAGE_URL + (utilisateur?.idPhoto)!) { imageResp in
                 
                 profileImage.image = imageResp
             }

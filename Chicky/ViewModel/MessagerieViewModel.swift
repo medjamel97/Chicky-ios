@@ -14,7 +14,7 @@ public class MessagerieViewModel: ObservableObject{
     static let sharedInstance = MessagerieViewModel()
     
     func recupererMesConversations( completed: @escaping (Bool, [Conversation]?) -> Void ) {
-        AF.request(Constantes.host + "messagerie/mes-conversations",
+        AF.request(HOST_URL + "messagerie/mes-conversations",
                    method: .post,
                    parameters: [ "envoyeur" : UserDefaults.standard.string(forKey: "idUtilisateur")!],
                    encoding: JSONEncoding.default)
@@ -38,7 +38,7 @@ public class MessagerieViewModel: ObservableObject{
     }
     
     func creerNouvelleConversation(recepteur: String, completed: @escaping (Bool, Conversation?) -> Void ) {
-        AF.request(Constantes.host + "messagerie/creer-conversation",
+        AF.request(HOST_URL + "messagerie/creer-conversation",
                    method: .post,
                    parameters: [
                     "envoyeur" : UserDefaults.standard.string(forKey: "idUtilisateur")!,
@@ -59,7 +59,7 @@ public class MessagerieViewModel: ObservableObject{
     }
     
     func recupererMesMessages(idConversation: String, completed: @escaping (Bool, [Message]?) -> Void ) {
-        AF.request(Constantes.host + "messagerie/mes-messages",
+        AF.request(HOST_URL + "messagerie/mes-messages",
                    method: .post,
                    parameters: [ "conversation" : idConversation ],
                    encoding: JSONEncoding.default)
@@ -83,7 +83,7 @@ public class MessagerieViewModel: ObservableObject{
     }
     
     func envoyerMessage(recepteur: String, description: String, completed: @escaping (Bool, Message?) -> Void ) {
-        AF.request(Constantes.host + "messagerie/envoyer-message",
+        AF.request(HOST_URL + "messagerie/envoyer-message",
                    method: .post,
                    parameters: [
                     "envoyeur": UserDefaults.standard.string(forKey: "idUtilisateur")!,

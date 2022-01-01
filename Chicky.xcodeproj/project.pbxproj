@@ -21,6 +21,9 @@
 		109A3B00276811ED009868A6 /* Evaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109A3AFF276811ED009868A6 /* Evaluation.swift */; };
 		109A3B0227681234009868A6 /* EvaluationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109A3B0127681234009868A6 /* EvaluationViewModel.swift */; };
 		109A3B0727683B5D009868A6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109A3B0627683B5D009868A6 /* SettingsView.swift */; };
+		10B4137C2780836200F510BD /* TableViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B4137B2780836200F510BD /* TableViewHelper.swift */; };
+		10B4137E278085A700F510BD /* CollectionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B4137D278085A700F510BD /* CollectionViewHelper.swift */; };
+		10B413802780B2BC00F510BD /* AudioLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B4137F2780B2BC00F510BD /* AudioLoader.swift */; };
 		10DC5754275F115E00D00B77 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DC5753275F115E00D00B77 /* ImageLoader.swift */; };
 		431677C5273920FD0062EA9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677C4273920FD0062EA9D /* AppDelegate.swift */; };
 		431677C7273920FD0062EA9D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677C6273920FD0062EA9D /* SceneDelegate.swift */; };
@@ -28,9 +31,6 @@
 		431677CC273920FD0062EA9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 431677CA273920FD0062EA9D /* Main.storyboard */; };
 		431677CF273920FD0062EA9D /* Chicky.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 431677CD273920FD0062EA9D /* Chicky.xcdatamodeld */; };
 		431677D1273920FE0062EA9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 431677D0273920FE0062EA9D /* Assets.xcassets */; };
-		431677DF273920FE0062EA9D /* ChickyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677DE273920FE0062EA9D /* ChickyTests.swift */; };
-		431677E9273920FE0062EA9D /* ChickyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677E8273920FE0062EA9D /* ChickyUITests.swift */; };
-		431677EB273920FE0062EA9D /* ChickyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677EA273920FE0062EA9D /* ChickyUITestsLaunchTests.swift */; };
 		8D214992276366D1007CD4D0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D214991276366D1007CD4D0 /* MapKit.framework */; };
 		8D3A7ED42768041D001E86EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3A7ED32768041D001E86EC /* ViewController.swift */; };
 		8D52EE4A2756178500DC7028 /* VerifAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D52EE492756178500DC7028 /* VerifAccountView.swift */; };
@@ -50,7 +50,6 @@
 		8DF504FF276113B800832E37 /* CategorieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF504FE276113B800832E37 /* CategorieViewController.swift */; };
 		8DF5050127612B6C00832E37 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5050027612B6C00832E37 /* LocationManager.swift */; };
 		8DFC6A712758000D00DA0175 /* CommentaireViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC6A702758000D00DA0175 /* CommentaireViewModel.swift */; };
-		8F9D9FCC1ED99450D297DC5E /* Pods_ChickyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844441E750DD109EC9701A82 /* Pods_ChickyTests.framework */; };
 		940D717B27430DB200722B97 /* ConnexionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D717A27430DB200722B97 /* ConnexionView.swift */; };
 		940D717D27430E0200722B97 /* RechercheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D717C27430E0200722B97 /* RechercheView.swift */; };
 		940D717F27430E3D00722B97 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D717E27430E3D00722B97 /* CameraView.swift */; };
@@ -67,25 +66,7 @@
 		94C4DFD22742F64600993FE5 /* AccueilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C4DFD12742F64600993FE5 /* AccueilView.swift */; };
 		AA66A5341C1B942C75DB0025 /* Pods_Chicky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934D3B0EF32BEB14149B163E /* Pods_Chicky.framework */; };
 		CE00D098275194E400B0E432 /* MessagerieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00D097275194E400B0E432 /* MessagerieViewModel.swift */; };
-		FD9F25F7A486B2A400A61EFB /* Pods_Chicky_ChickyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69844C1A4BA56201C1B700AA /* Pods_Chicky_ChickyUITests.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		431677DB273920FE0062EA9D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 431677B9273920FD0062EA9D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 431677C0273920FD0062EA9D;
-			remoteInfo = Chicky;
-		};
-		431677E5273920FE0062EA9D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 431677B9273920FD0062EA9D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 431677C0273920FD0062EA9D;
-			remoteInfo = Chicky;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		08543B5114949029C22825E9 /* Pods-Chicky-ChickyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky-ChickyUITests.release.xcconfig"; path = "Target Support Files/Pods-Chicky-ChickyUITests/Pods-Chicky-ChickyUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -104,6 +85,9 @@
 		109A3AFF276811ED009868A6 /* Evaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Evaluation.swift; sourceTree = "<group>"; };
 		109A3B0127681234009868A6 /* EvaluationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationViewModel.swift; sourceTree = "<group>"; };
 		109A3B0627683B5D009868A6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		10B4137B2780836200F510BD /* TableViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHelper.swift; sourceTree = "<group>"; };
+		10B4137D278085A700F510BD /* CollectionViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewHelper.swift; sourceTree = "<group>"; };
+		10B4137F2780B2BC00F510BD /* AudioLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLoader.swift; sourceTree = "<group>"; };
 		10DC5753275F115E00D00B77 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		187A1140A29FBE4B1715FE81 /* Pods-Chicky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky.release.xcconfig"; path = "Target Support Files/Pods-Chicky/Pods-Chicky.release.xcconfig"; sourceTree = "<group>"; };
 		4139DF8D8CF5BCF624B83F8D /* Pods-Chicky.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky.debug.xcconfig"; path = "Target Support Files/Pods-Chicky/Pods-Chicky.debug.xcconfig"; sourceTree = "<group>"; };
@@ -114,11 +98,6 @@
 		431677CE273920FD0062EA9D /* Chicky.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chicky.xcdatamodel; sourceTree = "<group>"; };
 		431677D0273920FE0062EA9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		431677D5273920FE0062EA9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		431677DA273920FE0062EA9D /* ChickyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChickyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		431677DE273920FE0062EA9D /* ChickyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChickyTests.swift; sourceTree = "<group>"; };
-		431677E4273920FE0062EA9D /* ChickyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChickyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		431677E8273920FE0062EA9D /* ChickyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChickyUITests.swift; sourceTree = "<group>"; };
-		431677EA273920FE0062EA9D /* ChickyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChickyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		69844C1A4BA56201C1B700AA /* Pods_Chicky_ChickyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chicky_ChickyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844441E750DD109EC9701A82 /* Pods_ChickyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChickyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D214991276366D1007CD4D0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -172,22 +151,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		431677D7273920FE0062EA9D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8F9D9FCC1ED99450D297DC5E /* Pods_ChickyTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		431677E1273920FE0062EA9D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FD9F25F7A486B2A400A61EFB /* Pods_Chicky_ChickyUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -195,8 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				431677C3273920FD0062EA9D /* Chicky */,
-				431677DD273920FE0062EA9D /* ChickyTests */,
-				431677E7273920FE0062EA9D /* ChickyUITests */,
 				431677C2273920FD0062EA9D /* Products */,
 				D4797F5E8F010636CE6B4CCC /* Pods */,
 				BD720087CBD64A10262EDBA9 /* Frameworks */,
@@ -207,8 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				431677C1273920FD0062EA9D /* Chicky.app */,
-				431677DA273920FE0062EA9D /* ChickyTests.xctest */,
-				431677E4273920FE0062EA9D /* ChickyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,23 +186,6 @@
 				431677CD273920FD0062EA9D /* Chicky.xcdatamodeld */,
 			);
 			path = Chicky;
-			sourceTree = "<group>";
-		};
-		431677DD273920FE0062EA9D /* ChickyTests */ = {
-			isa = PBXGroup;
-			children = (
-				431677DE273920FE0062EA9D /* ChickyTests.swift */,
-			);
-			path = ChickyTests;
-			sourceTree = "<group>";
-		};
-		431677E7273920FE0062EA9D /* ChickyUITests */ = {
-			isa = PBXGroup;
-			children = (
-				431677E8273920FE0062EA9D /* ChickyUITests.swift */,
-				431677EA273920FE0062EA9D /* ChickyUITestsLaunchTests.swift */,
-			);
-			path = ChickyUITests;
 			sourceTree = "<group>";
 		};
 		94C4DFBC2742C67F00993FE5 /* Model */ = {
@@ -320,6 +262,9 @@
 				109A3AFD2767D760009868A6 /* DateUtils.swift */,
 				10581B78277F5B9A00459EB0 /* ModalTransitionListener.swift */,
 				10581B7A277F5F8F00459EB0 /* Design.swift */,
+				10B4137B2780836200F510BD /* TableViewHelper.swift */,
+				10B4137D278085A700F510BD /* CollectionViewHelper.swift */,
+				10B4137F2780B2BC00F510BD /* AudioLoader.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -370,45 +315,6 @@
 			productReference = 431677C1273920FD0062EA9D /* Chicky.app */;
 			productType = "com.apple.product-type.application";
 		};
-		431677D9273920FE0062EA9D /* ChickyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 431677F1273920FE0062EA9D /* Build configuration list for PBXNativeTarget "ChickyTests" */;
-			buildPhases = (
-				9B2832152FAD432AE078E879 /* [CP] Check Pods Manifest.lock */,
-				431677D6273920FE0062EA9D /* Sources */,
-				431677D7273920FE0062EA9D /* Frameworks */,
-				431677D8273920FE0062EA9D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				431677DC273920FE0062EA9D /* PBXTargetDependency */,
-			);
-			name = ChickyTests;
-			productName = ChickyTests;
-			productReference = 431677DA273920FE0062EA9D /* ChickyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		431677E3273920FE0062EA9D /* ChickyUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 431677F4273920FE0062EA9D /* Build configuration list for PBXNativeTarget "ChickyUITests" */;
-			buildPhases = (
-				A91CE329145B2F0246BD96EF /* [CP] Check Pods Manifest.lock */,
-				431677E0273920FE0062EA9D /* Sources */,
-				431677E1273920FE0062EA9D /* Frameworks */,
-				431677E2273920FE0062EA9D /* Resources */,
-				5BCCCE855EAC52080BAF56F9 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				431677E6273920FE0062EA9D /* PBXTargetDependency */,
-			);
-			name = ChickyUITests;
-			productName = ChickyUITests;
-			productReference = 431677E4273920FE0062EA9D /* ChickyUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -421,14 +327,6 @@
 				TargetAttributes = {
 					431677C0273920FD0062EA9D = {
 						CreatedOnToolsVersion = 13.0;
-					};
-					431677D9273920FE0062EA9D = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = 431677C0273920FD0062EA9D;
-					};
-					431677E3273920FE0062EA9D = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = 431677C0273920FD0062EA9D;
 					};
 				};
 			};
@@ -446,8 +344,6 @@
 			projectRoot = "";
 			targets = (
 				431677C0273920FD0062EA9D /* Chicky */,
-				431677D9273920FE0062EA9D /* ChickyTests */,
-				431677E3273920FE0062EA9D /* ChickyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -460,20 +356,6 @@
 				8D9EDC30275169940003F1A1 /* Launch Screen.storyboard in Resources */,
 				431677D1273920FE0062EA9D /* Assets.xcassets in Resources */,
 				431677CC273920FD0062EA9D /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		431677D8273920FE0062EA9D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		431677E2273920FE0062EA9D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,45 +377,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Chicky/Pods-Chicky-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5BCCCE855EAC52080BAF56F9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Chicky-ChickyUITests/Pods-Chicky-ChickyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Chicky-ChickyUITests/Pods-Chicky-ChickyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Chicky-ChickyUITests/Pods-Chicky-ChickyUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9B2832152FAD432AE078E879 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ChickyTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A1DE64DA5E681B65B4A7A75C /* [CP] Check Pods Manifest.lock */ = {
@@ -558,28 +401,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A91CE329145B2F0246BD96EF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Chicky-ChickyUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -590,6 +411,7 @@
 				109A3B0227681234009868A6 /* EvaluationViewModel.swift in Sources */,
 				94C4DFD22742F64600993FE5 /* AccueilView.swift in Sources */,
 				109A3AFC2767CED7009868A6 /* CommentairesView.swift in Sources */,
+				10B4137C2780836200F510BD /* TableViewHelper.swift in Sources */,
 				8DD51270274C12CB006A4434 /* InscriptionSuivantView.swift in Sources */,
 				8D8774F7275283860039CB29 /* ChangerMdpView.swift in Sources */,
 				431677C9273920FD0062EA9D /* MessagerieView.swift in Sources */,
@@ -629,10 +451,12 @@
 				94C4DFC72742C82D00993FE5 /* Commentaire.swift in Sources */,
 				94C4DFCB2742D30A00993FE5 /* InscriptionView.swift in Sources */,
 				8D8774F3275282DD0039CB29 /* MdpOublieView.swift in Sources */,
+				10B413802780B2BC00F510BD /* AudioLoader.swift in Sources */,
 				94C4DFC02742C79300993FE5 /* Message.swift in Sources */,
 				940D717B27430DB200722B97 /* ConnexionView.swift in Sources */,
 				431677C7273920FD0062EA9D /* SceneDelegate.swift in Sources */,
 				10581B77277F578F00459EB0 /* ChoisirUtilisateurView.swift in Sources */,
+				10B4137E278085A700F510BD /* CollectionViewHelper.swift in Sources */,
 				94C4DFC52742C81F00993FE5 /* Conversation.swift in Sources */,
 				94C4DFB62742BC1C00993FE5 /* Utilisateur.swift in Sources */,
 				109A3B00276811ED009868A6 /* Evaluation.swift in Sources */,
@@ -641,37 +465,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		431677D6273920FE0062EA9D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				431677DF273920FE0062EA9D /* ChickyTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		431677E0273920FE0062EA9D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				431677E9273920FE0062EA9D /* ChickyUITests.swift in Sources */,
-				431677EB273920FE0062EA9D /* ChickyUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		431677DC273920FE0062EA9D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 431677C0273920FD0062EA9D /* Chicky */;
-			targetProxy = 431677DB273920FE0062EA9D /* PBXContainerItemProxy */;
-		};
-		431677E6273920FE0062EA9D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 431677C0273920FD0062EA9D /* Chicky */;
-			targetProxy = 431677E5273920FE0062EA9D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		431677CA273920FD0062EA9D /* Main.storyboard */ = {
@@ -686,71 +480,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		431677EC273920FE0062EA9D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				EXCLUDED_ARCHS = "";
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VALID_ARCHS = x86_64;
-			};
-			name = Debug;
-		};
 		431677ED273920FE0062EA9D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -809,39 +538,6 @@
 			};
 			name = Release;
 		};
-		431677EF273920FE0062EA9D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4139DF8D8CF5BCF624B83F8D /* Pods-Chicky.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8SLYY22AVG;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Chicky/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "ns always";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "ns when use";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tn.esprit.chicky;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		431677F0273920FE0062EA9D /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 187A1140A29FBE4B1715FE81 /* Pods-Chicky.release.xcconfig */;
@@ -875,113 +571,12 @@
 			};
 			name = Release;
 		};
-		431677F2273920FE0062EA9D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F933F60E87D3F22297796E52 /* Pods-ChickyTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8SLYY22AVG;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = esprit.ChickyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chicky.app/Chicky";
-			};
-			name = Debug;
-		};
-		431677F3273920FE0062EA9D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE48B188ABF177D1F30620C8 /* Pods-ChickyTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8SLYY22AVG;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = esprit.ChickyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chicky.app/Chicky";
-			};
-			name = Release;
-		};
-		431677F5273920FE0062EA9D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDD42EF90213BFF3B3E39E54 /* Pods-Chicky-ChickyUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8SLYY22AVG;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = esprit.ChickyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Chicky;
-			};
-			name = Debug;
-		};
-		431677F6273920FE0062EA9D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08543B5114949029C22825E9 /* Pods-Chicky-ChickyUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8SLYY22AVG;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = esprit.ChickyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Chicky;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		431677BC273920FD0062EA9D /* Build configuration list for PBXProject "Chicky" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				431677EC273920FE0062EA9D /* Debug */,
 				431677ED273920FE0062EA9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -990,26 +585,7 @@
 		431677EE273920FE0062EA9D /* Build configuration list for PBXNativeTarget "Chicky" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				431677EF273920FE0062EA9D /* Debug */,
 				431677F0273920FE0062EA9D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		431677F1273920FE0062EA9D /* Build configuration list for PBXNativeTarget "ChickyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				431677F2273920FE0062EA9D /* Debug */,
-				431677F3273920FE0062EA9D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		431677F4273920FE0062EA9D /* Build configuration list for PBXNativeTarget "ChickyUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				431677F5273920FE0062EA9D /* Debug */,
-				431677F6273920FE0062EA9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

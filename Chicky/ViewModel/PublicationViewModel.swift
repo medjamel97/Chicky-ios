@@ -16,7 +16,7 @@ class PublicationViewModel {
     static let sharedInstance = PublicationViewModel()
     
     func recupererToutPublication(  completed: @escaping (Bool, [Publication]?) -> Void ) {
-        AF.request(Constantes.host + "publication",
+        AF.request(HOST_URL + "publication",
                    method: .get)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -38,7 +38,7 @@ class PublicationViewModel {
     }
     
     func recupererMesPublication(  completed: @escaping (Bool, [Publication]?) -> Void ) {
-        AF.request(Constantes.host + "publication/mes",
+        AF.request(HOST_URL + "publication/mes",
                    method: .post,
                    parameters: [
                     "user": UserDefaults.standard.string(forKey: "idUtilisateur")!
@@ -83,7 +83,7 @@ class PublicationViewModel {
                 multipartFormData.append((value.data(using: .utf8))!, withName: key)
             }
             
-        },to: Constantes.host + "publication/",
+        },to: HOST_URL + "publication/",
                   method: .post)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -100,7 +100,7 @@ class PublicationViewModel {
     }
     
     func modifierPublication(publication: Publication, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "publication/",
+        AF.request(HOST_URL + "publication/",
                    method: .put,
                    parameters: [
                     "_id": publication._id!,
@@ -123,7 +123,7 @@ class PublicationViewModel {
     }
     
     func supprimerPublication(_id: String?, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "publication/",
+        AF.request(HOST_URL + "publication/",
                    method: .delete,
                    parameters: [
                     "_id": _id!

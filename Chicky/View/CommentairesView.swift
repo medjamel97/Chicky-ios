@@ -112,7 +112,7 @@ class CommentairesView: UIViewController, UITableViewDataSource, UITableViewDele
             deleteButton.isHidden = true
         }
         
-        ImageLoader.shared.loadImage(identifier: (commentaire.utilisateur?.idPhoto!)!, url: Constantes.images + (commentaire.utilisateur?.idPhoto)!) { imageResp in
+        ImageLoader.shared.loadImage(identifier: (commentaire.utilisateur?.idPhoto!)!, url: IMAGE_URL + (commentaire.utilisateur?.idPhoto)!) { imageResp in
             
             imageProfile.image = imageResp
         }

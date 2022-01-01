@@ -47,7 +47,7 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
             
             dateNaissancePicker.date = (utilisateur?.dateNaissance)!
             
-            ImageLoader.shared.loadImage(identifier: (utilisateur?.idPhoto)!, url: Constantes.images + (utilisateur?.idPhoto)!) { imageResp in
+            ImageLoader.shared.loadImage(identifier: (utilisateur?.idPhoto)!, url: IMAGE_URL + (utilisateur?.idPhoto)!) { imageResp in
                 
                 profileImage.image = imageResp
             }

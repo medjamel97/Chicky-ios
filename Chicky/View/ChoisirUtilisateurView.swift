@@ -40,7 +40,7 @@ class ChoisirUtilisateurView: UIViewController, UITableViewDataSource, UITableVi
         imageProfile.layer.borderWidth = 5.0
         ImageLoader.shared.loadImage(
             identifier: utilisateur.idPhoto!,
-            url: Constantes.images + utilisateur.idPhoto!,
+            url: IMAGE_URL + utilisateur.idPhoto!,
             completion: { [] image in
                 imageProfile.image = image
             })
