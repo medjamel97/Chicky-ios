@@ -120,7 +120,7 @@ class AccueilView: UIViewController  {
         gradientView.layer.cornerRadius = ROUNDED_RADIUS
         
         // VIDEO
-        let videoURL = URL(string: Constantes.videos + publication.idPhoto!)
+        let videoURL = URL(string: VIDEO_URL + publication.idPhoto!)
         player = AVPlayer(url: videoURL!)
         playerLayer = AVPlayerLayer(player: player)
         playerLayer!.videoGravity = AVLayerVideoGravity.resizeAspectFill;

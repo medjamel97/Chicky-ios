@@ -14,7 +14,7 @@ class EvaluationViewModel {
     static let sharedInstance = EvaluationViewModel()
     
     func recupererEvaluationParPublication(idPublication: String?, completed: @escaping (Bool, [Evaluation]?) -> Void ) {
-        AF.request(Constantes.host + "evaluation/par-publication",
+        AF.request(HOST_URL + "evaluation/par-publication",
                    method: .post,
                    parameters: [
                     "publication": idPublication!
@@ -38,7 +38,7 @@ class EvaluationViewModel {
     }
     
     func recupererEvaluationParUtilisateur(idPublication: String?, completed: @escaping (Bool, Evaluation?) -> Void ) {
-        AF.request(Constantes.host + "evaluation/par-utilisateur-publication",
+        AF.request(HOST_URL + "evaluation/par-utilisateur-publication",
                    method: .post,
                    parameters: [
                     "publication": idPublication!,
@@ -58,7 +58,7 @@ class EvaluationViewModel {
     }
     
     func ajouterEvaluation(idPublication: String, note: Int, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "evaluation",
+        AF.request(HOST_URL + "evaluation",
                    method: .post,
                    parameters: [
                     "note": String(note),
@@ -79,7 +79,7 @@ class EvaluationViewModel {
     }
     
     func modifierEvaluation(id: String, note: Int, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "evaluation",
+        AF.request(HOST_URL + "evaluation",
                    method: .put,
                    parameters: [
                     "_id": id,
@@ -99,7 +99,7 @@ class EvaluationViewModel {
     }
     
     func supprimerEvaluation(_id: String?, completed: @escaping (Bool) -> Void ) {
-        AF.request(Constantes.host + "evaluation",
+        AF.request(HOST_URL + "evaluation",
                    method: .delete,
                    parameters: [
                     "_id": _id!

@@ -31,6 +31,24 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
     @IBOutlet weak var cvMusique: UICollectionView!
     
     // PROTOCOLS
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        /*if collectionView == cvPosts {
+            if publications.count > 0 {
+                return 1
+            } else {
+                //CollectionViewHelper.EmptyMessage("You don't have any projects yet.
+        You can create up to 10.", viewController: self)
+                return 0
+            }
+        } else if collectionView == cvPeople {
+            return 1
+        } else if collectionView == cvMusique {
+            return 1
+        }*/
+        return 1
+    }
+                                         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if (collectionView == cvPosts) {
@@ -58,7 +76,7 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
             
             ImageLoader.shared.loadImage(
                 identifier: utilisateurs[indexPath.row].idPhoto!,
-                url: Constantes.images + utilisateurs[indexPath.row].idPhoto!,
+                url: IMAGE_URL + utilisateurs[indexPath.row].idPhoto!,
                 completion: { [] image in
                     imageUtilisateur.image = image
                 })
@@ -73,11 +91,10 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
             
             imagePublication.layer.cornerRadius = ROUNDED_RADIUS
             labeldescription.text = publications[indexPath.row].description
-            print(publications[indexPath.row].idPhoto!)
             
             ImageLoader.shared.loadImage(
                 identifier: publications[indexPath.row].idPhoto!,
-                url: Constantes.images + publications[indexPath.row].idPhoto!,
+                url: IMAGE_URL + publications[indexPath.row].idPhoto!,
                 completion: { [] image in
                     imagePublication.image = image
                 })
@@ -87,19 +104,20 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "musicCell", for: indexPath)
             let contentView = cell.contentView
             
-            let imagePublication = contentView.viewWithTag(1) as! UIImageView
-            let labeldescription = contentView.viewWithTag(2) as! UILabel
+            let imageMusique = contentView.viewWithTag(1) as! UIImageView
+            let titreMusique = contentView.viewWithTag(2) as! UILabel
             
-            imagePublication.layer.cornerRadius = ROUNDED_RADIUS
-            labeldescription.text = publications[indexPath.row].description
-            print(publications[indexPath.row].idPhoto!)
+            imageMusique.layer.cornerRadius = ROUNDED_RADIUS
+            let musique = musiques[indexPath.row]
             
             ImageLoader.shared.loadImage(
-                identifier: publications[indexPath.row].idPhoto!,
-                url: Constantes.images + publications[indexPath.row].idPhoto!,
+                identifier: musique.emplacementImageAlbum,
+                url: MUSIQUE_URL + musique.emplacementImageAlbum,
                 completion: { [] image in
-                    imagePublication.image = image
+                    imageMusique.image = image
                 })
+            
+            titreMusique.text = musique.titre
             
             return cell
         }
@@ -113,7 +131,16 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "musicPlayerSegue", sender: selectedMusic)
+        if collectionView == cvPosts {
+            /*selectedPublication = publications[indexPath.row]
+            self.performSegue(withIdentifier: "displayPublicationSegue", sender: selectedPublication)*/
+        } else if collectionView == cvPeople {
+            selectedUtilisateur = utilisateurs[indexPath.row]
+            self.performSegue(withIdentifier: "displayProfileSegue", sender: selectedUtilisateur)
+        } else {
+            selectedMusic = musiques[indexPath.row]
+            self.performSegue(withIdentifier: "musicPlayerSegue", sender: selectedMusic)
+        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -148,6 +175,7 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
         
         cvPosts.reloadData()
         cvPeople.reloadData()
+        cvMusique.reloadData()
         
         if searchText == "" {
             publications = publicationsAux
@@ -190,6 +218,7 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
         MusiqueViewModel.sharedInstance.recupererTout {success, musiquesFromRep in
             if success {
                 self.musiques = musiquesFromRep!
+                print(musiquesFromRep)
                 self.cvMusique.reloadData()
             } else {
                 self.present(Alert.makeAlert(titre: "Error", message: "Could not load musiques "),animated: true)

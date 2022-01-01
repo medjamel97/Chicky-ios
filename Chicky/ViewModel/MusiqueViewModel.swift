@@ -13,7 +13,7 @@ class MusiqueViewModel {
     static let sharedInstance = MusiqueViewModel()
     
     func recupererTout(completed: @escaping (Bool, [Musique]?) -> Void ) {
-        AF.request(Constantes.host + "musique",
+        AF.request(HOST_URL + "musique",
                    method: .get)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -21,7 +21,7 @@ class MusiqueViewModel {
                 switch response.result {
                 case .success:
                     var musiques : [Musique]? = []
-                    for singleJsonItem in JSON(response.data!)["musique"] {
+                    for singleJsonItem in JSON(response.data!)["musiques"] {
                         musiques!.append(self.makeMusique(jsonItem: singleJsonItem.1))
                     }
                     completed(true, musiques)
@@ -37,7 +37,8 @@ class MusiqueViewModel {
             _id: jsonItem["_id"].stringValue,
             titre: jsonItem["titre"].stringValue,
             artiste: jsonItem["artiste"].stringValue,
-            emplacementFichier: jsonItem["emplacementFichier"].stringValue
+            emplacementFichier: jsonItem["emplacementFichier"].stringValue,
+            emplacementImageAlbum: jsonItem["emplacementImageAlbum"].stringValue
         )
     }
 }

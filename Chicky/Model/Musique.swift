@@ -9,15 +9,17 @@ import Foundation
 
 struct Musique {
     
-    internal init(_id: String? = nil, titre: String, artiste: String, emplacementFichier: String) {
+    internal init(_id: String? = nil, titre: String, artiste: String, emplacementFichier: String, emplacementImageAlbum: String) {
         self._id = _id
         self.titre = titre
         self.artiste = artiste
         self.emplacementFichier = emplacementFichier
+        self.emplacementImageAlbum = emplacementImageAlbum
     }
     
     var _id : String?
     var titre : String
     var artiste : String
     var emplacementFichier : String
+    var emplacementImageAlbum : String
 }
