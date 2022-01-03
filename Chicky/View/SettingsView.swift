@@ -84,7 +84,7 @@ class SettingsView: UIViewController {
                     
                     // Access additional information
                     
-                    let email = tokenizedPayPalAccount.email
+                    _ = tokenizedPayPalAccount.email
                     
                     /*let firstName = tokenizedPayPalAccount.firstName
                      let lastName = tokenizedPayPalAccount.lastName

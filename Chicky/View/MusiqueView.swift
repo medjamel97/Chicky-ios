@@ -87,7 +87,7 @@ class MusiqueView: UIViewController, AVAudioPlayerDelegate {
         if canPlay {
             playImage.image = UIImage(systemName: "pause.circle.fill")
             
-            updater = CADisplayLink(target: self, selector: Selector("trackAudio"))
+            updater = CADisplayLink(target: self, selector: #selector(self.trackAudio))
             updater.frameInterval = 1
             updater.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
             

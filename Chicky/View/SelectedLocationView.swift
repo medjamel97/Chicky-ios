@@ -42,9 +42,6 @@ class SelectedLocationView: UIViewController, UITableViewDataSource, UITableView
         }), for: .touchUpInside)
         
         let compareDateInSeconds = enregistrement.date!.timeIntervalSince(Date())
-        print(Date())
-        print(enregistrement.date)
-        print(compareDateInSeconds)
         let timeSince = DateUtils().secondsToHoursMinutesSeconds(Int(abs(compareDateInSeconds)))
         
         

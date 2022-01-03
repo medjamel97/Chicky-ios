@@ -49,25 +49,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
         
-        func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-            
-            if let url = URLContexts.first?.url{
-                print(url)
-                let urlStr = url.absoluteString //1
-                // Parse the custom URL as per your uses, this will change as per requirement
-                let component = urlStr.components(separatedBy: "=") // 2
-                if component.count > 1, let idReservation = component.last { // 3
-                    // Access the storyboard and fetch an instance of the view controller
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil);
-                    let viewController: ProfilView = storyboard.instantiateViewController(withIdentifier: "profile") as! ProfilView
-                    //viewController.idReservation = idReservation
-                    
-                    if let topViewController = UIApplication.getTopViewController() {
-                        topViewController.present(viewController, animated: true, completion: nil)
-                    }
-                }
-            }
-        }
         
     }
 }

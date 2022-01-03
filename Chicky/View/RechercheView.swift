@@ -220,7 +220,6 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
         MusiqueViewModel.sharedInstance.recupererTout {success, musiquesFromRep in
             if success {
                 self.musiques = musiquesFromRep!
-                print(musiquesFromRep)
                 self.cvMusique.reloadData()
             } else {
                 self.present(Alert.makeAlert(titre: "Error", message: "Could not load musiques "),animated: true)

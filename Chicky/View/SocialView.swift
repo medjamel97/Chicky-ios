@@ -34,7 +34,6 @@ class SocialView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
         
         let pinAnnotation = view.annotation as? PinAnnotation
         
-        print(pinAnnotation?.coordinate)
         if pinAnnotation?.title != nil {
             chosenLocation = (pinAnnotation?.title)!
             
@@ -86,8 +85,8 @@ class SocialView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
             
             if let mPlacemark = placemarks{
                 if let dict = mPlacemark[0].addressDictionary as? [String: Any]{
-                    if let Name = dict["Name"] as? String{
-                        if let City = dict["City"] as? String{
+                    if (dict["Name"] as? String) != nil{
+                        if (dict["City"] as? String) != nil{
                             //self.currentLocationStr = Name + ", " + City
                         }
                     }
