@@ -30,12 +30,17 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate & UINavigati
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        videoView.layer.cornerRadius = ROUNDED_RADIUS
         
         self.pickerController.delegate = self
         self.pickerController.allowsEditing = true
         self.pickerController.mediaTypes = ["public.movie"]
         self.pickerController.videoQuality = .typeHigh
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        videoView.layer.addSublayer(CALayer())
+        videoView.layer.cornerRadius = ROUNDED_RADIUS
     }
     
     // METHODS
@@ -49,9 +54,17 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate & UINavigati
         }
         
         let publication = Publication( description: descriptionTextField.text, date: Date(), commentaires: [])
-        PublicationViewModel().ajouterPublication(publication: publication, videoUrl: videoUrl!) { success in
+        PublicationViewModel().ajouterPublication(publication: publication, videoUrl: videoUrl!) { [self] success in
+            
+            
+            imageViewPlaceholder.isHidden = false
+            descriptionTextField.text = ""
+            
+            
             if success {
-                self.present(Alert.makeAlert(titre: "Success", message: "Publication ajouté"),animated: true)
+                self.present(Alert.makeSingleActionAlert(titre: "Success", message: "Publication ajouté", action: UIAlertAction(title: "Ok", style: .default, handler: { a in
+                    self.tabBarController?.selectedIndex = 0
+                })),animated: true)
             }
         }
         

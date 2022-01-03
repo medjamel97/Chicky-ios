@@ -7,8 +7,10 @@
 
 import Foundation
 
-let HOST_URL = "http://localhost:3000/api/"
-let IMAGE_URL = "http://localhost:3000/img/"
-let VIDEO_URL = "http://localhost:3000/vid/"
-let MUSIQUE_URL = "http://localhost:3000/mp3/"
+private let HOST_NAME = "http://172.17.3.237:3000/"
+
+let HOST_URL = HOST_NAME + "api/"
+let IMAGE_URL = HOST_NAME + "img/"
+let VIDEO_URL = HOST_NAME + "vid/"
+let MUSIQUE_URL = HOST_NAME + "mp3/"
 let ROUNDED_RADIUS = 20.0

@@ -38,9 +38,13 @@ class MusiqueView: UIViewController, AVAudioPlayerDelegate {
         audioPlayer.stop()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if audioPlayer != nil {
+            audioPlayer.stop()
+        }
+    }
     // METHODS
     func initializePlayer() {
-        playImage.tintColor = UIColor.black
         
         AudioLoader.sharedInstance.loadMusic(url: MUSIQUE_URL + currentMusic!.emplacementFichier) { [self] url in
             if url != nil {
@@ -48,9 +52,7 @@ class MusiqueView: UIViewController, AVAudioPlayerDelegate {
                     self.audioPlayer = try AVAudioPlayer(contentsOf: url!)
                     audioPlayer.prepareToPlay()
                     audioPlayer.volume = 1.0
-                    audioPlayer.play()
                     
-                    playImage.tintColor = UIColor.tintColor
                     canPlay = true
                 } catch let error as NSError {
                     //self.player = nil
@@ -94,11 +96,14 @@ class MusiqueView: UIViewController, AVAudioPlayerDelegate {
             //startTime.text = "\(player.currentTime)"
             progressBar.minimumValue = 0
             progressBar.maximumValue = 100 // Percentage
-      
+            
             audioPlayer.play()
         } else {
-            self.audioPlayer.stop()
-            playImage.image = UIImage(systemName: "play.circle.fill")
+            if self.audioPlayer != nil {
+                self.audioPlayer.stop()
+                playImage.image = UIImage(systemName: "play.circle.fill")
+            }
+            
         }
         canPlay = !canPlay
     }

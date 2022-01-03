@@ -52,6 +52,11 @@ class AccueilView: UIViewController  {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        liked = false
+        publications = []
+        publicationCounter = 0
+        isInitialized = false
         publicationCounter = 0
         currentPublication = nil
         
@@ -65,7 +70,9 @@ class AccueilView: UIViewController  {
         
         PublicationViewModel().recupererToutPublication { [self] success, results in
             if success {
-                self.publications.append(contentsOf: results!)
+                publications = []
+                
+                publications = results!.reversed()
                 
                 if publications.count > 0 {
                     setupPublications()
@@ -144,13 +151,6 @@ class AccueilView: UIViewController  {
         self.view.layer.addSublayer(playerLayer!)
         player!.play()
         
-        /*player = AVPlayer(url: URL(fileURLWithPath: "http://localhost:3000/vid/1640364482500video.mp4"))
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill;
-        playerLayer.frame = card.bounds
-        playerLayer.cornerRadius = ROUNDED_RADIUS
-        playerLayer.masksToBounds = true
-        */
         
         // DESCRIPTION
         let descriptionLabel = UILabel()
@@ -160,45 +160,27 @@ class AccueilView: UIViewController  {
         descriptionLabel.frame = CGRect(x: 30, y: card.frame.height - 100, width: card.frame.width, height: 50)
         
         // STARS
-        let star1 = UIImageView(image: UIImage(named: "icon-star-filled"))
+        let star1 = UIButton()
+        star1.setImage(UIImage(named: "icon-star-filled"), for: .normal)
         star1.heightAnchor.constraint(equalToConstant: 25).isActive = true
         star1.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        let star2 = UIImageView(image: UIImage(named: "icon-star-filled"))
-        star2.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        star2.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        let star3 = UIImageView(image: UIImage(named: "icon-star-filled"))
-        star3.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        star3.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        let star4 = UIImageView(image: UIImage(named: "icon-star-filled"))
-        star4.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        star4.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        let star5 = UIImageView(image: UIImage(named: "icon-star-empty"))
-        star5.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        star5.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        
-        // RATING STACK VIEW
-        let ratingStackView = UIStackView()
-        ratingStackView.frame = CGRect(x: 30, y: card.frame.height - 60, width: 125, height: 25)
-        ratingStackView.addArrangedSubview(star1)
-        ratingStackView.addArrangedSubview(star2)
-        ratingStackView.addArrangedSubview(star3)
-        ratingStackView.addArrangedSubview(star4)
-        ratingStackView.addArrangedSubview(star5)
-        
-        ratingStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AccueilView.showRatingAction)))
+        star1.addAction(UIAction(handler: { a in
+            self.showRatingAction()
+        }), for: .touchUpInside)
+        star1.frame = CGRect(x: 30, y: card.frame.height - 60, width: 25, height: 25)
         
         // COMMENT BUTTON
         let commentButton = UIButton()
         commentButton.setImage(UIImage(named: "icon-comment"), for: .normal)
         commentButton.setTitleColor(UIColor.white, for: .normal)
-        commentButton.frame = CGRect(x: 160, y: card.frame.height - 60, width: 30, height: 30)
+        commentButton.frame = CGRect(x: 60, y: card.frame.height - 60, width: 30, height: 30)
         commentButton.addTarget(self, action: #selector(AccueilView.showCommentsAction), for: .touchUpInside)
         
         // CARD SUBVIEWS
         card.layer.addSublayer(playerLayer!)
         card.addSubview(gradientView)
         card.addSubview(descriptionLabel)
-        card.addSubview(ratingStackView)
+        card.addSubview(star1)
         card.addSubview(commentButton)
     }
     
@@ -283,7 +265,7 @@ class AccueilView: UIViewController  {
     var noteAcutelle: Int?
     var noteChoisi: Int?
     
-    @objc func showRatingAction(sender: UIButton) {
+    @objc func showRatingAction() {
         let actionSheet = UIAlertController(title: "\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
         
         initializeStarButton(starButton: star1, isEmpty: true)

@@ -169,7 +169,7 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
             }
         }
         
-        for musique in musiques {
+        for musique in musiquesAux {
             if musique.titre.lowercased().starts(with: searchText.lowercased()) || musique.artiste.lowercased().starts(with: searchText.lowercased()) {
                 musiques.append(musique)
             }

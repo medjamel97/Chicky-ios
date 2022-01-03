@@ -49,9 +49,9 @@ class PublicationViewModel {
                 switch response.result {
                 case .success:
                     let jsonData = JSON(response.data!)
-                    
+                    print(jsonData)
                     var publications : [Publication]? = []
-                    for singleJsonItem in jsonData["publication"] {
+                    for singleJsonItem in jsonData["publications"] {
                         publications!.append(self.makePublication(jsonItem: singleJsonItem.1))
                     }
                     completed(true, publications)

@@ -104,6 +104,27 @@ public class MessagerieViewModel: ObservableObject{
             }
     }
     
+    
+    func supprimerConversation(_id: String, completed: @escaping (Bool) -> Void ) {
+        AF.request(HOST_URL + "messagerie/suppConv",
+                   method: .delete,
+                   parameters: [
+                    "_id": _id
+                   ],
+                   encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    completed(true)
+                case let .failure(error):
+                    debugPrint(error)
+                    completed(false)
+                }
+            }
+    }
+    
     func makeMessage(jsonItem: JSON) -> Message {
         return Message(
             sender: Sender(senderId: jsonItem["conversationEnvoyeur"]["envoyeur"].stringValue, displayName: "abc"),

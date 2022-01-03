@@ -29,6 +29,18 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
         let imageProfile = contentView?.viewWithTag(1) as! UIImageView
         let labelUsername = contentView?.viewWithTag(2) as! UILabel
         let labellastMessage = contentView?.viewWithTag(3) as! UILabel
+        let buttonDel = contentView?.viewWithTag(4) as! UIButton
+         
+        
+        buttonDel.addAction(UIAction(handler: { act in
+            MessagerieViewModel.sharedInstance.supprimerConversation (_id: self.conversations[indexPath.row]._id!) { success in
+                if success {
+                    self.initialize()
+                } else {
+                    print("error while deleting chat")
+                }
+            }
+        }), for: .touchUpInside)
         
         imageProfile.roundedGrayPhoto()
         
@@ -46,24 +58,6 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
         labellastMessage.text = conversation.dernierMessage
         
         return cell!
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            /*ConversationViewModel().supprimerConversation(_id: conversations[indexPath.row]._id) { success in
-                if success {
-                    print("deleted chat")
-                    self.conversations.remove(at: indexPath.row)
-                    tableView.reloadData()
-                } else {
-                    print("error while deleting chat")
-                }
-            }*/
-        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

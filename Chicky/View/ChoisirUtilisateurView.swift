@@ -76,7 +76,15 @@ class ChoisirUtilisateurView: UIViewController, UITableViewDataSource, UITableVi
     func initialize() {
         UtilisateurViewModel.sharedInstance.recupererToutUtilisateur() { success, utilisateursfromRep in
             if success {
-                self.utilisateurs = utilisateursfromRep!
+                self.utilisateurs = []
+                
+                for utilisateur in utilisateursfromRep! {
+                    if utilisateur._id != UserDefaults.standard.string(forKey: "idUtilisateur"){
+                        
+                            self.utilisateurs.append(utilisateur)
+                    }
+                }
+                
                 self.tableView.reloadData()
             }else {
                 self.present(Alert.makeAlert(titre: "Error", message: "Could not load utilisateurs "),animated: true)
