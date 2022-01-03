@@ -34,6 +34,10 @@ class MusiqueView: UIViewController, AVAudioPlayerDelegate {
         initializeView()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        audioPlayer.stop()
+    }
+    
     // METHODS
     func initializePlayer() {
         playImage.tintColor = UIColor.black

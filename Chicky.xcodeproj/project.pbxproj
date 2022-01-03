@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10434EF82781DCC900CD6274 /* SelectedLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10434EF72781DCC900CD6274 /* SelectedLocationView.swift */; };
+		10434EFA2781F49F00CD6274 /* Enregistrement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10434EF92781F49F00CD6274 /* Enregistrement.swift */; };
+		10434EFC2782099D00CD6274 /* EnregistrementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10434EFB2782099D00CD6274 /* EnregistrementViewModel.swift */; };
 		1044DCE3277633300065EDC2 /* VideoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1044DCE2277633300065EDC2 /* VideoLoader.swift */; };
 		10581B77277F578F00459EB0 /* ChoisirUtilisateurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10581B76277F578F00459EB0 /* ChoisirUtilisateurView.swift */; };
 		10581B79277F5B9A00459EB0 /* ModalTransitionListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10581B78277F5B9A00459EB0 /* ModalTransitionListener.swift */; };
@@ -70,6 +73,9 @@
 
 /* Begin PBXFileReference section */
 		08543B5114949029C22825E9 /* Pods-Chicky-ChickyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chicky-ChickyUITests.release.xcconfig"; path = "Target Support Files/Pods-Chicky-ChickyUITests/Pods-Chicky-ChickyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		10434EF72781DCC900CD6274 /* SelectedLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLocationView.swift; sourceTree = "<group>"; };
+		10434EF92781F49F00CD6274 /* Enregistrement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enregistrement.swift; sourceTree = "<group>"; };
+		10434EFB2782099D00CD6274 /* EnregistrementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnregistrementViewModel.swift; sourceTree = "<group>"; };
 		1044DCE2277633300065EDC2 /* VideoLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoLoader.swift; sourceTree = "<group>"; };
 		1044DCE727765FDA0065EDC2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		10581B76277F578F00459EB0 /* ChoisirUtilisateurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoisirUtilisateurView.swift; sourceTree = "<group>"; };
@@ -199,6 +205,7 @@
 				109A3AFF276811ED009868A6 /* Evaluation.swift */,
 				94C4DFC62742C82D00993FE5 /* Commentaire.swift */,
 				10581B7C277F773100459EB0 /* Musique.swift */,
+				10434EF92781F49F00CD6274 /* Enregistrement.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,6 +220,7 @@
 				10581B7E277F793600459EB0 /* MusiqueViewModel.swift */,
 				109A3B0127681234009868A6 /* EvaluationViewModel.swift */,
 				106A40C5275E25FB00DB4D8F /* JaimeViewModel.swift */,
+				10434EFB2782099D00CD6274 /* EnregistrementViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -243,6 +251,7 @@
 				109A3AFB2767CED7009868A6 /* CommentairesView.swift */,
 				109A3B0627683B5D009868A6 /* SettingsView.swift */,
 				8D3A7ED32768041D001E86EC /* ViewController.swift */,
+				10434EF72781DCC900CD6274 /* SelectedLocationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -419,12 +428,14 @@
 				106A40C8275E266C00DB4D8F /* Jaime.swift in Sources */,
 				8DF2C891274FC20F00900B6F /* Alert.swift in Sources */,
 				1064A767277E5073008F3B76 /* ChatView.swift in Sources */,
+				10434EFA2781F49F00CD6274 /* Enregistrement.swift in Sources */,
 				940D718127430EA600722B97 /* SocialView.swift in Sources */,
 				8DD36B9B274C779700EEFE79 /* ModifierProfilView.swift in Sources */,
 				431677C5273920FD0062EA9D /* AppDelegate.swift in Sources */,
 				940D717D27430E0200722B97 /* RechercheView.swift in Sources */,
 				8DF5050127612B6C00832E37 /* LocationManager.swift in Sources */,
 				8DFC6A712758000D00DA0175 /* CommentaireViewModel.swift in Sources */,
+				10434EF82781DCC900CD6274 /* SelectedLocationView.swift in Sources */,
 				8D9254F3274854AF009ACD1A /* LoadingScreen.swift in Sources */,
 				10581B7B277F5F8F00459EB0 /* Design.swift in Sources */,
 				10581B7F277F793600459EB0 /* MusiqueViewModel.swift in Sources */,
@@ -438,6 +449,7 @@
 				10581B79277F5B9A00459EB0 /* ModalTransitionListener.swift in Sources */,
 				8D9254EF27482A9E009ACD1A /* UtilisateurViewModel.swift in Sources */,
 				1044DCE3277633300065EDC2 /* VideoLoader.swift in Sources */,
+				10434EFC2782099D00CD6274 /* EnregistrementViewModel.swift in Sources */,
 				940D717F27430E3D00722B97 /* CameraView.swift in Sources */,
 				109A3B0727683B5D009868A6 /* SettingsView.swift in Sources */,
 				109A3AFE2767D760009868A6 /* DateUtils.swift in Sources */,
@@ -550,8 +562,12 @@
 				DEVELOPMENT_TEAM = 8SLYY22AVG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Chicky/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app wants to take pictures and videos.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "ns always";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "ns when use";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app wants to record sound.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app wants to save pictures and videos to your library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app wants to use your picture and video library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

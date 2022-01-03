@@ -49,7 +49,6 @@ class AccueilView: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,6 +75,12 @@ class AccueilView: UIViewController  {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        if player != nil {
+            player?.pause()
+        }
+    }
+    
     // METHODS
     func setupPublications(){
         
@@ -84,7 +89,7 @@ class AccueilView: UIViewController  {
         if publicationCounter > 0  {
             print("making previousPub")
             previousPublication = publications[publicationCounter - 1]
-            makePublicationCard(card: previousPublicationView, elementIndex: -1, publication: previousPublication!)
+            /*makePublicationCard(card: previousPublicationView, elementIndex: -1, publication: previousPublication!)*/
         } else {
             previousPublication = nil
         }
@@ -98,7 +103,7 @@ class AccueilView: UIViewController  {
         if publications.count > publicationCounter + 1  {
             print("making nextPub")
             nextPublication = publications[publicationCounter + 1]
-            makePublicationCard(card: nextPublicationView, elementIndex: 1, publication: nextPublication!)
+            /*makePublicationCard(card: nextPublicationView, elementIndex: 1, publication: nextPublication!)*/
         } else {
             nextPublication = nil
         }
@@ -108,6 +113,7 @@ class AccueilView: UIViewController  {
     func makePublicationCard(card: UIView, elementIndex: Int, publication: Publication) {
         
         //CARD
+        card.backgroundColor = UIColor.darkGray
         card.layer.cornerRadius = ROUNDED_RADIUS
         card.layer.shadowOffset = CGSize(width: 0,height: 0)
         card.layer.shadowRadius = ROUNDED_RADIUS
@@ -121,6 +127,13 @@ class AccueilView: UIViewController  {
         
         // VIDEO
         let videoURL = URL(string: VIDEO_URL + publication.idPhoto!)
+        
+        if player != nil {
+            print("Player is playing .. pausing")
+            player?.pause()
+        }
+        
+        print("Starting new player")
         player = AVPlayer(url: videoURL!)
         playerLayer = AVPlayerLayer(player: player)
         playerLayer!.videoGravity = AVLayerVideoGravity.resizeAspectFill;
@@ -144,7 +157,7 @@ class AccueilView: UIViewController  {
         descriptionLabel.tag = 2
         descriptionLabel.text = publication.description
         descriptionLabel.textColor = UIColor.white
-        descriptionLabel.frame = CGRect(x: 30, y: card.frame.height - 150, width: card.frame.width, height: 50)
+        descriptionLabel.frame = CGRect(x: 30, y: card.frame.height - 100, width: card.frame.width, height: 50)
         
         // STARS
         let star1 = UIImageView(image: UIImage(named: "icon-star-filled"))
@@ -165,7 +178,7 @@ class AccueilView: UIViewController  {
         
         // RATING STACK VIEW
         let ratingStackView = UIStackView()
-        ratingStackView.frame = CGRect(x: 30, y: card.frame.height - 100, width: 125, height: 25)
+        ratingStackView.frame = CGRect(x: 30, y: card.frame.height - 60, width: 125, height: 25)
         ratingStackView.addArrangedSubview(star1)
         ratingStackView.addArrangedSubview(star2)
         ratingStackView.addArrangedSubview(star3)
@@ -174,18 +187,11 @@ class AccueilView: UIViewController  {
         
         ratingStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AccueilView.showRatingAction)))
         
-        // ADD RATING BUTTON
-        let likeButton = UIButton()
-        likeButton.setImage(UIImage(named: "icon-favorites-filled"), for: .normal)
-        likeButton.setTitleColor(UIColor.white, for: .normal)
-        likeButton.frame = CGRect(x: 25, y: card.frame.height - 60, width: 30, height: 30)
-        likeButton.addTarget(self, action: #selector(AccueilView.likeButtonAction), for: .touchUpInside)
-        
         // COMMENT BUTTON
         let commentButton = UIButton()
         commentButton.setImage(UIImage(named: "icon-comment"), for: .normal)
         commentButton.setTitleColor(UIColor.white, for: .normal)
-        commentButton.frame = CGRect(x: 60, y: card.frame.height - 60, width: 30, height: 30)
+        commentButton.frame = CGRect(x: 160, y: card.frame.height - 60, width: 30, height: 30)
         commentButton.addTarget(self, action: #selector(AccueilView.showCommentsAction), for: .touchUpInside)
         
         // CARD SUBVIEWS
@@ -193,11 +199,11 @@ class AccueilView: UIViewController  {
         card.addSubview(gradientView)
         card.addSubview(descriptionLabel)
         card.addSubview(ratingStackView)
-        card.addSubview(likeButton)
         card.addSubview(commentButton)
     }
     
     func navigateToNextPublication() {
+        
         UIView.animate(withDuration: 0.4, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
             // put here the code you would like to animate
             self.previousPublicationView.frame.origin.y -= 1000
@@ -205,16 +211,31 @@ class AccueilView: UIViewController  {
             self.nextPublicationView.frame.origin.y -= 1000
         }, completion: { [self](finished:Bool) in
             
-            previousPublicationView.backgroundColor = UIColor.red
-            previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-            
-            currentPublicationView.backgroundColor = UIColor.green
-            currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-            
-            nextPublicationView.backgroundColor = UIColor.blue
-            nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-            
             setupPublications()
+            
+            previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+            previousPublicationView.backgroundColor = UIColor.darkGray
+            previousPublicationView.layer.cornerRadius = ROUNDED_RADIUS
+            previousPublicationView.layer.shadowOffset = CGSize(width: 0,height: 0)
+            previousPublicationView.layer.shadowRadius = ROUNDED_RADIUS
+            previousPublicationView.layer.shadowOpacity = 0.4
+            
+            
+            currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+            currentPublicationView.backgroundColor = UIColor.darkGray
+            currentPublicationView.layer.cornerRadius = ROUNDED_RADIUS
+            currentPublicationView.layer.shadowOffset = CGSize(width: 0,height: 0)
+            currentPublicationView.layer.shadowRadius = ROUNDED_RADIUS
+            currentPublicationView.layer.shadowOpacity = 0.4
+            
+            
+            nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+            nextPublicationView.backgroundColor = UIColor.darkGray
+            nextPublicationView.layer.cornerRadius = ROUNDED_RADIUS
+            nextPublicationView.layer.shadowOffset = CGSize(width: 0,height: 0)
+            nextPublicationView.layer.shadowRadius = ROUNDED_RADIUS
+            nextPublicationView.layer.shadowOpacity = 0.4
+            
         })
     }
     
@@ -226,16 +247,30 @@ class AccueilView: UIViewController  {
             self.currentPublicationView.frame.origin.y += 1000
             self.nextPublicationView.frame.origin.y += 1000
         }, completion: { [self](finished:Bool) in
-            previousPublicationView.backgroundColor = UIColor.red
-            previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-            
-            currentPublicationView.backgroundColor = UIColor.green
-            currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-            
-            nextPublicationView.backgroundColor = UIColor.blue
-            nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
             
             setupPublications()
+            
+            previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+            previousPublicationView.backgroundColor = UIColor.darkGray
+            previousPublicationView.layer.cornerRadius = ROUNDED_RADIUS
+            previousPublicationView.layer.shadowOffset = CGSize(width: 0,height: 0)
+            previousPublicationView.layer.shadowRadius = ROUNDED_RADIUS
+            previousPublicationView.layer.shadowOpacity = 0.4
+            
+            currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+            currentPublicationView.backgroundColor = UIColor.darkGray
+            currentPublicationView.layer.cornerRadius = ROUNDED_RADIUS
+            currentPublicationView.layer.shadowOffset = CGSize(width: 0,height: 0)
+            currentPublicationView.layer.shadowRadius = ROUNDED_RADIUS
+            currentPublicationView.layer.shadowOpacity = 0.4
+            
+            
+            nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+            nextPublicationView.backgroundColor = UIColor.darkGray
+            nextPublicationView.layer.cornerRadius = ROUNDED_RADIUS
+            nextPublicationView.layer.shadowOffset = CGSize(width: 0,height: 0)
+            nextPublicationView.layer.shadowRadius = ROUNDED_RADIUS
+            nextPublicationView.layer.shadowOpacity = 0.4
         })
     }
     

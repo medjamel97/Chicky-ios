@@ -16,6 +16,8 @@ class SettingsView: UIViewController {
     /// sb-sptpo9118929@personal.example.com
     // System Generated Password:
     /// *J+w07sT
+    ///
+    /// seller acc : sb-bu6xz9108844@business.example.com
     
     
     // Client ID
@@ -28,11 +30,8 @@ class SettingsView: UIViewController {
     
     // variables
     var braintreeClient: BTAPIClient!
-    var amount = "50"
     
     // iboutlets
-    @IBOutlet weak var frLabel: UILabel!
-    @IBOutlet weak var qrImage: UIImageView!
     
     // protocols
     
@@ -41,26 +40,11 @@ class SettingsView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        frLabel.text = "French".localized() + " language"
-        
-        braintreeClient = BTAPIClient(authorization: " ")
-        
-        
-        let data = "www.google.com".data(using: String.Encoding.ascii)
-        
-        if let filter = CIFilter(name: "CIQRCodeGenerator") {
-            filter.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
-            
-            if let output = filter.outputImage?.transformed(by: transform) {
-                qrImage.image =  UIImage(ciImage: output)
-            }
-        }
+        braintreeClient = BTAPIClient(authorization: "sandbox_jyzn55fh_8hsh8cdnn22jr8b5")
     }
     
     // ACTIONS
     @IBAction func switchTheme(_ sender: UISwitch) {
-        
         if sender.isOn {
             UIApplication.shared.windows.forEach { window in
                 window.overrideUserInterfaceStyle = .dark
@@ -72,72 +56,59 @@ class SettingsView: UIViewController {
         }
     }
     
-    
-    @IBAction func frenchLanguage(_ sender: UISwitch) {
-        /*if sender.isOn {
-         // Update the language by swaping bundle
-         Bundle.setLanguage(Language.getCurrentLanguage())
-         // Done to reintantiate the storyboards instantly
-         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-         UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateInitialViewController()
-         } else {
-         UserDefaults.standard.set("en", forKey: "AppleLanguage")
-         }*/
-        
+    @IBAction func payPal(_ sender: Any) {
+        paypalAction(amount: "1")
     }
     
-    @IBAction func payPal(_ sender: Any) {
-        let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
-        payPalDriver.viewControllerPresentingDelegate = self
-        payPalDriver.appSwitchDelegate = self // Optional
-        
-        // Specify the transaction amount here. "2.32" is used in this example.
-        let request = BTPayPalRequest(amount: amount)
-        request.currencyCode = "USD" // Optional; see BTPayPalRequest.h for more options
-        
-        payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
-            if let tokenizedPayPalAccount = tokenizedPayPalAccount {
-                print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-                
-                // Access additional information
-                
-                let email = tokenizedPayPalAccount.email
-                
-                /*let firstName = tokenizedPayPalAccount.firstName
-                 let lastName = tokenizedPayPalAccount.lastName
-                 let phone = tokenizedPayPalAccount.phone
-                 See BTPostalAddress.h for details
-                 let billingAddress = tokenizedPayPalAccount.billingAddress
-                 let shippingAddress = tokenizedPayPalAccount.shippingAddress*/
-                
-                
-                let message =
-                "You have successfuly paid "
-                + self.amount
-                + " USD using the paypal account : "
-                + email!
-                
-                self.present(Alert.makeActionAlert(titre: "Success", message:  message, action: UIAlertAction(title: "Ok", style: .default, handler: { action in
-                    self.navigationController?.popViewController(animated: true)
-                })),animated: true)
-            } else if let error = error {
-                print(error)
-            } else {
-                // Buyer canceled payment approval
+    @IBAction func payPal2(_ sender: Any) {
+        paypalAction(amount: "10")
+    }
+    
+    @IBAction func payPal3(_ sender: Any) {
+        paypalAction(amount: "100")
+    }
+    
+    func paypalAction(amount: String) {
+        if braintreeClient != nil {
+            let payPalDriver = BTPayPalDriver(apiClient: braintreeClient)
+            payPalDriver.viewControllerPresentingDelegate = self
+            payPalDriver.appSwitchDelegate = self // Optional
+            
+            // Specify the transaction amount here. "2.32" is used in this example.
+            let request = BTPayPalRequest(amount: amount)
+            request.currencyCode = "USD" // Optional; see BTPayPalRequest.h for more options
+            
+            payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
+                if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+                    print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+                    
+                    // Access additional information
+                    
+                    let email = tokenizedPayPalAccount.email
+                    
+                    /*let firstName = tokenizedPayPalAccount.firstName
+                     let lastName = tokenizedPayPalAccount.lastName
+                     let phone = tokenizedPayPalAccount.phone
+                     See BTPostalAddress.h for details
+                     let billingAddress = tokenizedPayPalAccount.billingAddress
+                     let shippingAddress = tokenizedPayPalAccount.shippingAddress*/
+                    
+                    
+                    let message =
+                    "You have successfuly donated "
+                    + amount
+                    + "$, Tank you"
+                    
+                    self.present(Alert.makeActionAlert(titre: "Success", message:  message, action: UIAlertAction(title: "Ok", style: .default, handler: { action in
+                        self.navigationController?.popViewController(animated: true)
+                    })),animated: true)
+                } else if let error = error {
+                    print(error)
+                } else {
+                    // Buyer canceled payment approval
+                }
             }
         }
-    }
-}
-
-extension String {
-    func localized() -> String {
-        return NSLocalizedString(
-            self,
-            tableName: "Localizable",
-            bundle: .main,
-            value: self,
-            comment: self
-        )
     }
 }
 

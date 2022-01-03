@@ -106,18 +106,16 @@ class ConnexionView: UIViewController {
             guard error == nil else { return }
             guard let user = user else { return }
             
-            let email = user.profile?.email
-            let name = (user.profile?.givenName)! + " " + (user.profile?.familyName)!
-            
-            loginWithSocialMedia(email: email, name: name, socialMediaName: "Google")
+            if user.profile != nil && user.profile?.givenName != nil && user.profile?.familyName != nil {
+                loginWithSocialMedia(email: user.profile!.email, nom: user.profile!.familyName!, prenom: user.profile!.givenName!, socialMediaName: "Google")
+            }
         }
     }
     
-    func loginWithSocialMedia(email: String?, name: String?,
-                              socialMediaName: String) {
+    func loginWithSocialMedia(email: String, nom: String, prenom: String, socialMediaName: String) {
         
         self.startSpinner()
-        UtilisateurViewModel().loginWithSocialApp(email:email! ,nom:name!, completed: { success, user in
+        UtilisateurViewModel().loginWithSocialApp(email: email, nom: nom ,prenom: prenom, completed: { success, user in
             if success {
                 self.performSegue(withIdentifier: "connexionSegue", sender: nil)
             } else {

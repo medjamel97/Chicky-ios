@@ -37,11 +37,11 @@ class PublicationViewModel {
             }
     }
     
-    func recupererMesPublication(  completed: @escaping (Bool, [Publication]?) -> Void ) {
+    func recupererPublicationParUtilisateur(idUtilisateur: String, completed: @escaping (Bool, [Publication]?) -> Void ) {
         AF.request(HOST_URL + "publication/mes",
                    method: .post,
                    parameters: [
-                    "user": UserDefaults.standard.string(forKey: "idUtilisateur")!
+                    "user": idUtilisateur
                    ])
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])

@@ -10,97 +10,96 @@ import MapKit
 import CoreLocation
 
 
-class SocialView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class SocialView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, ModalTransitionListener {
+
+    // variables
+    var selectedCategory = ""
+    let locationManager = CLLocationManager()
+    let myPin = MKPointAnnotation()
+    var chosenLocation = ""
     
-    var locationManager:CLLocationManager!
-    var currentLocationStr = "Current location"
-    // VAR
-    var search: String = ""
-    
-    //Iboutlets
+    // iboutlets
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var checkOutPlaceButton: UIButton!
     
-    
-    // WIDGET
-    
-    
-    // PROTOCOLS
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("nezlet")
-        let pinAnnotation = mapView.annotations
-        debugPrint(view.annotation)
-        
+    // protocols
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "locationSegue" {
+            let destination = segue.destination as! SelectedLocationView
+            destination.chosenLocationName = chosenLocation
+        }
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is PinAnnotation {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        let pinAnnotation = view.annotation as? PinAnnotation
+        
+        print(pinAnnotation?.coordinate)
+        if pinAnnotation?.title != nil {
+            chosenLocation = (pinAnnotation?.title)!
             
+            checkOutPlaceButton.isHidden = false
+            
+            checkOutPlaceButton.setTitle("Check the " + selectedCategory + " : " + (pinAnnotation?.title)!, for: .normal)
+            checkOutPlaceButton.subtitleLabel?.text = "0 Personnes"
+            
+            if selectedCategory == "Coffee" {
+                checkOutPlaceButton.setImage(UIImage(named: "icon-cofee"), for: .normal)
+            } else {
+                checkOutPlaceButton.setImage(UIImage(named: "icon-map"), for: .normal)
+            }
+            
+        }
+    }
+    
+    internal func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is PinAnnotation {
             let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "")
+            
             pinAnnotationView.tintColor = UIColor(named: "accentColor")
             pinAnnotationView.isDraggable = true
             pinAnnotationView.canShowCallout = true
             pinAnnotationView.animatesDrop = true
-            return pinAnnotationView
             
+            return pinAnnotationView
         }
+        
         return nil
     }
     
-    
-    // LIFECYCLE
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        mapView.delegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        determineCurrentLocation()
-    
-        getThem()
-    }
-    
-    
-    @IBAction func btn_GetLocation(_ sender: UIButton) {
-        getThem()
-        
-    }
-    
-    func getThem() {
-        getNearByLandmarks { mapItems in
-            
-            var pinAnnotations : [PinAnnotation] = []
-            for mapItem in mapItems {
-                print ("------ Map items--------")
-                print(mapItem)
-                print ("------ Map items--------")
-                
-                let pinAnnotation = PinAnnotation()
-                pinAnnotation.setCoordinate(newCoordinate: CLLocationCoordinate2DMake((mapItem.placemark.location?.coordinate.latitude)!, (mapItem.placemark.location?.coordinate.longitude)!))
-                pinAnnotation.title = mapItem.name
-                pinAnnotation.id = "parking._id"
-                
-                pinAnnotations.append(pinAnnotation)
-            }
-            
-            
-            self.mapView.addAnnotations(pinAnnotations)
+    internal func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let annotation = view.annotation as? PinAnnotation {
+            mapView.removeAnnotation(annotation)
         }
     }
-    
     
     // METHODS
-    func getNearByLandmarks(completed: @escaping ([MKMapItem]) -> Void ) {
-        let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = self.search
+    func setUsersClosestLocation(mLattitude: CLLocationDegrees, mLongitude: CLLocationDegrees) -> String {
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: mLattitude, longitude: mLongitude)
         
-        let search = MKLocalSearch(request: request)
-        search.start{(response, error) in
-            if let response = response {
-                completed(response.mapItems)
+        print("User location")
+        print(location)
+        
+        geoCoder.reverseGeocodeLocation(location) {
+            (placemarks, error) -> Void in
+            
+            if let mPlacemark = placemarks{
+                if let dict = mPlacemark[0].addressDictionary as? [String: Any]{
+                    if let Name = dict["Name"] as? String{
+                        if let City = dict["City"] as? String{
+                            //self.currentLocationStr = Name + ", " + City
+                        }
+                    }
+                }
             }
         }
+        return "Current location"
     }
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error - locationManager: \(error.localizedDescription)")
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let mUserLocation:CLLocation = locations[0] as CLLocation
@@ -115,34 +114,95 @@ class SocialView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         mapView.addAnnotation(mkAnnotation)
     }
     
-    func setUsersClosestLocation(mLattitude: CLLocationDegrees, mLongitude: CLLocationDegrees) -> String {
-        let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: mLattitude, longitude: mLongitude)
+ 
+    
+    // life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        checkOutPlaceButton.isHidden = true
+        ModalTransitionMediator.instance.setListener(listener: self)
+        setupMap()
+    }
+    
+    func popoverDismissed() {
+        if UserDefaults.standard.string(forKey: "selectedCat") != nil {
+            selectedCategory = UserDefaults.standard.string(forKey: "selectedCat")!
+            print(selectedCategory)
+            initializeLocations()
+        }
+    }
+    
+    // methods
+    func setupMap() {
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
         
-        print(location)
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
         
-        geoCoder.reverseGeocodeLocation(location) {
-            (placemarks, error) -> Void in
-            
-            if let mPlacemark = placemarks{
-                if let dict = mPlacemark[0].addressDictionary as? [String: Any]{
-                    if let Name = dict["Name"] as? String{
-                        if let City = dict["City"] as? String{
-                            self.currentLocationStr = Name + ", " + City
+        mapView.delegate = self
+        mapView.mapType = .standard
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SocialView.handleTap(gestureRecognizer:)))
+        self.mapView.addGestureRecognizer(tapGesture)
+    }
+    
+    func initializeLocations() {
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = selectedCategory
+        
+        let search = MKLocalSearch(request: request)
+        search.start{(response, error) in
+            if let response = response {
+                var pinAnnotations : [PinAnnotation] = []
+                
+                var findTheFirstLocation = true
+                
+                for mapItem in response.mapItems {
+                    
+                    if findTheFirstLocation {
+                        
+                        print ("------ Checking out here --------")
+                        print(mapItem)
+                        
+                        let enregistrement = Enregistrement(lieu: mapItem.name!)
+                        EnregistrementViewModel.sharedInstance.ajouter(enregistrement: enregistrement) { success in
+                            if success {
+                                print ("---------------------------------")
+                                print("location saved")
+                            } else {
+                                print ("---------------------------------")
+                                print("location failed to save")
+                            }
                         }
+                        
+                        print ("---------------------------------")
+                        
+                        findTheFirstLocation = false
                     }
+                    
+                    let pinAnnotation = PinAnnotation()
+                    pinAnnotation.setCoordinate(newCoordinate: CLLocationCoordinate2DMake((mapItem.placemark.location?.coordinate.latitude)!, (mapItem.placemark.location?.coordinate.longitude)!))
+                    pinAnnotation.title = mapItem.name
+                    pinAnnotation.id = "parking._id"
+                    
+                    pinAnnotations.append(pinAnnotation)
                 }
+                
+                self.determineCurrentLocation()
+                self.mapView.addAnnotations(pinAnnotations)
             }
         }
-        return currentLocationStr
     }
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error - locationManager: \(error.localizedDescription)")
-    }
-    //MARK:- Intance Methods
     
     func determineCurrentLocation() {
-        locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -153,10 +213,15 @@ class SocialView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         }
     }
     
+    @objc func handleTap(gestureRecognizer: UITapGestureRecognizer){
+        
+        if gestureRecognizer.state != UITapGestureRecognizer.State.began{
+            //mapView.removeAnnotation(myPin)
+            checkOutPlaceButton.isHidden = true
+        }
+    }
     
-    
-    
-    // ACTIONS
-    
-    
+    @IBAction func checkOutPlace(_ sender: Any) {
+        self.performSegue(withIdentifier: "locationSegue", sender: chosenLocation)
+    }
 }

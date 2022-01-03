@@ -31,6 +31,10 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
         initializePage()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        ModalTransitionMediator.instance.sendPopoverDismissed(modelChanged: true)
+    }
+    
     // METHODS
     func initializePage() {
         UtilisateurViewModel().recupererUtilisateurParToken(userToken: UserDefaults.standard.string(forKey: "tokenConnexion")!) { [self] success, result in
@@ -39,7 +43,7 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
             nomTextField.text = result?.nom
             prenomTextField.text = result?.prenom
             
-            if ((result?.sexe) != nil){
+            if (result?.sexe)! {
                 sexeChooser.selectedSegmentIndex = 1
             } else {
                 sexeChooser.selectedSegmentIndex = 2
@@ -164,5 +168,7 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func changeProfilePic(_ sender: Any) {
         showActionSheet()
     }
+    
+    
     
 }

@@ -85,10 +85,14 @@ public class UtilisateurViewModel: ObservableObject{
             }
     }
     
-    func loginWithSocialApp(email: String, nom: String, completed: @escaping (Bool, Utilisateur?) -> Void ) {
+    func loginWithSocialApp(email: String, nom: String, prenom: String, completed: @escaping (Bool, Utilisateur?) -> Void ) {
         AF.request(HOST_URL + "utilisateur/connexionAvecReseauSocial",
                    method: .post,
-                   parameters: ["email": email, "nom": nom],
+                   parameters: [
+                    "email": email,
+                    "nom": nom,
+                    "prenom": prenom
+                   ],
                    encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])

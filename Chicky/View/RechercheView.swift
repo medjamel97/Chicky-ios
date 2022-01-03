@@ -136,7 +136,9 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
             self.performSegue(withIdentifier: "displayPublicationSegue", sender: selectedPublication)*/
         } else if collectionView == cvPeople {
             selectedUtilisateur = utilisateurs[indexPath.row]
-            self.performSegue(withIdentifier: "displayProfileSegue", sender: selectedUtilisateur)
+            let viewController: ProfilView = self.storyboard!.instantiateViewController(withIdentifier: "profile") as! ProfilView
+            viewController.profileOfSomeoneElse = selectedUtilisateur
+            self.present(viewController, animated: true)
         } else {
             selectedMusic = musiques[indexPath.row]
             self.performSegue(withIdentifier: "musicPlayerSegue", sender: selectedMusic)

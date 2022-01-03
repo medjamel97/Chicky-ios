@@ -12,9 +12,9 @@ import Alamofire
 class ImageLoader{
     
     static let shared: ImageLoader = {
-            let instance = ImageLoader()
-            return instance
-        }()
+        let instance = ImageLoader()
+        return instance
+    }()
     
     let imageCache = NSCache<NSString,UIImage>()
     let utilityQueue = DispatchQueue.global(qos: .utility)
@@ -23,9 +23,8 @@ class ImageLoader{
     static let EVENT_IMAGE = "EVENT_IMAGE"
     
     func loadImage(identifier:String,url:String,completion: @escaping (UIImage?) -> () ) {
-     
-        if let cachedImage = self.imageCache.object(forKey: NSString(string: identifier))
-        {
+        
+        if let cachedImage = self.imageCache.object(forKey: NSString(string: identifier)) {
             completion(cachedImage)
         }else{
             utilityQueue.async {
