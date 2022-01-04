@@ -36,6 +36,9 @@
 		431677D1273920FE0062EA9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 431677D0273920FE0062EA9D /* Assets.xcassets */; };
 		8D214992276366D1007CD4D0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D214991276366D1007CD4D0 /* MapKit.framework */; };
 		8D3A7ED42768041D001E86EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3A7ED32768041D001E86EC /* ViewController.swift */; };
+		8D4D1F9F2783D7B400EF7CAD /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8D4D1F9E2783D7B400EF7CAD /* AppCenterAnalytics */; };
+		8D4D1FA12783D7B400EF7CAD /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 8D4D1FA02783D7B400EF7CAD /* AppCenterCrashes */; };
+		8D4D1FA32783D7B400EF7CAD /* AppCenterDistribute in Frameworks */ = {isa = PBXBuildFile; productRef = 8D4D1FA22783D7B400EF7CAD /* AppCenterDistribute */; };
 		8D52EE4A2756178500DC7028 /* VerifAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D52EE492756178500DC7028 /* VerifAccountView.swift */; };
 		8D8774F3275282DD0039CB29 /* MdpOublieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F2275282DD0039CB29 /* MdpOublieView.swift */; };
 		8D8774F5275283400039CB29 /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F4275283400039CB29 /* ConfirmationView.swift */; };
@@ -154,6 +157,9 @@
 			files = (
 				8D214992276366D1007CD4D0 /* MapKit.framework in Frameworks */,
 				AA66A5341C1B942C75DB0025 /* Pods_Chicky.framework in Frameworks */,
+				8D4D1FA32783D7B400EF7CAD /* AppCenterDistribute in Frameworks */,
+				8D4D1F9F2783D7B400EF7CAD /* AppCenterAnalytics in Frameworks */,
+				8D4D1FA12783D7B400EF7CAD /* AppCenterCrashes in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +326,11 @@
 			dependencies = (
 			);
 			name = Chicky;
+			packageProductDependencies = (
+				8D4D1F9E2783D7B400EF7CAD /* AppCenterAnalytics */,
+				8D4D1FA02783D7B400EF7CAD /* AppCenterCrashes */,
+				8D4D1FA22783D7B400EF7CAD /* AppCenterDistribute */,
+			);
 			productName = Chicky;
 			productReference = 431677C1273920FD0062EA9D /* Chicky.app */;
 			productType = "com.apple.product-type.application";
@@ -348,6 +359,9 @@
 				Base,
 			);
 			mainGroup = 431677B8273920FD0062EA9D;
+			packageReferences = (
+				8D4D1F9D2783D7B400EF7CAD /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
+			);
 			productRefGroup = 431677C2273920FD0062EA9D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -607,6 +621,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D4D1F9D2783D7B400EF7CAD /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D4D1F9E2783D7B400EF7CAD /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D4D1F9D2783D7B400EF7CAD /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
+		};
+		8D4D1FA02783D7B400EF7CAD /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D4D1F9D2783D7B400EF7CAD /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
+		};
+		8D4D1FA22783D7B400EF7CAD /* AppCenterDistribute */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D4D1F9D2783D7B400EF7CAD /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterDistribute;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		431677CD273920FD0062EA9D /* Chicky.xcdatamodeld */ = {

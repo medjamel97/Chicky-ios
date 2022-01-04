@@ -9,11 +9,18 @@ import UIKit
 import CoreData
 import GoogleSignIn
 import Braintree
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        AppCenter.start(withAppSecret: "1c19f479-f6cd-4b67-9427-a243a5865099", services:[
+          Analytics.self,
+          Crashes.self
+        ])
         // Override point for customization after application launch.
         
         // Paypal
