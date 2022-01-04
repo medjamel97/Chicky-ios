@@ -8,7 +8,6 @@
 import UIKit
 import CoreData
 import GoogleSignIn
-import Braintree
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
@@ -24,8 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Paypal
-        BTAppSwitch.setReturnURLScheme("tn.esprit.chicky.payments")
-        
         // Google
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error != nil || user == nil {
@@ -54,9 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data stack
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if url.scheme?.localizedCaseInsensitiveCompare("tn.esprit.chicky.payments") == .orderedSame {
-            return BTAppSwitch.handleOpen(url, options: options)
-        }
+   
         return false
     }
     
