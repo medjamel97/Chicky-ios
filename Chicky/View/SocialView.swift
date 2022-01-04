@@ -119,9 +119,13 @@ class SocialView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         checkOutPlaceButton.isHidden = true
-        ModalTransitionMediator.instance.setListener(listener: self)
+      //  ModalTransitionMediator.instance.setListener(listener: self)
         setupMap()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        ModalTransitionMediator.instance.setListener(listener: self)
+    }
+
     
     func popoverDismissed() {
         if UserDefaults.standard.string(forKey: "selectedCat") != nil {

@@ -41,7 +41,7 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
         
         imagePublication.layer.cornerRadius = ROUNDED_RADIUS
         labeldescription.text = publications[indexPath.row].description
-        print(publications[indexPath.row].idPhoto!)
+     //   print(publications[indexPath.row].idPhoto!)
         
         ImageLoader.shared.loadImage(
             identifier: publications[indexPath.row].idPhoto!,
