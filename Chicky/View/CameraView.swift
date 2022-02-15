@@ -95,6 +95,10 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate & UINavigati
     private func pickerController(_ controller: UIImagePickerController, didSelect url: URL?) {
         controller.dismiss(animated: true, completion: nil)
 
+        if url == nil {
+            return
+        }
+        
         imageViewPlaceholder.isHidden = true
         let player = AVPlayer(url: url!)
         let playerLayer = AVPlayerLayer(player: player)

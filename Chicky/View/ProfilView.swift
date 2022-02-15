@@ -22,9 +22,10 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
     @IBOutlet weak var nomPrenomTF: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
-    @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var dateNaissLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var darkThemeIcon: UIImageView!
+    @IBOutlet weak var darkThemeSwitch: UISwitch!
     
     // PROTOCOLS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -60,13 +61,13 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
         
         ModalTransitionMediator.instance.setListener(listener: self)
         
-        settingsButton.isHidden = true
         editProfileButton.isHidden = true
         logoutButton.isHidden = true
+        darkThemeIcon.isHidden = true
+        darkThemeSwitch.isHidden = true
         
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         profileImage.clipsToBounds = true
-        
         profileImage.layer.borderColor = UIColor.white.cgColor
         profileImage.layer.borderWidth = 5.0
         
@@ -79,15 +80,8 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
     
     func popoverDismissed() {
         
-        settingsButton.isHidden = true
         editProfileButton.isHidden = true
         logoutButton.isHidden = true
-        
-        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
-        profileImage.clipsToBounds = true
-        
-        profileImage.layer.borderColor = UIColor.white.cgColor
-        profileImage.layer.borderWidth = 5.0
         
         if profileOfSomeoneElse == nil {
             initializeProfileMy()
@@ -102,9 +96,10 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
         UtilisateurViewModel().recupererUtilisateurParToken(userToken: UserDefaults.standard.string(forKey: "tokenConnexion")!) { [self] success, result in
             let utilisateur = result
             
-            settingsButton.isHidden = false
             editProfileButton.isHidden = false
             logoutButton.isHidden = false
+            darkThemeIcon.isHidden = false
+            darkThemeSwitch.isHidden = false
             
             dateNaissLabel.text = "Born in " +  DateUtils.formatFromDateForDisplayYearMonthDay(date: (utilisateur?.dateNaissance)!)
             if utilisateur?.sexe == true {
@@ -168,6 +163,18 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
     }
     
     // ACTIONS
+    @IBAction func switchTheme(_ sender: UISwitch) {
+        if sender.isOn {
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .dark
+            }
+        } else {
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .light
+            }
+        }
+    }
+    
     @IBAction func deconnexion(_ sender: Any) {
         UserDefaults.standard.set("", forKey: "tokenConnexion")
         performSegue(withIdentifier: "logoutSegue", sender: nil)

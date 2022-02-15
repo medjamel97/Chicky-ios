@@ -49,6 +49,7 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
                 sexeChooser.selectedSegmentIndex = 2
             }
             
+            print(utilisateur?.dateNaissance)
             dateNaissancePicker.date = (utilisateur?.dateNaissance)!
             
             ImageLoader.shared.loadImage(identifier: (utilisateur?.idPhoto)!, url: IMAGE_URL + (utilisateur?.idPhoto)!) { imageResp in
@@ -60,6 +61,7 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
     
     // ACTIONS
     @IBAction func modifierProfil(_ sender: Any) {
+        print("Edited profile")
         
         if (nomTextField.text!.isEmpty) {
             self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre nom"), animated: true)
@@ -76,6 +78,7 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
             return
         }
         
+        
         //utilisateur?.idPhoto = ""
         utilisateur?.score = 0
         utilisateur?.bio = ""
@@ -91,14 +94,14 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
         
         
         UtilisateurViewModel().manipulerUtilisateur(utilisateur: utilisateur!,methode: .put, completed: { (success) in
-            
+            print(success)
             if success {
-                self.present(Alert.makeAlert(titre: "Succes", message: "Profil modifié"),animated: true)
-                self.initializePage()
             } else {
                 
             }
         })
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     func camera()

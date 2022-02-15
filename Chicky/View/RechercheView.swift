@@ -31,24 +31,6 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
     @IBOutlet weak var cvMusique: UICollectionView!
     
     // PROTOCOLS
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        /*if collectionView == cvPosts {
-            if publications.count > 0 {
-                return 1
-            } else {
-                //CollectionViewHelper.EmptyMessage("You don't have any projects yet.
-        You can create up to 10.", viewController: self)
-                return 0
-            }
-        } else if collectionView == cvPeople {
-            return 1
-        } else if collectionView == cvMusique {
-            return 1
-        }*/
-        return 1
-    }
-                                         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if (collectionView == cvPosts) {
@@ -65,7 +47,7 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == cvPeople {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pCell", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "peopleCell", for: indexPath)
             let contentView = cell.contentView
             
             let imageUtilisateur = contentView.viewWithTag(1) as! UIImageView
@@ -83,7 +65,7 @@ class RechercheView: UIViewController, UICollectionViewDelegate, UICollectionVie
             
             return cell
         } else if collectionView == cvPosts {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postsCell", for: indexPath)
             let contentView = cell.contentView
             
             let imagePublication = contentView.viewWithTag(1) as! UIImageView

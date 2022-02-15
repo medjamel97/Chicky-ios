@@ -42,7 +42,7 @@ class ConnexionView: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        googleLoginButton.frame = CGRect(x: googleStackView.center.x/1.5 , y: 0, width: googleStackView.center.x, height: googleStackView.frame.height)
+        googleLoginButton.frame = CGRect(x:0 , y: 0, width: googleStackView.center.x, height: googleStackView.frame.height)
     }
     
     // METHODS

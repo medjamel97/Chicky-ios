@@ -32,10 +32,7 @@ class AccueilView: UIViewController  {
     
     // WIDGET
     @IBOutlet weak var swipeAreaView: UIView!
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var commentButton: UIButton!
-    @IBOutlet weak var publicationImage: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var noContentLabel: UILabel!
     
     // PROTOCOLS
     
@@ -68,6 +65,7 @@ class AccueilView: UIViewController  {
                 self.publications.append(contentsOf: results!)
                 
                 if publications.count > 0 {
+                    noContentLabel.isHidden = true
                     setupPublications()
                     isInitialized = true
                 }
@@ -112,6 +110,7 @@ class AccueilView: UIViewController  {
     
     func makePublicationCard(card: UIView, elementIndex: Int, publication: Publication) {
         
+        card.layer.sublayers?.removeAll()
         //CARD
         card.backgroundColor = UIColor.darkGray
         card.layer.cornerRadius = ROUNDED_RADIUS
@@ -143,14 +142,6 @@ class AccueilView: UIViewController  {
         
         self.view.layer.addSublayer(playerLayer!)
         player!.play()
-        
-        /*player = AVPlayer(url: URL(fileURLWithPath: "http://localhost:3000/vid/1640364482500video.mp4"))
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill;
-        playerLayer.frame = card.bounds
-        playerLayer.cornerRadius = ROUNDED_RADIUS
-        playerLayer.masksToBounds = true
-        */
         
         // DESCRIPTION
         let descriptionLabel = UILabel()
