@@ -49,7 +49,6 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
                 sexeChooser.selectedSegmentIndex = 2
             }
             
-            print(utilisateur?.dateNaissance)
             dateNaissancePicker.date = (utilisateur?.dateNaissance)!
             
             ImageLoader.shared.loadImage(identifier: (utilisateur?.idPhoto)!, url: IMAGE_URL + (utilisateur?.idPhoto)!) { imageResp in

@@ -349,14 +349,15 @@ class AccueilView: UIViewController  {
                             }
                         }
                     } else {
-                        EvaluationViewModel().ajouterEvaluation(idPublication: (currentPublication?._id)!, note: noteChoisi!) { success in
-                            if success {
-                                
-                            } else {
-                                self.present(Alert.makeServerErrorAlert(),animated: true)
+                        if noteChoisi != nil {
+                            EvaluationViewModel().ajouterEvaluation(idPublication: (currentPublication?._id)!, note: noteChoisi!) { success in
+                                if success {
+                                    
+                                } else {
+                                    self.present(Alert.makeServerErrorAlert(),animated: true)
+                                }
                             }
                         }
-                        
                     }
                 }))
                 actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

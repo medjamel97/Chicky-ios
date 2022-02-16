@@ -42,7 +42,7 @@ public class UtilisateurViewModel: ObservableObject{
                     "mdp": utilisateur.mdp!,
                     "nom": utilisateur.nom!,
                     "prenom": utilisateur.prenom!,
-                    "dateNaissance": utilisateur.dateNaissance!,
+                    "dateNaissance": DateUtils.formatFromDate(date: utilisateur.dateNaissance!) ,
                     "idPhoto": utilisateur.idPhoto!,
                     "sexe": utilisateur.sexe!,
                     "score": utilisateur.score!,

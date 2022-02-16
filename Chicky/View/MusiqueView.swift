@@ -34,8 +34,16 @@ class MusiqueView: UIViewController, AVAudioPlayerDelegate {
         initializeView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if audioPlayer != nil {
+            audioPlayer.stop()
+        }
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
-        audioPlayer.stop()
+        if audioPlayer != nil {
+            audioPlayer.stop()
+        }
     }
     
     // METHODS

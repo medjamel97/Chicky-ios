@@ -7,13 +7,10 @@
 
 import UIKit
 import Alamofire
-import GoogleSignIn
 
 class ConnexionView: UIViewController {
     
     // VAR
-    let signInConfig = GIDConfiguration.init(clientID: "129859709709-ji8he9ntqhetpgtmuj4a6hmdgd40s4eu.apps.googleusercontent.com")
-    let googleLoginButton = GIDSignInButton()
     let utilisateurViewModel = UtilisateurViewModel()
     let spinner = SpinnerViewController()
     
@@ -22,7 +19,6 @@ class ConnexionView: UIViewController {
     // WIDGET
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var motDePasseTextField: UITextField!
-    @IBOutlet weak var googleStackView: UIStackView!
     
     // PROTOCOLS
     
@@ -35,14 +31,11 @@ class ConnexionView: UIViewController {
         super.viewDidLoad()
         
         emailTextField.text = email
-        googleStackView.addSubview(googleLoginButton)
-        googleLoginButton.addTarget(self, action: #selector(googleSignIn), for: .touchUpInside)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        googleLoginButton.frame = CGRect(x:0 , y: 0, width: googleStackView.center.x, height: googleStackView.frame.height)
     }
     
     // METHODS
@@ -101,16 +94,6 @@ class ConnexionView: UIViewController {
         })
     }
     
-    @objc func googleSignIn() {
-        GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: self) { [self] user, error in
-            guard error == nil else { return }
-            guard let user = user else { return }
-            
-            if user.profile != nil && user.profile?.givenName != nil && user.profile?.familyName != nil {
-                loginWithSocialMedia(email: user.profile!.email, nom: user.profile!.familyName!, prenom: user.profile!.givenName!, socialMediaName: "Google")
-            }
-        }
-    }
     
     func loginWithSocialMedia(email: String, nom: String, prenom: String, socialMediaName: String) {
         

@@ -94,34 +94,39 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
     // METHODS
     func initializeProfileMy(){
         UtilisateurViewModel().recupererUtilisateurParToken(userToken: UserDefaults.standard.string(forKey: "tokenConnexion")!) { [self] success, result in
-            let utilisateur = result
-            
-            editProfileButton.isHidden = false
-            logoutButton.isHidden = false
-            darkThemeIcon.isHidden = false
-            darkThemeSwitch.isHidden = false
-            
-            dateNaissLabel.text = "Born in " +  DateUtils.formatFromDateForDisplayYearMonthDay(date: (utilisateur?.dateNaissance)!)
-            if utilisateur?.sexe == true {
-                genderLabel.text = "Gender : Male"
-            } else {
-                genderLabel.text = "Gender : Female"
-            }
-            
-            nomPrenomTF.text = (result?.prenom)! + " " + (result?.nom)!
-            
-            if utilisateur?.pseudo == "" {
-                usernameLabel.text = "@" + (utilisateur?.nom)! + "_" + (utilisateur?.prenom)!
-            } else {
-                usernameLabel.text = "@" + (utilisateur?.pseudo)!
-            }
-            
-            ImageLoader.shared.loadImage(identifier: (utilisateur?.idPhoto)!, url: IMAGE_URL + (utilisateur?.idPhoto)!) { imageResp in
+            if success {
+                let utilisateur = result
                 
-                profileImage.image = imageResp
+                editProfileButton.isHidden = false
+                logoutButton.isHidden = false
+                darkThemeIcon.isHidden = false
+                darkThemeSwitch.isHidden = false
+                
+                dateNaissLabel.text = "Born in " +  DateUtils.formatFromDateForDisplayYearMonthDay(date: (utilisateur?.dateNaissance)!)
+                if utilisateur?.sexe == true {
+                    genderLabel.text = "Gender : Male"
+                } else {
+                    genderLabel.text = "Gender : Female"
+                }
+                
+                nomPrenomTF.text = (result?.prenom)! + " " + (result?.nom)!
+                
+                if utilisateur?.pseudo == "" {
+                    usernameLabel.text = "@" + (utilisateur?.nom)! + "_" + (utilisateur?.prenom)!
+                } else {
+                    usernameLabel.text = "@" + (utilisateur?.pseudo)!
+                }
+                
+                ImageLoader.shared.loadImage(identifier: (utilisateur?.idPhoto)!, url: IMAGE_URL + (utilisateur?.idPhoto)!) { imageResp in
+                    
+                    profileImage.image = imageResp
+                }
+                
+                initializePosts(idUser: UserDefaults.standard.string(forKey: "idUtilisateur")!)
+            } else {
+                
             }
             
-            initializePosts(idUser: UserDefaults.standard.string(forKey: "idUtilisateur")!)
         }
     }
     
@@ -165,13 +170,13 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
     // ACTIONS
     @IBAction func switchTheme(_ sender: UISwitch) {
         if sender.isOn {
-            UIApplication.shared.windows.forEach { window in
+            /*UIApplication.shared.windows.forEach { window in
                 window.overrideUserInterfaceStyle = .dark
-            }
+            }*/
         } else {
-            UIApplication.shared.windows.forEach { window in
+            /*UIApplication.shared.windows.forEach { window in
                 window.overrideUserInterfaceStyle = .light
-            }
+            }*/
         }
     }
     

@@ -17,10 +17,10 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 
     public func requestLocationAuthorization() {
         self.locationManager.delegate = self
-        let currentStatus = CLLocationManager.authorizationStatus()
+        //let currentStatus = CLLocationManager.authorizationStatus()
 
         // Only ask authorization if it was never asked before
-        guard currentStatus == .notDetermined else { return }
+        //guard currentStatus == .notDetermined else { return }
 
         // Starting on iOS 13.4.0, to get .authorizedAlways permission, you need to
         // first ask for WhenInUse permission, then ask for Always permission to

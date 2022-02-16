@@ -83,7 +83,7 @@ class SocialView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
         geoCoder.reverseGeocodeLocation(location) {
             (placemarks, error) -> Void in
             
-            if let mPlacemark = placemarks{
+            /*if let mPlacemark = placemarks{
                 if let dict = mPlacemark[0].addressDictionary as? [String: Any]{
                     if (dict["Name"] as? String) != nil{
                         if (dict["City"] as? String) != nil{
@@ -91,7 +91,7 @@ class SocialView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
                         }
                     }
                 }
-            }
+            }*/
         }
         return "Current location"
     }

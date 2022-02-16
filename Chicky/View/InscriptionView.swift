@@ -6,12 +6,10 @@
 //
 
 import UIKit
-import GoogleSignIn
 
 class InscriptionView: UIViewController {
     
     // VAR
-    let signInConfig = GIDConfiguration.init(clientID: "1068988633012-o3ncrfkpu7veivr731s4lco8ok11fl47.apps.googleusercontent.com")
     var pseudo: String?
     var motDePasse: String?
     var currentUser: Bool?
