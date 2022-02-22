@@ -15,13 +15,15 @@ class MusiqueView: UIViewController, AVAudioPlayerDelegate {
     var audioPlayer: AVAudioPlayer!
     var canPlay = false
     var updater : CADisplayLink! = nil
-    
+
     // WIDGET
     @IBOutlet weak var titreMusiqueLabel: UILabel!
     @IBOutlet weak var artisteMusiqueLabel: UILabel!
     @IBOutlet weak var musicImage: UIImageView!
     @IBOutlet weak var playImage: UIImageView!
     @IBOutlet weak var progressBar: UISlider!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
     
     // PROTOCOLS
     
@@ -37,6 +39,7 @@ class MusiqueView: UIViewController, AVAudioPlayerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         if audioPlayer != nil {
             audioPlayer.stop()
+            progressBar.value = 3
         }
     }
     
@@ -56,10 +59,11 @@ class MusiqueView: UIViewController, AVAudioPlayerDelegate {
                     self.audioPlayer = try AVAudioPlayer(contentsOf: url!)
                     audioPlayer.prepareToPlay()
                     audioPlayer.volume = 1.0
-                    audioPlayer.play()
                     
                     playImage.tintColor = UIColor.tintColor
+                    loadingIndicator.stopAnimating()
                     canPlay = true
+                    
                 } catch let error as NSError {
                     //self.player = nil
                     print(error.localizedDescription)

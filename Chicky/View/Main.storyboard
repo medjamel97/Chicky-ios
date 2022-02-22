@@ -787,13 +787,22 @@
                                         <rect key="frame" x="0.0" y="1.6666666666666572" width="312" height="309"/>
                                         <color key="tintColor" name="AccentColor"/>
                                     </imageView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="FWs-Yp-3rd">
+                                        <rect key="frame" x="0.0" y="0.0" width="312" height="312"/>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="0.68845716059602646" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="LmJ-jL-m93" firstAttribute="centerX" secondItem="EBy-dP-cyj" secondAttribute="centerX" id="4l6-dD-TIc"/>
+                                    <constraint firstItem="FWs-Yp-3rd" firstAttribute="width" secondItem="LmJ-jL-m93" secondAttribute="width" id="4ws-zh-4nU"/>
                                     <constraint firstAttribute="width" secondItem="EBy-dP-cyj" secondAttribute="height" multiplier="1:1" id="NN0-Iv-mNP"/>
                                     <constraint firstItem="LmJ-jL-m93" firstAttribute="centerY" secondItem="EBy-dP-cyj" secondAttribute="centerY" id="PQc-pz-IxF"/>
                                     <constraint firstItem="LmJ-jL-m93" firstAttribute="height" secondItem="EBy-dP-cyj" secondAttribute="height" id="QXD-OB-5We"/>
+                                    <constraint firstItem="FWs-Yp-3rd" firstAttribute="centerY" secondItem="LmJ-jL-m93" secondAttribute="centerY" id="diG-er-Zue"/>
                                     <constraint firstItem="LmJ-jL-m93" firstAttribute="width" secondItem="EBy-dP-cyj" secondAttribute="width" id="hH3-pj-Dfc"/>
+                                    <constraint firstItem="FWs-Yp-3rd" firstAttribute="height" secondItem="LmJ-jL-m93" secondAttribute="height" id="lCu-l2-mh3"/>
+                                    <constraint firstItem="FWs-Yp-3rd" firstAttribute="centerX" secondItem="LmJ-jL-m93" secondAttribute="centerX" id="r8C-kA-nDV"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxd-It-rfK" userLabel="Play">
@@ -811,7 +820,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="play.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="842-zq-dO0">
                                 <rect key="frame" x="155.66666666666666" y="559.33333333333337" width="79" height="77.666666666666686"/>
                             </imageView>
-                            <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.0" maxValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="MCf-C3-XJq">
+                            <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="0.0" maxValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="MCf-C3-XJq">
                                 <rect key="frame" x="37" y="488.33333333333331" width="316" height="30.999999999999943"/>
                                 <color key="tintColor" name="AccentColor"/>
                             </slider>
@@ -843,6 +852,7 @@
                     <navigationItem key="navigationItem" id="cV6-Sc-Zwb"/>
                     <connections>
                         <outlet property="artisteMusiqueLabel" destination="tme-5b-EHb" id="qLE-li-JzE"/>
+                        <outlet property="loadingIndicator" destination="FWs-Yp-3rd" id="dQS-pM-7hS"/>
                         <outlet property="musicImage" destination="LmJ-jL-m93" id="x8t-DX-eva"/>
                         <outlet property="playImage" destination="842-zq-dO0" id="2Pd-pd-KLQ"/>
                         <outlet property="progressBar" destination="MCf-C3-XJq" id="N99-DM-60K"/>
@@ -2550,7 +2560,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="PcY-0f-PIS"/>
         <segue reference="QPe-Uf-TyV"/>
-        <segue reference="R7B-sc-hCF"/>
+        <segue reference="8ct-qu-rcZ"/>
         <segue reference="rSv-PH-Y5P"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="AccentColor"/>
