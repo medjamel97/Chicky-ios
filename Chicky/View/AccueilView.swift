@@ -52,9 +52,9 @@ class AccueilView: UIViewController  {
         publicationCounter = 0
         currentPublication = nil
         
-        previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+        previousPublicationView.frame = CGRect(x: 0, y: -1500, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         currentPublicationView.frame = CGRect(x: 0, y: 0, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
-        nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+        nextPublicationView.frame = CGRect(x: 0, y: 1500, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
         
         swipeAreaView.addSubview(previousPublicationView)
         swipeAreaView.addSubview(currentPublicationView)
@@ -199,14 +199,14 @@ class AccueilView: UIViewController  {
         
         UIView.animate(withDuration: 0.4, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
             // put here the code you would like to animate
-            self.previousPublicationView.frame.origin.y -= 1000
-            self.currentPublicationView.frame.origin.y -= 1000
-            self.nextPublicationView.frame.origin.y -= 1000
+            self.previousPublicationView.frame.origin.y -= 1500
+            self.currentPublicationView.frame.origin.y -= 1500
+            self.nextPublicationView.frame.origin.y -= 1500
         }, completion: { [self](finished:Bool) in
             
             setupPublications()
             
-            previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+            previousPublicationView.frame = CGRect(x: 0, y: -1500, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
             previousPublicationView.backgroundColor = UIColor.darkGray
             previousPublicationView.layer.cornerRadius = ROUNDED_RADIUS
             previousPublicationView.layer.shadowOffset = CGSize(width: 0,height: 0)
@@ -222,7 +222,7 @@ class AccueilView: UIViewController  {
             currentPublicationView.layer.shadowOpacity = 0.4
             
             
-            nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+            nextPublicationView.frame = CGRect(x: 0, y: 1500, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
             nextPublicationView.backgroundColor = UIColor.darkGray
             nextPublicationView.layer.cornerRadius = ROUNDED_RADIUS
             nextPublicationView.layer.shadowOffset = CGSize(width: 0,height: 0)
@@ -236,14 +236,14 @@ class AccueilView: UIViewController  {
         
         UIView.animate(withDuration: 0.4, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
             // put here the code you would like to animate
-            self.previousPublicationView.frame.origin.y += 1000
-            self.currentPublicationView.frame.origin.y += 1000
-            self.nextPublicationView.frame.origin.y += 1000
+            self.previousPublicationView.frame.origin.y += 1500
+            self.currentPublicationView.frame.origin.y += 1500
+            self.nextPublicationView.frame.origin.y += 1500
         }, completion: { [self](finished:Bool) in
             
             setupPublications()
             
-            previousPublicationView.frame = CGRect(x: 0, y: -1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+            previousPublicationView.frame = CGRect(x: 0, y: -1500, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
             previousPublicationView.backgroundColor = UIColor.darkGray
             previousPublicationView.layer.cornerRadius = ROUNDED_RADIUS
             previousPublicationView.layer.shadowOffset = CGSize(width: 0,height: 0)
@@ -258,7 +258,7 @@ class AccueilView: UIViewController  {
             currentPublicationView.layer.shadowOpacity = 0.4
             
             
-            nextPublicationView.frame = CGRect(x: 0, y: 1000, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
+            nextPublicationView.frame = CGRect(x: 0, y: 1500, width: swipeAreaView.frame.width, height: swipeAreaView.frame.height)
             nextPublicationView.backgroundColor = UIColor.darkGray
             nextPublicationView.layer.cornerRadius = ROUNDED_RADIUS
             nextPublicationView.layer.shadowOffset = CGSize(width: 0,height: 0)
