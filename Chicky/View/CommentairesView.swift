@@ -161,7 +161,7 @@ class CommentairesView: UIViewController, UITableViewDataSource, UITableViewDele
                 self.commentaires = commentairesfromRep!
                 self.tableView.reloadData()
             }else {
-                self.present(Alert.makeAlert(titre: "Erreur", message: "Internal server error"), animated: true)
+                self.present(Alert.makeAlert(titre: "Error", message: "Internal server error"), animated: true)
             }
         }
     }
@@ -169,7 +169,7 @@ class CommentairesView: UIViewController, UITableViewDataSource, UITableViewDele
     // ACTIONS
     @IBAction func envoyerCommentaire(_ sender: Any) {
         if nouveauCommentaireTextField.text!.isEmpty {
-            self.present(Alert.makeAlert(titre: "Avertissement", message: "Veuillez saisir une description"), animated: true)
+            self.present(Alert.makeAlert(titre: "Avertissement", message: "Please type a description"), animated: true)
             return
         }
         CommentaireViewModel().ajouterCommentaire(idPublication: (publication?._id)!, commentaire: Commentaire(description: nouveauCommentaireTextField.text, date: Date())) { success in

@@ -29,7 +29,7 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate & UINavigati
     // LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("hi")
         videoView.layer.cornerRadius = ROUNDED_RADIUS
         
         self.pickerController.delegate = self
@@ -44,19 +44,24 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate & UINavigati
     @IBAction func ajouterPublication(_ sender: Any) {
         
         if (videoUrl == nil){
-            self.present(Alert.makeAlert(titre: "Avertissement", message: "Choisir une video"), animated: true)
+            self.present(Alert.makeAlert(titre: "Warning", message: "Choose a video"), animated: true)
             return
         }
         
         let publication = Publication( description: descriptionTextField.text, date: Date(), commentaires: [])
         PublicationViewModel().ajouterPublication(publication: publication, videoUrl: videoUrl!) { success in
             if success {
-                self.present(Alert.makeAlert(titre: "Success", message: "Publication ajouté"),animated: true)
+                self.present(Alert.makeAlert(titre: "Success", message: "Post added"),animated: true)
+                self.present(Alert.makeSingleActionAlert(titre: "Success", message: "Post added", action: UIAlertAction(title: "Ok", style: .default, handler: { [self] UIAlertAction in
+                    
+                    videoView.layer.sublayers?.removeAll()
+                    videoUrl = nil
+                    descriptionTextField.text = ""
+                    //self.tabBarController!.selectedIndex = 0
+                })), animated: true)
             }
         }
-        
-        
-        
+
     }
     
     private func action(for type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
@@ -73,21 +78,16 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate & UINavigati
     @IBAction func changePhoto(_ sender: Any) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        if let action = self.action(for: .camera, title: "Take video") {
+        /*if let action = self.action(for: .camera, title: "Take video") {
             alertController.addAction(action)
-        }
+        }*/
+        
         if let action = self.action(for: .photoLibrary, title: "Video library") {
             alertController.addAction(action)
         }
 
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
-        /*if UIDevice.current.userInterfaceIdiom == .pad {
-            alertController.popoverPresentationController?.sourceView = sourceView
-            alertController.popoverPresentationController?.sourceRect = sourceView.bounds
-            alertController.popoverPresentationController?.permittedArrowDirections = [.down, .up]
-        }*/
-
+        
         self.present(alertController, animated: true)
     }
     

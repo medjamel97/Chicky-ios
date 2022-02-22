@@ -62,6 +62,7 @@ class AccueilView: UIViewController  {
         
         PublicationViewModel().recupererToutPublication { [self] success, results in
             if success {
+                publications = []
                 self.publications.append(contentsOf: results!)
                 
                 if publications.count > 0 {
@@ -111,6 +112,7 @@ class AccueilView: UIViewController  {
     func makePublicationCard(card: UIView, elementIndex: Int, publication: Publication) {
         
         card.layer.sublayers?.removeAll()
+        
         //CARD
         card.backgroundColor = UIColor.darkGray
         card.layer.cornerRadius = ROUNDED_RADIUS

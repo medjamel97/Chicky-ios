@@ -63,17 +63,17 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
         print("Edited profile")
         
         if (nomTextField.text!.isEmpty) {
-            self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre nom"), animated: true)
+            self.present(Alert.makeAlert(titre: "Error", message: "Please type your firstname"), animated: true)
             return
         }
         
         if (prenomTextField.text!.isEmpty) {
-            self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre prenom"), animated: true)
+            self.present(Alert.makeAlert(titre: "Error", message: "Please type your lastname"), animated: true)
             return
         }
         
         if (sexeChooser.selectedSegmentIndex == 0 ){
-            self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre sexe"), animated: true)
+            self.present(Alert.makeAlert(titre: "Error", message: "Please choose your gender"), animated: true)
             return
         }
         
@@ -102,16 +102,6 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
         
         self.dismiss(animated: true, completion: nil)
     }
-    
-    func camera()
-    {
-        let myPickerControllerCamera = UIImagePickerController()
-        myPickerControllerCamera.delegate = self
-        myPickerControllerCamera.sourceType = UIImagePickerController.SourceType.camera
-        myPickerControllerCamera.allowsEditing = true
-        self.present(myPickerControllerCamera, animated: true, completion: nil)
-    }
-    
     
     func gallery()
     {
@@ -151,11 +141,6 @@ class ModifierProfilView: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         actionSheetController.addAction(cancelActionButton)
         
-        let saveActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Take Photo", comment: ""), style: .default)
-        { action -> Void in
-            self.camera()
-        }
-        actionSheetController.addAction(saveActionButton)
         
         let deleteActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Choose From Gallery", comment: ""), style: .default)
         { action -> Void in

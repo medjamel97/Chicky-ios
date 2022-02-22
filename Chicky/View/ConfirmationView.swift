@@ -66,7 +66,7 @@ class ConfirmationView: UIViewController {
             buttonSend.isEnabled = false
             codeTextField.isUserInteractionEnabled = false
             compteurExpirationLabel.textColor = .darkGray
-            self.present(Alert.makeAlert(titre: "Avertissement", message: "Le code a exprié veuillez recommencer"), animated: true)
+            self.present(Alert.makeAlert(titre: "Warning", message: "The code exprired please restart"), animated: true)
         }
     }
     
@@ -74,14 +74,14 @@ class ConfirmationView: UIViewController {
     @IBAction func suivant(_ sender: Any) {
         
         if (codeTextField.text!.isEmpty){
-            self.present(Alert.makeAlert(titre: "Avertissement", message: "Veuillez taper le code"), animated: true)
+            self.present(Alert.makeAlert(titre: "Warning", message: "Please type the code"), animated: true)
             return
         }
         
         if (codeTextField.text == data?.code ) {
             self.performSegue(withIdentifier: "changerMdpSegue", sender: data?.email)
         } else {
-            self.present(Alert.makeAlert(titre: "Erreur", message: "Code incorrect"), animated: true)
+            self.present(Alert.makeAlert(titre: "Error", message: "Code incorrect"), animated: true)
         }
     }
     

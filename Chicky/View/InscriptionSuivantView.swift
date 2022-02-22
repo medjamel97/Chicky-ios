@@ -40,34 +40,29 @@ class InscriptionSuivantView: UIViewController {
     
     // ACTIONS
     @IBAction func radioMale(sender: AnyObject) {
-        sexe = "Masculin"
+        sexe = "Male"
     }
     
     @IBAction func radioFemale(sender: AnyObject) {
-        sexe = "Feminin"
+        sexe = "Female"
     }
     
     @IBAction func inscriptionButton(_ sender: Any) {
         
         if (nomTextField.text!.isEmpty) {
-            self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre nom"), animated: true)
+            self.present(Alert.makeAlert(titre: "Warning", message: "Please type your firstname"), animated: true)
             return
         }
         
         if (prenomTextField.text!.isEmpty) {
-            self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre prenom"), animated: true)
+            self.present(Alert.makeAlert(titre: "Warning", message: "Please type your lastname"), animated: true)
             return
         }
         
         if (sexeChooser.selectedSegmentIndex == 0 ){
-            self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre sexe"), animated: true)
+            self.present(Alert.makeAlert(titre: "Warning", message: "Please choose your gender"), animated: true)
             return
         }
-        
-        /*if (dateDeNaissancePicker.) {
-            self.present(Alert.makeAlert(titre: "Erreur", message: "Veuillez saisir votre date de naissance"), animated: true)
-            return
-        }*/
         
         utilisateur?.idPhoto = ""
         utilisateur?.score = 0
@@ -97,14 +92,14 @@ class InscriptionSuivantView: UIViewController {
             
             if success {
                 
-                let alert = UIAlertController(title: "Succés", message: "Votre compte a été bien creé veuillez confirmer votre email.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Success", message: "Your account has been created.", preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default) { UIAlertAction in
                     self.goToLogin(email: self.utilisateur?.email)
                 }
                 alert.addAction(action)
                 self.present(alert, animated: true)
             } else {
-                self.present(Alert.makeAlert(titre: "Erreur d'inscription", message: "Veuillez verifier si le compte existe deja."), animated: true)
+                self.present(Alert.makeAlert(titre: "Error", message: "Account may already exist."), animated: true)
             }
             
             // STOP Spinner

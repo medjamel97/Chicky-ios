@@ -52,30 +52,30 @@ class InscriptionView: UIViewController {
     @IBAction func inscription(_ sender: UIButton) {
         
         if (pseudoTextField.text == "") {
-            makeAlert(titre: "Erreur", message: "Veuillez saisir votre pseudo")
+            makeAlert(titre: "Warning", message: "Please type your username")
             return
         }
         
         if (emailTextField.text == "") {
-            makeAlert(titre: "Erreur", message: "Veuillez saisir votre email")
+            makeAlert(titre: "Warning", message: "Please type your email")
             return
         }else if (emailTextField.text?.contains("@") == false){
-            makeAlert(titre: "Erreur", message: "Veuillez saisir correctement votre email")
+            makeAlert(titre: "Warning", message: "Please type your email correctly")
             return
         }
         
         if (motDePasseTextField.text == "") {
-            makeAlert(titre: "Erreur", message: "Veuillez saisir votre mot de passe")
+            makeAlert(titre: "Warning", message: "Please type your password")
             return
         }
         
         if (confirmationMotDePasseTextField.text == "") {
-            makeAlert(titre: "Erreur", message: "Veuillez confirmer le mot de passe")
+            makeAlert(titre: "Warning", message: "Please type the password confirmation")
             return
         }
         
         if (motDePasseTextField.text != confirmationMotDePasseTextField.text) {
-            makeAlert(titre: "Erreur", message: "Le mot de passe et different de la confirmation")
+            makeAlert(titre: "Warning", message: "Password and confirmation don't match")
             return
         }
         

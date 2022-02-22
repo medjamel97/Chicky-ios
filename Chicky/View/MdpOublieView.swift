@@ -54,7 +54,7 @@ class MdpOublieView: UIViewController {
     @IBAction func suivant(_ sender: Any) {
         
         if (emailTextField.text!.isEmpty){
-            self.present(Alert.makeAlert(titre: "Avertissement", message: "Veuillez taper votre email"), animated: true)
+            self.present(Alert.makeAlert(titre: "Warning", message: "Please type your email"), animated: true)
             return
         }
         
@@ -67,7 +67,7 @@ class MdpOublieView: UIViewController {
             if success {
                 self.performSegue(withIdentifier: "confirmationSegue", sender: self.data)
             } else {
-                self.present(Alert.makeAlert(titre: "Erreur", message: "Email innexistant"), animated: true)
+                self.present(Alert.makeAlert(titre: "Error", message: "Email does not exist"), animated: true)
             }
         }
     }

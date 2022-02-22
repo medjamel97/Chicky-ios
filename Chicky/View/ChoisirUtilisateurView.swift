@@ -34,10 +34,8 @@ class ChoisirUtilisateurView: UIViewController, UITableViewDataSource, UITableVi
         labelName.text = utilisateur.prenom! + " " + utilisateur.nom!
         labelUsername.text = "@" + utilisateur.pseudo!
         
-        imageProfile.layer.cornerRadius = imageProfile.frame.size.width/2
-        imageProfile.clipsToBounds = true
-        imageProfile.layer.borderColor = UIColor.white.cgColor
-        imageProfile.layer.borderWidth = 5.0
+        imageProfile.roundedGrayPhoto()
+        
         ImageLoader.shared.loadImage(
             identifier: utilisateur.idPhoto!,
             url: IMAGE_URL + utilisateur.idPhoto!,

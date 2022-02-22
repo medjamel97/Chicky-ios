@@ -48,24 +48,6 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell!
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            /*ConversationViewModel().supprimerConversation(_id: conversations[indexPath.row]._id) { success in
-                if success {
-                    print("deleted chat")
-                    self.conversations.remove(at: indexPath.row)
-                    tableView.reloadData()
-                } else {
-                    print("error while deleting chat")
-                }
-            }*/
-        }
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedConversation = conversations[indexPath.row]
         self.performSegue(withIdentifier: "conversationSegue", sender: selectedConversation)
@@ -85,6 +67,10 @@ class MessagerieView: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         
         ModalTransitionMediator.instance.setListener(listener: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        initialize()
     }
     
     override func viewDidAppear(_ animated: Bool) {

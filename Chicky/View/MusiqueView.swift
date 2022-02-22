@@ -92,22 +92,24 @@ class MusiqueView: UIViewController, AVAudioPlayerDelegate {
     
     // ACTIONS
     @IBAction func playAction(_ sender: Any) {
-        if canPlay {
-            playImage.image = UIImage(systemName: "pause.circle.fill")
-            
-            updater = CADisplayLink(target: self, selector: #selector(self.trackAudio))
-            updater.preferredFramesPerSecond = 1
-            updater.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
-            
-            //startTime.text = "\(player.currentTime)"
-            progressBar.minimumValue = 0
-            progressBar.maximumValue = 100 // Percentage
-      
-            audioPlayer.play()
-        } else {
-            self.audioPlayer.stop()
-            playImage.image = UIImage(systemName: "play.circle.fill")
+        if audioPlayer != nil {
+            if canPlay {
+                playImage.image = UIImage(systemName: "pause.circle.fill")
+                
+                updater = CADisplayLink(target: self, selector: #selector(self.trackAudio))
+                updater.preferredFramesPerSecond = 1
+                updater.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
+                
+                //startTime.text = "\(player.currentTime)"
+                progressBar.minimumValue = 0
+                progressBar.maximumValue = 100 // Percentage
+          
+                audioPlayer.play()
+            } else {
+                self.audioPlayer.stop()
+                playImage.image = UIImage(systemName: "play.circle.fill")
+            }
+            canPlay = !canPlay
         }
-        canPlay = !canPlay
     }
 }

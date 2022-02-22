@@ -55,9 +55,9 @@ class ConnexionView: UIViewController {
     func reEnvoyerEmail(email: String?) {
         utilisateurViewModel.reEnvoyerConfirmationEmail(email: email!, completed: { (success) in
             if success {
-                self.present(Alert.makeAlert(titre: "Succés", message: "Email de confirmation envoyé a " + email!), animated: true)
+                self.present(Alert.makeAlert(titre: "Success", message: "Confirmation email has been sent to " + email!), animated: true)
             } else {
-                self.present(Alert.makeAlert(titre: "Erreur", message: "Echec d'envoi de l'email de confirmation"), animated: true)
+                self.present(Alert.makeAlert(titre: "Error", message: "Could not send the confirmation email"), animated: true)
             }
         })
     }
@@ -66,7 +66,7 @@ class ConnexionView: UIViewController {
     @IBAction func connexion(_ sender: Any) {
         
         if(emailTextField.text!.isEmpty || motDePasseTextField.text!.isEmpty){
-            self.present(Alert.makeAlert(titre: "Avertissement", message: "Vous devez taper vos identifiants"), animated: true)
+            self.present(Alert.makeAlert(titre: "Warning", message: "Please type your credentials"), animated: true)
             return
         }
         
@@ -85,11 +85,11 @@ class ConnexionView: UIViewController {
                     let action = UIAlertAction(title: "Réenvoyer", style: .default) { UIAlertAction in
                         self.reEnvoyerEmail(email: utilisateur.email)
                     }
-                    self.present(Alert.makeActionAlert(titre: "Notice", message: "Cet email n'a pas été confirmé, Voulez vous re envoyer l'email de confirmation a " + utilisateur.email! + " ?", action: action),animated: true)
+                    self.present(Alert.makeActionAlert(titre: "Notice", message: "This email is not confirmed, would you like to resend the confirmation email to " + utilisateur.email! + " ?", action: action),animated: true)
                     self.reEnvoyerEmail(email: utilisateur.email)
                 }
             } else {
-                self.present(Alert.makeAlert(titre: "Avertissement", message: "Email ou mot de passe incorrect."), animated: true)
+                self.present(Alert.makeAlert(titre: "Warning", message: "Email or password incorrect"), animated: true)
             }
         })
     }

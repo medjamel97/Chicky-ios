@@ -50,17 +50,17 @@ class ChangerMdpView: UIViewController {
     @IBAction func Terminer(_ sender: Any) {
         
         if (motDePasseTextField.text!.isEmpty) {
-            self.present(Alert.makeAlert(titre: "Avertissement", message: "Vous devez taper votre nouveau mot de passe"), animated: true)
+            self.present(Alert.makeAlert(titre: "Warning", message: "Please type your new password"), animated: true)
             return
         }
         
         if (confirmationMotDePasseTextField.text!.isEmpty) {
-            self.present(Alert.makeAlert(titre: "Avertissement", message: "Vous devez taper la confirmation de votre nouveau mot de passe"), animated: true)
+            self.present(Alert.makeAlert(titre: "Warning", message: "Please type the confirmation of your new password"), animated: true)
             return
         }
         
         if (motDePasseTextField.text != confirmationMotDePasseTextField.text) {
-            self.present(Alert.makeAlert(titre: "Avertissement", message: "Mot de passe et confirmation doivent etre identique"), animated: true)
+            self.present(Alert.makeAlert(titre: "Warning", message: "Passwords should match"), animated: true)
             return
         }
         
@@ -72,9 +72,9 @@ class ChangerMdpView: UIViewController {
                 let action = UIAlertAction(title: "Retour", style: .default) { UIAlertAction in
                     self.performSegue(withIdentifier: "revenirConnexionSegue", sender: nil)
                 }
-                self.present(Alert.makeSingleActionAlert(titre: "Félicitation", message: "Votre mot de passe a été changé", action: action), animated: true)
+                self.present(Alert.makeSingleActionAlert(titre: "Success", message: "Your password has been changed", action: action), animated: true)
             }else{
-                self.present(Alert.makeAlert(titre: "Erreur", message: "Echec de changement de mot de passe"), animated: true)
+                self.present(Alert.makeAlert(titre: "Error", message: "Could not change your password"), animated: true)
             }
         })
     }

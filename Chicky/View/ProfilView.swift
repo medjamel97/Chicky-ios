@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ModalTransitionListener {
+class ProfilView: UIViewController, ModalTransitionListener {
   
     
     // VAR
@@ -16,7 +16,6 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
     var utilisateurViewModel = UtilisateurViewModel()
     
     // WIDGET
-    @IBOutlet weak var postsCollectionView: UICollectionView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nomPrenomTF: UILabel!
@@ -24,35 +23,10 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var dateNaissLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var darkThemeIcon: UIImageView!
-    @IBOutlet weak var darkThemeSwitch: UISwitch!
+    //@IBOutlet weak var darkThemeIcon: UIImageView!
+    //@IBOutlet weak var darkThemeSwitch: UISwitch!
     
     // PROTOCOLS
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return publications.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mCell", for: indexPath)
-        let contentView = cell.contentView
-        
-        let imagePublication = contentView.viewWithTag(1) as! UIImageView
-        let labeldescription = contentView.viewWithTag(2) as! UILabel
-        
-        imagePublication.layer.cornerRadius = ROUNDED_RADIUS
-        labeldescription.text = publications[indexPath.row].description
-        print(publications[indexPath.row].idPhoto!)
-        
-        ImageLoader.shared.loadImage(
-            identifier: publications[indexPath.row].idPhoto!,
-            url: IMAGE_URL + publications[indexPath.row].idPhoto!,
-            completion: { [] image in
-                imagePublication.image = image
-            })
-        
-        return cell
-    }
     
     // LIFECYCLE
     
@@ -63,8 +37,8 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
         
         editProfileButton.isHidden = true
         logoutButton.isHidden = true
-        darkThemeIcon.isHidden = true
-        darkThemeSwitch.isHidden = true
+        //darkThemeIcon.isHidden = true
+        //darkThemeSwitch.isHidden = true
         
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         profileImage.clipsToBounds = true
@@ -99,8 +73,8 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
                 
                 editProfileButton.isHidden = false
                 logoutButton.isHidden = false
-                darkThemeIcon.isHidden = false
-                darkThemeSwitch.isHidden = false
+                //darkThemeIcon.isHidden = false
+               // darkThemeSwitch.isHidden = false
                 
                 dateNaissLabel.text = "Born in " +  DateUtils.formatFromDateForDisplayYearMonthDay(date: (utilisateur?.dateNaissance)!)
                 if utilisateur?.sexe == true {
@@ -112,9 +86,9 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
                 nomPrenomTF.text = (result?.prenom)! + " " + (result?.nom)!
                 
                 if utilisateur?.pseudo == "" {
-                    usernameLabel.text = "@" + (utilisateur?.nom)! + "_" + (utilisateur?.prenom)!
+                    usernameLabel.text = (utilisateur?.nom)! + "_" + (utilisateur?.prenom)!
                 } else {
-                    usernameLabel.text = "@" + (utilisateur?.pseudo)!
+                    usernameLabel.text = (utilisateur?.pseudo)!
                 }
                 
                 ImageLoader.shared.loadImage(identifier: (utilisateur?.idPhoto)!, url: IMAGE_URL + (utilisateur?.idPhoto)!) { imageResp in
@@ -122,7 +96,6 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
                     profileImage.image = imageResp
                 }
                 
-                initializePosts(idUser: UserDefaults.standard.string(forKey: "idUtilisateur")!)
             } else {
                 
             }
@@ -154,16 +127,6 @@ class ProfilView: UIViewController, UICollectionViewDataSource, UICollectionView
         ImageLoader.shared.loadImage(identifier: utilisateur.idPhoto!, url: IMAGE_URL + utilisateur.idPhoto!) { [self] imageResp in
             
             profileImage.image = imageResp
-        }
-        
-        initializePosts(idUser: utilisateur._id!)
-    }
-    
-    func initializePosts(idUser: String) {
-        PublicationViewModel.sharedInstance.recupererPublicationParUtilisateur(idUtilisateur: idUser) { [self] success, mesPublications in
-            publications = mesPublications!
-            
-            postsCollectionView.reloadData()
         }
     }
     

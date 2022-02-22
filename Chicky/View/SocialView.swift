@@ -171,8 +171,8 @@ class SocialView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
                         print ("------ Checking out here --------")
                         print(mapItem)
                         
-                        let enregistrement = Enregistrement(lieu: mapItem.name!)
-                        EnregistrementViewModel.sharedInstance.ajouter(enregistrement: enregistrement) { success in
+                        //let enregistrement = Enregistrement(lieu: mapItem.name!)
+                        /*EnregistrementViewModel.sharedInstance.ajouter(enregistrement: enregistrement) { success in
                             if success {
                                 print ("---------------------------------")
                                 print("location saved")
@@ -180,7 +180,7 @@ class SocialView: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
                                 print ("---------------------------------")
                                 print("location failed to save")
                             }
-                        }
+                        }*/
                         
                         print ("---------------------------------")
                         
