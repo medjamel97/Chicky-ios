@@ -10,6 +10,7 @@ import MobileCoreServices
 import UniformTypeIdentifiers
 import AVFoundation
 import AVKit
+import Alamofire
 
 class CameraView: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
@@ -76,19 +77,29 @@ class CameraView: UIViewController, UIImagePickerControllerDelegate & UINavigati
     }
     
     @IBAction func changePhoto(_ sender: Any) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: "Alert message.", preferredStyle: .actionSheet)
 
-        /*if let action = self.action(for: .camera, title: "Take video") {
-            alertController.addAction(action)
-        }*/
+        let defaultAction = UIAlertAction(title: "Default", style: .default, handler: { (alert: UIAlertAction!) -> Void in
+          //  Do some action here.
+        })
+
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (alert: UIAlertAction!) -> Void in
+          //  Do some destructive action here.
+        })
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (alert: UIAlertAction!) -> Void in
+          //  Do something here upon cancellation.
+        })
+
+        alertController.addAction(defaultAction)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
         
-        if let action = self.action(for: .photoLibrary, title: "Video library") {
-            alertController.addAction(action)
+        if let popoverController = alertController.popoverPresentationController {
+          popoverController.barButtonItem = sender as? UIBarButtonItem
         }
 
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        self.present(alertController, animated: true)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     
