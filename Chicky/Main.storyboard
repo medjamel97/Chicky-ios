@@ -386,7 +386,7 @@
                                 <rect key="frame" x="0.0" y="123.66666666666669" width="414" height="563.33333333333326"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzb-qm-Wur">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1005"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1006.3333333333334"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpy-gX-t1z">
                                                 <rect key="frame" x="19.333333333333343" y="19.999999999999986" width="375.33333333333326" height="48"/>
@@ -398,10 +398,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qs4-CQ-bty" userLabel="CV people">
-                                                <rect key="frame" x="16" y="67.999999999999986" width="382" height="235.66666666666663"/>
+                                                <rect key="frame" x="16" y="68" width="382" height="236"/>
                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="qs4-CQ-bty" secondAttribute="height" multiplier="357:220" id="5QE-B5-Euj"/>
+                                                    <constraint firstAttribute="height" constant="236" id="YuI-Ch-Wdo"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DwL-QS-gJT">
                                                     <size key="itemSize" width="200" height="200"/>
@@ -411,7 +411,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="peopleCell" id="eCl-56-9Z6" customClass="PostsCollectionViewCell" customModule="Chicky" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="17.666666666666668" width="200" height="200"/>
+                                                        <rect key="frame" x="0.0" y="18" width="200" height="200"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kUf-0Y-q6c">
                                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -446,7 +446,7 @@
                                                 </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36J-mR-PIB">
-                                                <rect key="frame" x="19.333333333333343" y="323.66666666666663" width="375.33333333333326" height="48"/>
+                                                <rect key="frame" x="19.333333333333343" y="324" width="375.33333333333326" height="48.333333333333314"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="36J-mR-PIB" secondAttribute="height" multiplier="39:5" id="RB6-77-A8n"/>
                                                 </constraints>
@@ -455,7 +455,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdy-0T-twZ">
-                                                <rect key="frame" x="16" y="627" width="382" height="48"/>
+                                                <rect key="frame" x="16" y="628.33333333333337" width="382" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="hdy-0T-twZ" secondAttribute="height" multiplier="119:15" id="Go2-zG-Ud0"/>
                                                 </constraints>
@@ -464,10 +464,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Eh2-VW-Q9G" userLabel="CV posts">
-                                                <rect key="frame" x="17" y="692" width="380" height="233.33333333333337"/>
+                                                <rect key="frame" x="17" y="693.33333333333337" width="380" height="233.33333333333337"/>
                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Eh2-VW-Q9G" secondAttribute="height" multiplier="355:218" id="YdX-Hx-cpb"/>
+                                                    <constraint firstAttribute="height" constant="233.33333333333337" id="5mk-Fv-kgM"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v0j-c9-jwK">
                                                     <size key="itemSize" width="200" height="200"/>
@@ -513,10 +513,10 @@
                                                 </connections>
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l5y-Mi-iMh" userLabel="CV music">
-                                                <rect key="frame" x="16" y="371.66666666666663" width="382" height="235.33333333333337"/>
+                                                <rect key="frame" x="16" y="372.33333333333331" width="382" height="235.99999999999994"/>
                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="l5y-Mi-iMh" secondAttribute="height" multiplier="357:220" id="eyD-gQ-4Ko"/>
+                                                    <constraint firstAttribute="height" constant="236" id="Akh-es-G3k"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lOP-J1-69r">
                                                     <size key="itemSize" width="200" height="200"/>
@@ -526,7 +526,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="musicCell" id="cbU-Sb-R0D" customClass="PeopleCollectionViewCell" customModule="Chicky" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="17.666666666666668" width="200" height="200"/>
+                                                        <rect key="frame" x="0.0" y="18" width="200" height="200"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="BZz-2c-t8U">
                                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -2441,7 +2441,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="TJK-Gd-oLf"/>
         <segue reference="QPe-Uf-TyV"/>
-        <segue reference="Abu-Qs-0ei"/>
+        <segue reference="Kx5-Tc-jn8"/>
         <segue reference="aDu-1s-EmJ"/>
         <segue reference="OWb-w8-Gaj"/>
     </inferredMetricsTieBreakers>
