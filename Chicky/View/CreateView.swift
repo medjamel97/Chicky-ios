@@ -12,7 +12,7 @@ import AVFoundation
 import AVKit
 import Alamofire
 
-class CameraView: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class CreateView: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     // VAR
     private var pickerController: UIImagePickerController = UIImagePickerController()

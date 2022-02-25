@@ -30,6 +30,8 @@
 		431677C9273920FD0062EA9D /* MessagerieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431677C8273920FD0062EA9D /* MessagerieView.swift */; };
 		431677CF273920FD0062EA9D /* Chicky.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 431677CD273920FD0062EA9D /* Chicky.xcdatamodeld */; };
 		431677D1273920FE0062EA9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 431677D0273920FE0062EA9D /* Assets.xcassets */; };
+		8827ACA427C913B000EAE5A6 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827ACA327C913B000EAE5A6 /* PrivacyPolicyView.swift */; };
+		8827ACA627C9153000EAE5A6 /* UserAgreementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8827ACA527C9153000EAE5A6 /* UserAgreementsView.swift */; };
 		8D214992276366D1007CD4D0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D214991276366D1007CD4D0 /* MapKit.framework */; };
 		8D52EE4A2756178500DC7028 /* VerifAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D52EE492756178500DC7028 /* VerifAccountView.swift */; };
 		8D8774F3275282DD0039CB29 /* MdpOublieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8774F2275282DD0039CB29 /* MdpOublieView.swift */; };
@@ -48,7 +50,7 @@
 		8DFC6A712758000D00DA0175 /* CommentaireViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC6A702758000D00DA0175 /* CommentaireViewModel.swift */; };
 		940D717B27430DB200722B97 /* ConnexionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D717A27430DB200722B97 /* ConnexionView.swift */; };
 		940D717D27430E0200722B97 /* RechercheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D717C27430E0200722B97 /* RechercheView.swift */; };
-		940D717F27430E3D00722B97 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D717E27430E3D00722B97 /* CameraView.swift */; };
+		940D717F27430E3D00722B97 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D717E27430E3D00722B97 /* CreateView.swift */; };
 		940D718727430F6400722B97 /* ProfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D718627430F6400722B97 /* ProfilView.swift */; };
 		940D718927430F8900722B97 /* MusiqueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940D718827430F8900722B97 /* MusiqueView.swift */; };
 		94C4DFB62742BC1C00993FE5 /* Utilisateur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C4DFB52742BC1C00993FE5 /* Utilisateur.swift */; };
@@ -95,6 +97,8 @@
 		431677D5273920FE0062EA9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69844C1A4BA56201C1B700AA /* Pods_Chicky_ChickyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chicky_ChickyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844441E750DD109EC9701A82 /* Pods_ChickyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChickyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8827ACA327C913B000EAE5A6 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		8827ACA527C9153000EAE5A6 /* UserAgreementsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAgreementsView.swift; sourceTree = "<group>"; };
 		8D214991276366D1007CD4D0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8D52EE492756178500DC7028 /* VerifAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifAccountView.swift; sourceTree = "<group>"; };
 		8D8774F2275282DD0039CB29 /* MdpOublieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MdpOublieView.swift; sourceTree = "<group>"; };
@@ -114,7 +118,7 @@
 		934D3B0EF32BEB14149B163E /* Pods_Chicky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chicky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		940D717A27430DB200722B97 /* ConnexionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnexionView.swift; sourceTree = "<group>"; };
 		940D717C27430E0200722B97 /* RechercheView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RechercheView.swift; sourceTree = "<group>"; };
-		940D717E27430E3D00722B97 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		940D717E27430E3D00722B97 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		940D718627430F6400722B97 /* ProfilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilView.swift; sourceTree = "<group>"; };
 		940D718827430F8900722B97 /* MusiqueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusiqueView.swift; sourceTree = "<group>"; };
 		94C4DFB52742BC1C00993FE5 /* Utilisateur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilisateur.swift; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 		431677C3273920FD0062EA9D /* Chicky */ = {
 			isa = PBXGroup;
 			children = (
+				E4905DF727BC114500C3AD35 /* Main.storyboard */,
+				8D9EDC2F275169940003F1A1 /* Launch Screen.storyboard */,
 				431677C4273920FD0062EA9D /* AppDelegate.swift */,
 				431677C6273920FD0062EA9D /* SceneDelegate.swift */,
 				94C4DFBE2742C69A00993FE5 /* View */,
@@ -212,8 +218,6 @@
 		94C4DFBE2742C69A00993FE5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E4905DF727BC114500C3AD35 /* Main.storyboard */,
-				8D9EDC2F275169940003F1A1 /* Launch Screen.storyboard */,
 				8D52EE492756178500DC7028 /* VerifAccountView.swift */,
 				94C4DFCA2742D30A00993FE5 /* InscriptionView.swift */,
 				8DD5126F274C12CB006A4434 /* InscriptionSuivantView.swift */,
@@ -226,12 +230,14 @@
 				94C4DFD12742F64600993FE5 /* AccueilView.swift */,
 				940D717C27430E0200722B97 /* RechercheView.swift */,
 				940D718827430F8900722B97 /* MusiqueView.swift */,
-				940D717E27430E3D00722B97 /* CameraView.swift */,
+				940D717E27430E3D00722B97 /* CreateView.swift */,
 				431677C8273920FD0062EA9D /* MessagerieView.swift */,
 				10581B76277F578F00459EB0 /* ChoisirUtilisateurView.swift */,
 				1064A766277E5073008F3B76 /* ChatView.swift */,
 				8DF504FE276113B800832E37 /* CategorieViewController.swift */,
 				109A3AFB2767CED7009868A6 /* CommentairesView.swift */,
+				8827ACA327C913B000EAE5A6 /* PrivacyPolicyView.swift */,
+				8827ACA527C9153000EAE5A6 /* UserAgreementsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -423,11 +429,12 @@
 				8D9254EF27482A9E009ACD1A /* UtilisateurViewModel.swift in Sources */,
 				1044DCE3277633300065EDC2 /* VideoLoader.swift in Sources */,
 				10434EFC2782099D00CD6274 /* EnregistrementViewModel.swift in Sources */,
-				940D717F27430E3D00722B97 /* CameraView.swift in Sources */,
+				940D717F27430E3D00722B97 /* CreateView.swift in Sources */,
 				109A3AFE2767D760009868A6 /* DateUtils.swift in Sources */,
 				8D8774F5275283400039CB29 /* ConfirmationView.swift in Sources */,
 				940D718727430F6400722B97 /* ProfilView.swift in Sources */,
 				CE00D098275194E400B0E432 /* MessagerieViewModel.swift in Sources */,
+				8827ACA627C9153000EAE5A6 /* UserAgreementsView.swift in Sources */,
 				8D52EE4A2756178500DC7028 /* VerifAccountView.swift in Sources */,
 				10581B7D277F773100459EB0 /* Musique.swift in Sources */,
 				10DC5754275F115E00D00B77 /* ImageLoader.swift in Sources */,
@@ -440,6 +447,7 @@
 				431677C7273920FD0062EA9D /* SceneDelegate.swift in Sources */,
 				10581B77277F578F00459EB0 /* ChoisirUtilisateurView.swift in Sources */,
 				10B4137E278085A700F510BD /* CollectionViewHelper.swift in Sources */,
+				8827ACA427C913B000EAE5A6 /* PrivacyPolicyView.swift in Sources */,
 				94C4DFC52742C81F00993FE5 /* Conversation.swift in Sources */,
 				94C4DFB62742BC1C00993FE5 /* Utilisateur.swift in Sources */,
 				109A3B00276811ED009868A6 /* Evaluation.swift in Sources */,

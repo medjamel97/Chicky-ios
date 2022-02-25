@@ -180,6 +180,13 @@ class AccueilView: UIViewController  {
         
         ratingStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AccueilView.showRatingAction)))
         
+        // REPORT BUTTON
+        let reportButton = UIButton()
+        reportButton.setImage(UIImage(named: "icon-report-light"), for: .normal)
+        reportButton.setTitleColor(UIColor.white, for: .normal)
+        reportButton.frame = CGRect(x: card.frame.width - 40, y: 15, width: 30, height: 30)
+        reportButton.addTarget(self, action: #selector(AccueilView.reportPost), for: .touchUpInside)
+        
         // COMMENT BUTTON
         let commentButton = UIButton()
         commentButton.setImage(UIImage(named: "icon-comment"), for: .normal)
@@ -189,6 +196,7 @@ class AccueilView: UIViewController  {
         
         // CARD SUBVIEWS
         card.layer.addSublayer(playerLayer!)
+        card.addSubview(reportButton)
         card.addSubview(gradientView)
         card.addSubview(descriptionLabel)
         card.addSubview(ratingStackView)
@@ -436,6 +444,47 @@ class AccueilView: UIViewController  {
     
     @objc func likeButtonAction(sender: UIButton) {
         
+    }
+    
+    @objc func reportPost(sender: UIButton) {
+        let alert = UIAlertController(title: "Report", message: "Please tell us why you are reporting this post", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Offensive", style: .default) { [self] UIAlertAction in
+            sendReport(type: "Offensive")
+        }
+        let action2 = UIAlertAction(title: "Abusive", style: .default) { [self] UIAlertAction in
+            sendReport(type: "Abusive")
+        }
+        let action3 = UIAlertAction(title: "Racism", style: .default) { [self] UIAlertAction in
+            sendReport(type: "Racism")
+        }
+        let action4 = UIAlertAction(title: "Nudity", style: .default) { [self] UIAlertAction in
+            sendReport(type: "Nudity")
+        }
+        let action5 = UIAlertAction(title: "Other", style: .default) { [self] UIAlertAction in
+            sendReport(type: "Other")
+        }
+        let action6 = UIAlertAction(title: "Cancel", style: .cancel) { UIAlertAction in
+     
+        }
+        
+        alert.addAction(action1)
+        alert.addAction(action2)
+        alert.addAction(action3)
+        alert.addAction(action4)
+        alert.addAction(action5)
+        alert.addAction(action6)
+        
+        self.present(alert,animated: true)
+    }
+    
+    func sendReport(type: String) {
+        PublicationViewModel.sharedInstance.report(_id: currentPublication?._id!, type: type) { success in
+            if success {
+                self.present(Alert.makeAlert(titre: "Success", message: "Your report has been sent for review"),animated: true)
+            } else {
+                self.present(Alert.makeServerErrorAlert(),animated: true)
+            }
+        }
     }
     
     @objc func showCommentsAction(sender: UIButton) {

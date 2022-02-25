@@ -8,7 +8,8 @@
 import Foundation
 
 struct Utilisateur {
-    internal init(_id: String? = nil, pseudo: String? = nil, email: String? = nil, mdp: String? = nil, nom: String? = nil, prenom: String? = nil, dateNaissance: Date? = nil, idPhoto: String? = nil, sexe: Bool? = nil, score: Int? = nil, bio: String? = nil, isVerified: Bool? = nil, publications: [Publication]? = nil, conversations: [Conversation]? = nil, commentaires: [Commentaire]? = nil, jaimes: [Jaime]? = nil) {
+    
+    internal init(_id: String? = nil, pseudo: String? = nil, email: String? = nil, mdp: String? = nil, nom: String? = nil, prenom: String? = nil, dateNaissance: Date? = nil, idPhoto: String? = nil, sexe: Bool? = nil, score: Int? = nil, bio: String? = nil, isVerified: Bool? = nil, blockedUsers: [String]? = nil, blockedPosts: [String]? = nil) {
         self._id = _id
         self.pseudo = pseudo
         self.email = email
@@ -21,12 +22,9 @@ struct Utilisateur {
         self.score = score
         self.bio = bio
         self.isVerified = isVerified
-        self.publications = publications
-        self.conversations = conversations
-        self.commentaires = commentaires
-        self.jaimes = jaimes
+        self.blockedUsers = blockedUsers
+        self.blockedPosts = blockedPosts
     }
-    
     
     var _id : String?
     var pseudo : String?
@@ -42,8 +40,6 @@ struct Utilisateur {
     var isVerified : Bool?
     
     // relations
-    var publications : [Publication]?
-    var conversations : [Conversation]?
-    var commentaires : [Commentaire]?
-    var jaimes : [Jaime]?
+    var blockedUsers : [String]?
+    var blockedPosts : [String]?
 }

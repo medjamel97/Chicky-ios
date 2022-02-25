@@ -141,6 +141,27 @@ class PublicationViewModel {
             }
     }
     
+    func report(_id: String?, type: String, completed: @escaping (Bool) -> Void ) {
+        AF.request(HOST_URL + "publication/report",
+                   method: .post,
+                   parameters: [
+                    "_id": _id!,
+                    "type" : type,
+                    "user" : UserDefaults.standard.string(forKey: "idUtilisateur")!
+                   ])
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    completed(true)
+                case let .failure(error):
+                    debugPrint(error)
+                    completed(false)
+                }
+            }
+    }
+    
     func makePublication(jsonItem: JSON) -> Publication {
         var commentaires: [Commentaire] = []
         for i in jsonItem["commentaires"] {
@@ -183,6 +204,7 @@ class PublicationViewModel {
             _id: jsonItem["_id"].stringValue, description: jsonItem["description"].stringValue, date: Date()
         )
     }
+    
     func makeJaime(jsonItem: JSON) -> Jaime {
         Jaime(_id: jsonItem["_id"].stringValue, date: Date())
     }

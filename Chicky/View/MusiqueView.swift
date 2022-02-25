@@ -19,6 +19,7 @@ class MusiqueView: UIViewController, AVAudioPlayerDelegate {
     // WIDGET
     @IBOutlet weak var titreMusiqueLabel: UILabel!
     @IBOutlet weak var artisteMusiqueLabel: UILabel!
+    @IBOutlet weak var creditsLabel: UILabel!
     @IBOutlet weak var musicImage: UIImageView!
     @IBOutlet weak var playImage: UIImageView!
     @IBOutlet weak var progressBar: UISlider!
@@ -80,6 +81,7 @@ class MusiqueView: UIViewController, AVAudioPlayerDelegate {
     func initializeView() {
         titreMusiqueLabel.text = currentMusic?.titre
         artisteMusiqueLabel.text = currentMusic?.artiste
+        creditsLabel.text = currentMusic?.credits
         
         ImageLoader.shared.loadImage(
             identifier: currentMusic!.emplacementImageAlbum,

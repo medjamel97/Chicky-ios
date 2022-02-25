@@ -75,6 +75,8 @@ public class UtilisateurViewModel: ObservableObject{
                     let utilisateur = self.makeItem(jsonItem: jsonData["utilisateur"])
                     UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "tokenConnexion")
                     UserDefaults.standard.setValue(utilisateur._id, forKey: "idUtilisateur")
+                    UserDefaults.standard.set(utilisateur.blockedUsers, forKey: "blockedUsers")
+                    UserDefaults.standard.set(utilisateur.blockedPosts, forKey: "blockedPosts")
                     print(utilisateur)
                     
                     completed(true, utilisateur)
@@ -105,6 +107,8 @@ public class UtilisateurViewModel: ObservableObject{
                     print("this is the new token value : " + jsonData["token"].stringValue)
                     UserDefaults.standard.setValue(jsonData["token"].stringValue, forKey: "tokenConnexion")
                     UserDefaults.standard.setValue(utilisateur._id, forKey: "idUtilisateur")
+                    UserDefaults.standard.set(utilisateur.blockedUsers, forKey: "blockedUsers")
+                    UserDefaults.standard.set(utilisateur.blockedPosts, forKey: "blockedPosts")
                     completed(true, utilisateur)
                 case let .failure(error):
                     debugPrint(error)
@@ -129,6 +133,8 @@ public class UtilisateurViewModel: ObservableObject{
                     print("Found utilisateur --------------------")
                     print(utilisateur)
                     print("-------------------------------")
+                    UserDefaults.standard.set(utilisateur.blockedUsers, forKey: "blockedUsers")
+                    UserDefaults.standard.set(utilisateur.blockedPosts, forKey: "blockedPosts")
                     completed(true, utilisateur)
                 case let .failure(error):
                     debugPrint(error)
@@ -255,7 +261,38 @@ public class UtilisateurViewModel: ObservableObject{
             }
     }
     
+    func blockUser(userToBlock: String, completed: @escaping (Bool) -> Void) {
+        AF.request(HOST_URL + "utilisateur/block",
+                   method: .post,
+                   parameters: [
+                    "userToBlock": userToBlock,
+                    "user": UserDefaults.standard.string(forKey: "idUtilisateur")!
+                   ],
+                   encoding: JSONEncoding.default,
+                   headers: nil)
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("Success")
+                    completed(true)
+                case let .failure(error):
+                    completed(false)
+                    print(error)
+                }
+            }
+    }
+    
     func makeItem(jsonItem: JSON) -> Utilisateur {
+        
+        var BParray : [String] = []
+        for singleJsonItem in jsonItem["blockedPosts"]   {
+            BParray.append(singleJsonItem.1.stringValue)
+        }
+        
+        var BUarray : [String] = []
+        for singleJsonItem in  jsonItem["blockedUsers"]  {
+            BUarray.append(singleJsonItem.1.stringValue)
+        }
         
         return Utilisateur(
             _id: jsonItem["_id"].stringValue,
@@ -269,8 +306,9 @@ public class UtilisateurViewModel: ObservableObject{
             sexe: jsonItem["sexe"].boolValue,
             score: jsonItem["score"].intValue,
             bio: jsonItem["bio"].stringValue,
-            isVerified: jsonItem["isVerified"].boolValue
+            isVerified: jsonItem["isVerified"].boolValue,
+            blockedUsers: BUarray,
+            blockedPosts: BParray
         )
     }
-    
 }

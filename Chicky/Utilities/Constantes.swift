@@ -7,7 +7,8 @@
 
 import Foundation
 
-let HOST_POST_URL = "https://mini-projet-chicky.herokuapp.com"
+//let HOST_POST_URL = "https://mini-projet-chicky.herokuapp.com"
+let HOST_POST_URL = "http://localhost:5000"
 let HOST_URL = HOST_POST_URL + "/api/"
 let IMAGE_URL = HOST_POST_URL + "/img/"
 let VIDEO_URL = HOST_POST_URL + "/vid/"

@@ -37,6 +37,7 @@ class MusiqueViewModel {
             _id: jsonItem["_id"].stringValue,
             titre: jsonItem["titre"].stringValue,
             artiste: jsonItem["artiste"].stringValue,
+            credits: jsonItem["credits"].stringValue,
             emplacementFichier: jsonItem["emplacementFichier"].stringValue,
             emplacementImageAlbum: jsonItem["emplacementImageAlbum"].stringValue
         )
